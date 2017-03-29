@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PizzeriaMasterpieceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario_IdUsuario" Type="int" Nullable="false" />
+          <Property Name="TipoComprobante_IdTipoComprobante" Type="int" Nullable="false" />
+          <Property Name="PedidoEstado_IdPedidoEstado" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NumeroComprobante" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PedidoDetalle">
+          <Key>
+            <PropertyRef Name="IdPedidoDetalle" />
+          </Key>
+          <Property Name="IdPedidoDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pedido_IdPedido" Type="int" Nullable="false" />
+          <Property Name="Producto_IdProducto" Type="int" Nullable="false" />
+          <Property Name="PrecioDetalle" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PedidoEstado">
+          <Key>
+            <PropertyRef Name="IdPedidoEstado" />
+          </Key>
+          <Property Name="IdPedidoEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PedidoEstadoNombre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoProducto_IdTipoProducto" Type="int" Nullable="false" />
+          <Property Name="NombreProducto" Type="varchar" MaxLength="100" />
+          <Property Name="Activo" Type="tinyint" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TipoComprobante">
+          <Key>
+            <PropertyRef Name="IdTipoComprobante" />
+          </Key>
+          <Property Name="IdTipoComprobante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTipoComprobante" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="IdTipoProducto" />
+          </Key>
+          <Property Name="IdTipoProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTipoProducto" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNI" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Pedido__PedidoEs__75A278F5">
+          <End Role="PedidoEstado" Type="Self.PedidoEstado" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PedidoEstado">
+              <PropertyRef Name="IdPedidoEstado" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="PedidoEstado_IdPedidoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__TipoComp__76969D2E">
+          <End Role="TipoComprobante" Type="Self.TipoComprobante" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComprobante">
+              <PropertyRef Name="IdTipoComprobante" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="TipoComprobante_IdTipoComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__Usuario___778AC167">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="Usuario_IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidoDet__Pedid__7B5B524B">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="PedidoDetalle" Type="Self.PedidoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="PedidoDetalle">
+              <PropertyRef Name="Pedido_IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidoDet__Produ__7A672E12">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="PedidoDetalle" Type="Self.PedidoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="PedidoDetalle">
+              <PropertyRef Name="Producto_IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__TipoPr__72C60C4A">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="IdTipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TipoProducto_IdTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzeriaMasterpieceModelStoreContainer">
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidoDetalle" EntityType="Self.PedidoDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidoEstado" EntityType="Self.PedidoEstado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Pedido__PedidoEs__75A278F5" Association="Self.FK__Pedido__PedidoEs__75A278F5">
+            <End Role="PedidoEstado" EntitySet="PedidoEstado" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__TipoComp__76969D2E" Association="Self.FK__Pedido__TipoComp__76969D2E">
+            <End Role="TipoComprobante" EntitySet="TipoComprobante" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__Usuario___778AC167" Association="Self.FK__Pedido__Usuario___778AC167">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidoDet__Pedid__7B5B524B" Association="Self.FK__PedidoDet__Pedid__7B5B524B">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="PedidoDetalle" EntitySet="PedidoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidoDet__Produ__7A672E12" Association="Self.FK__PedidoDet__Produ__7A672E12">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="PedidoDetalle" EntitySet="PedidoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__TipoPr__72C60C4A" Association="Self.FK__Producto__TipoPr__72C60C4A">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzeriaMasterpieceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PedidoEntity">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario_IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="TipoComprobante_IdTipoComprobante" Type="Int32" Nullable="false" />
+          <Property Name="PedidoEstado_IdPedidoEstado" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NumeroComprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PedidoEstado" Relationship="Self.FK__Pedido__PedidoEs__75A278F5" FromRole="Pedido" ToRole="PedidoEstado" />
+          <NavigationProperty Name="TipoComprobante" Relationship="Self.FK__Pedido__TipoComp__76969D2E" FromRole="Pedido" ToRole="TipoComprobante" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Pedido__Usuario___778AC167" FromRole="Pedido" ToRole="Usuario" />
+          <NavigationProperty Name="PedidoDetalles" Relationship="Self.FK__PedidoDet__Pedid__7B5B524B" FromRole="Pedido" ToRole="PedidoDetalle" />
+        </EntityType>
+        <EntityType Name="PedidoDetalleEntity">
+          <Key>
+            <PropertyRef Name="IdPedidoDetalle" />
+          </Key>
+          <Property Name="IdPedidoDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pedido_IdPedido" Type="Int32" Nullable="false" />
+          <Property Name="Producto_IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="PrecioDetalle" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK__PedidoDet__Pedid__7B5B524B" FromRole="PedidoDetalle" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__PedidoDet__Produ__7A672E12" FromRole="PedidoDetalle" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="PedidoEstadoEntity">
+          <Key>
+            <PropertyRef Name="IdPedidoEstado" />
+          </Key>
+          <Property Name="IdPedidoEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PedidoEstadoNombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.FK__Pedido__PedidoEs__75A278F5" FromRole="PedidoEstado" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="ProductoEntity">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoProducto_IdTipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="NombreProducto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Byte" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PedidoDetalles" Relationship="Self.FK__PedidoDet__Produ__7A672E12" FromRole="Producto" ToRole="PedidoDetalle" />
+          <NavigationProperty Name="TipoProducto" Relationship="Self.FK__Producto__TipoPr__72C60C4A" FromRole="Producto" ToRole="TipoProducto" />
+        </EntityType>
+        <EntityType Name="TipoComprobanteEntity">
+          <Key>
+            <PropertyRef Name="IdTipoComprobante" />
+          </Key>
+          <Property Name="IdTipoComprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTipoComprobante" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.FK__Pedido__TipoComp__76969D2E" FromRole="TipoComprobante" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="TipoProductoEntity">
+          <Key>
+            <PropertyRef Name="IdTipoProducto" />
+          </Key>
+          <Property Name="IdTipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTipoProducto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Productoes" Relationship="Self.FK__Producto__TipoPr__72C60C4A" FromRole="TipoProducto" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="UsuarioEntity">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.FK__Pedido__Usuario___778AC167" FromRole="Usuario" ToRole="Pedido" />
+        </EntityType>
+        <Association Name="FK__Pedido__PedidoEs__75A278F5">
+          <End Role="PedidoEstado" Type="PizzeriaMasterpieceModel.PedidoEstadoEntity" Multiplicity="1" />
+          <End Role="Pedido" Type="PizzeriaMasterpieceModel.PedidoEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PedidoEstado">
+              <PropertyRef Name="IdPedidoEstado" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="PedidoEstado_IdPedidoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__TipoComp__76969D2E">
+          <End Role="TipoComprobante" Type="PizzeriaMasterpieceModel.TipoComprobanteEntity" Multiplicity="1" />
+          <End Role="Pedido" Type="PizzeriaMasterpieceModel.PedidoEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoComprobante">
+              <PropertyRef Name="IdTipoComprobante" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="TipoComprobante_IdTipoComprobante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__Usuario___778AC167">
+          <End Role="Usuario" Type="PizzeriaMasterpieceModel.UsuarioEntity" Multiplicity="1" />
+          <End Role="Pedido" Type="PizzeriaMasterpieceModel.PedidoEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="Usuario_IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidoDet__Pedid__7B5B524B">
+          <End Role="Pedido" Type="PizzeriaMasterpieceModel.PedidoEntity" Multiplicity="1" />
+          <End Role="PedidoDetalle" Type="PizzeriaMasterpieceModel.PedidoDetalleEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="IdPedido" />
+            </Principal>
+            <Dependent Role="PedidoDetalle">
+              <PropertyRef Name="Pedido_IdPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PedidoDet__Produ__7A672E12">
+          <End Role="Producto" Type="PizzeriaMasterpieceModel.ProductoEntity" Multiplicity="1" />
+          <End Role="PedidoDetalle" Type="PizzeriaMasterpieceModel.PedidoDetalleEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="PedidoDetalle">
+              <PropertyRef Name="Producto_IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__TipoPr__72C60C4A">
+          <End Role="TipoProducto" Type="PizzeriaMasterpieceModel.TipoProductoEntity" Multiplicity="1" />
+          <End Role="Producto" Type="PizzeriaMasterpieceModel.ProductoEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="IdTipoProducto" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="TipoProducto_IdTipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzeriaMasterpieceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PedidoEntities" EntityType="PizzeriaMasterpieceModel.PedidoEntity" />
+          <EntitySet Name="PedidoDetalleEntities" EntityType="PizzeriaMasterpieceModel.PedidoDetalleEntity" />
+          <EntitySet Name="PedidoEstadoEntities" EntityType="PizzeriaMasterpieceModel.PedidoEstadoEntity" />
+          <EntitySet Name="ProductoEntities" EntityType="PizzeriaMasterpieceModel.ProductoEntity" />
+          <EntitySet Name="TipoComprobanteEntities" EntityType="PizzeriaMasterpieceModel.TipoComprobanteEntity" />
+          <EntitySet Name="TipoProductoEntities" EntityType="PizzeriaMasterpieceModel.TipoProductoEntity" />
+          <EntitySet Name="UsuarioEntities" EntityType="PizzeriaMasterpieceModel.UsuarioEntity" />
+          <AssociationSet Name="FK__Pedido__PedidoEs__75A278F5" Association="Self.FK__Pedido__PedidoEs__75A278F5">
+            <End Role="PedidoEstado" EntitySet="PedidoEstadoEntities" />
+            <End Role="Pedido" EntitySet="PedidoEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__TipoComp__76969D2E" Association="Self.FK__Pedido__TipoComp__76969D2E">
+            <End Role="TipoComprobante" EntitySet="TipoComprobanteEntities" />
+            <End Role="Pedido" EntitySet="PedidoEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__Usuario___778AC167" Association="Self.FK__Pedido__Usuario___778AC167">
+            <End Role="Usuario" EntitySet="UsuarioEntities" />
+            <End Role="Pedido" EntitySet="PedidoEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidoDet__Pedid__7B5B524B" Association="Self.FK__PedidoDet__Pedid__7B5B524B">
+            <End Role="Pedido" EntitySet="PedidoEntities" />
+            <End Role="PedidoDetalle" EntitySet="PedidoDetalleEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PedidoDet__Produ__7A672E12" Association="Self.FK__PedidoDet__Produ__7A672E12">
+            <End Role="Producto" EntitySet="ProductoEntities" />
+            <End Role="PedidoDetalle" EntitySet="PedidoDetalleEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__TipoPr__72C60C4A" Association="Self.FK__Producto__TipoPr__72C60C4A">
+            <End Role="TipoProducto" EntitySet="TipoProductoEntities" />
+            <End Role="Producto" EntitySet="ProductoEntities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzeriaMasterpieceModelStoreContainer" CdmEntityContainer="PizzeriaMasterpieceEntities">
+          <EntitySetMapping Name="PedidoEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.PedidoEntity">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="Usuario_IdUsuario" ColumnName="Usuario_IdUsuario" />
+                <ScalarProperty Name="TipoComprobante_IdTipoComprobante" ColumnName="TipoComprobante_IdTipoComprobante" />
+                <ScalarProperty Name="PedidoEstado_IdPedidoEstado" ColumnName="PedidoEstado_IdPedidoEstado" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="NumeroComprobante" ColumnName="NumeroComprobante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidoDetalleEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.PedidoDetalleEntity">
+              <MappingFragment StoreEntitySet="PedidoDetalle">
+                <ScalarProperty Name="IdPedidoDetalle" ColumnName="IdPedidoDetalle" />
+                <ScalarProperty Name="Pedido_IdPedido" ColumnName="Pedido_IdPedido" />
+                <ScalarProperty Name="Producto_IdProducto" ColumnName="Producto_IdProducto" />
+                <ScalarProperty Name="PrecioDetalle" ColumnName="PrecioDetalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidoEstadoEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.PedidoEstadoEntity">
+              <MappingFragment StoreEntitySet="PedidoEstado">
+                <ScalarProperty Name="IdPedidoEstado" ColumnName="IdPedidoEstado" />
+                <ScalarProperty Name="PedidoEstadoNombre" ColumnName="PedidoEstadoNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductoEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.ProductoEntity">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="TipoProducto_IdTipoProducto" ColumnName="TipoProducto_IdTipoProducto" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoComprobanteEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.TipoComprobanteEntity">
+              <MappingFragment StoreEntitySet="TipoComprobante">
+                <ScalarProperty Name="IdTipoComprobante" ColumnName="IdTipoComprobante" />
+                <ScalarProperty Name="NombreTipoComprobante" ColumnName="NombreTipoComprobante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProductoEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.TipoProductoEntity">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="IdTipoProducto" ColumnName="IdTipoProducto" />
+                <ScalarProperty Name="NombreTipoProducto" ColumnName="NombreTipoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioEntities">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.UsuarioEntity">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
