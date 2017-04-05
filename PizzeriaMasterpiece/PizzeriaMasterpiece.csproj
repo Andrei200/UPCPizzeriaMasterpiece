@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,7 +221,8 @@
     <Content Include="Images\banner_pizza.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_short.png" />
-    <Content Include="Images\Otros\price.png" />
+    <Content Include="Images\Other\banner_register.png" />
+    <Content Include="Images\Other\my_order.png" />
     <Content Include="Images\Pizzas\pizza1.jpg" />
     <Content Include="Images\Pizzas\pizza10.jpg" />
     <Content Include="Images\Pizzas\pizza11.jpg" />
@@ -286,6 +288,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Pizza\List.cshtml" />
+    <Content Include="Views\Order\MyOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

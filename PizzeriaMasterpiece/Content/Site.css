@@ -175,3 +175,46 @@ footer p{
 }
 
 .mb15{margin-bottom: 15px;}
+
+.custom_table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+.custom_table2 th {
+    background-color: #0F54AC;
+    color: white;
+}
+
+.order_h1{
+        background: red;
+    margin-bottom: 0px;
+    text-align: center;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-bottom: 2px outset white;
+}
+
+.order_h2{
+        background: red;
+    margin-bottom: 0px;
+    text-align: center;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #0F54AC;
+    color: white;
+    border-bottom: 2px outset white;
+}
+
+.control-label{color:white;}
