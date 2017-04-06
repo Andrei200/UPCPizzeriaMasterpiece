@@ -88,7 +88,7 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioDTO..cs" />
+    <Compile Include="UsuarioDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DatabaseModel.edmx">
