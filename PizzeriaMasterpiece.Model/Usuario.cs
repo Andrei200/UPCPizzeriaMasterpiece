@@ -12,12 +12,12 @@ namespace PizzeriaMasterpiece.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioEntity
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UsuarioEntity()
+        public Usuario()
         {
-            this.Pedidoes = new HashSet<PedidoEntity>();
+            this.Pedidoes = new HashSet<Pedido>();
         }
     
         public int IdUsuario { get; set; }
@@ -26,8 +26,10 @@ namespace PizzeriaMasterpiece.Model
         public string Apellido { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PedidoEntity> Pedidoes { get; set; }
+        public virtual ICollection<Pedido> Pedidoes { get; set; }
     }
 }

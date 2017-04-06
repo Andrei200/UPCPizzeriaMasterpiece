@@ -12,24 +12,18 @@ namespace PizzeriaMasterpiece.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductoEntity
+    public partial class TipoProducto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductoEntity()
+        public TipoProducto()
         {
-            this.PedidoDetalles = new HashSet<PedidoDetalleEntity>();
+            this.Productoes = new HashSet<Producto>();
         }
     
-        public int IdProducto { get; set; }
-        public int TipoProducto_IdTipoProducto { get; set; }
-        public string NombreProducto { get; set; }
-        public Nullable<byte> Activo { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public string Descripcion { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public int IdTipoProducto { get; set; }
+        public string NombreTipoProducto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PedidoDetalleEntity> PedidoDetalles { get; set; }
-        public virtual TipoProductoEntity TipoProducto { get; set; }
+        public virtual ICollection<Producto> Productoes { get; set; }
     }
 }
