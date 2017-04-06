@@ -178,6 +178,7 @@ namespace PizzeriaMasterpiece.Controllers
                 var result = serviceReference.InsertUserInformation(user);
                 return RedirectToAction("Index", "Home");
 
+
             }
 
             // If we got this far, something failed, redisplay form
