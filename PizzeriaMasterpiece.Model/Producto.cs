@@ -12,26 +12,23 @@ namespace PizzeriaMasterpiece.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PedidoEntity
+    public partial class Producto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PedidoEntity()
+        public Producto()
         {
-            this.PedidoDetalles = new HashSet<PedidoDetalleEntity>();
+            this.PedidoDetalles = new HashSet<PedidoDetalle>();
         }
     
-        public int IdPedido { get; set; }
-        public int Usuario_IdUsuario { get; set; }
-        public int TipoComprobante_IdTipoComprobante { get; set; }
-        public int PedidoEstado_IdPedidoEstado { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
-        public Nullable<decimal> Total { get; set; }
-        public string NumeroComprobante { get; set; }
+        public int IdProducto { get; set; }
+        public int TipoProducto_IdTipoProducto { get; set; }
+        public string NombreProducto { get; set; }
+        public Nullable<byte> Activo { get; set; }
+        public Nullable<decimal> Precio { get; set; }
+        public string Descripcion { get; set; }
     
-        public virtual PedidoEstadoEntity PedidoEstado { get; set; }
-        public virtual TipoComprobanteEntity TipoComprobante { get; set; }
-        public virtual UsuarioEntity Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PedidoDetalleEntity> PedidoDetalles { get; set; }
+        public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; }
+        public virtual TipoProducto TipoProducto { get; set; }
     }
 }

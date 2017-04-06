@@ -66,29 +66,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PedidoDetalleEntity.cs">
+    <Compile Include="Pedido.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PedidoEntity.cs">
+    <Compile Include="PedidoDetalle.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PedidoEstadoEntity.cs">
+    <Compile Include="PedidoEstado.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProductoEntity.cs">
+    <Compile Include="Producto.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TipoComprobanteEntity.cs">
+    <Compile Include="TipoComprobante.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TipoProductoEntity.cs">
+    <Compile Include="TipoProducto.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioModel.cs" />
-    <Compile Include="UsuarioEntity.cs">
+    <Compile Include="Usuario.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsuarioDTO..cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DatabaseModel.edmx">

@@ -12,14 +12,16 @@ namespace PizzeriaMasterpiece.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PedidoDetalleEntity
+    public partial class PedidoDetalle
     {
         public int IdPedidoDetalle { get; set; }
         public int Pedido_IdPedido { get; set; }
         public int Producto_IdProducto { get; set; }
-        public Nullable<decimal> PrecioDetalle { get; set; }
+        public Nullable<decimal> PrecioProducto { get; set; }
+        public Nullable<decimal> Cantidad { get; set; }
+        public Nullable<decimal> SubTotal { get; set; }
     
-        public virtual PedidoEntity Pedido { get; set; }
-        public virtual ProductoEntity Producto { get; set; }
+        public virtual Pedido Pedido { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

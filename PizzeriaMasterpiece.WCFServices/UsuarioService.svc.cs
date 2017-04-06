@@ -15,10 +15,16 @@ namespace PizzeriaMasterpiece.Services
     public class UsuarioService : IUsuarioService
     {
 
-        public async Task<UsuarioModel> GetUserInformation(int usuarioId)
+        public async Task<UsuarioDTO> GetUserInformation(int usuarioId)
         {
             var usurioRepository = new UsuarioRepository();
             return await usurioRepository.GetUserInformation(usuarioId);
+        }
+
+        public async Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario)
+        {
+            var usurioRepository = new UsuarioRepository();
+            return await usurioRepository.InsertUserInformation(usuario);
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,22 +12,64 @@ namespace PizzeriaMasterpiece.Repository
     public class UsuarioRepository
     {
 
-        public async Task<UsuarioModel> GetUserInformation(int userId){
+        public async Task<UsuarioDTO> GetUserInformation(int userId){
             using (var context = new PizzeriaMasterpieceEntities()){
 
-                return await context.UsuarioEntities
+                var result =  await context.Usuarios
                .Where(p => p.IdUsuario == userId)
-               .Select(q => new UsuarioModel
+               .Select(q => new UsuarioDTO
                {
                    IdUsuario = q.IdUsuario,
                    DNI = q.DNI,
                    Apellido = q.Apellido,
                    Correo = q.Correo,
-                   Nombre = q.Nombre
+                   Nombre = q.Nombre,
+                   Direccion = q.Direccion,
+                   Telefono = q.Telefono
                })
                .FirstOrDefaultAsync();
 
+                return result;
+
             }
         }
+
+        public async Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario)
+        {
+
+           
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+
+                var user = new Usuario();
+                user.IdUsuario =-1;
+                user.Nombre = usuario.Nombre;
+                user.Apellido = usuario.Apellido;
+                user.DNI = usuario.DNI;
+                user.Correo = usuario.Correo;
+                user.Direccion = usuario.Direccion;
+                user.Telefono = usuario.Telefono;
+                user.Contrasena = HashPassword(usuario.Contrasena);
+                context.Usuarios.Add(user);
+                context.SaveChanges();
+                return await GetUserInformation(user.IdUsuario);
+            }
+
+           
+        }
+
+
+        private string HashPassword(string password){
+
+
+            SHA256Managed crypt = new SHA256Managed();
+            string result = string.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password));
+            foreach (byte theByte in crypto)
+            {
+                result += theByte.ToString("x2");
+            }
+            return result;
+       }
     }
 }
