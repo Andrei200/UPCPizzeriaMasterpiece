@@ -19,6 +19,12 @@
   <wsdl:message name="IUsuarioService_InsertUserInformation_OutputMessage">
     <wsdl:part name="parameters" element="tns:InsertUserInformationResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsuarioService_LoginUserInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUsuarioService_LoginUserInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserInformationResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUsuarioService">
     <wsdl:operation name="GetUserInformation">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioService/GetUserInformation" message="tns:IUsuarioService_GetUserInformation_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="InsertUserInformation">
       <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioService/InsertUserInformation" message="tns:IUsuarioService_InsertUserInformation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioService/InsertUserInformationResponse" message="tns:IUsuarioService_InsertUserInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUserInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuarioService/LoginUserInformation" message="tns:IUsuarioService_LoginUserInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuarioService/LoginUserInformationResponse" message="tns:IUsuarioService_LoginUserInformation_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUsuarioService" type="tns:IUsuarioService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="InsertUserInformation">
       <soap:operation soapAction="http://tempuri.org/IUsuarioService/InsertUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUserInformation">
+      <soap:operation soapAction="http://tempuri.org/IUsuarioService/LoginUserInformation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

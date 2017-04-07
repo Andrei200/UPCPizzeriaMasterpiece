@@ -35,12 +35,9 @@ namespace PizzeriaMasterpiece.Repository
         }
 
         public async Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario)
-        {
-
-           
+        {           
             using (var context = new PizzeriaMasterpieceEntities())
             {
-
                 var user = new Usuario();
                 user.IdUsuario =-1;
                 user.Nombre = usuario.Nombre;
@@ -53,11 +50,30 @@ namespace PizzeriaMasterpiece.Repository
                 context.Usuarios.Add(user);
                 context.SaveChanges();
                 return await GetUserInformation(user.IdUsuario);
-            }
-
-           
+            }           
         }
 
+        public async Task<UsuarioDTO> LoginUserInformation(string correo, string contrasena)
+        {
+            contrasena = HashPassword(contrasena);
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+               var result = await context.Usuarios
+               .Where(p => p.Correo == correo && p.Contrasena == contrasena)
+               .Select(q => new UsuarioDTO
+               {
+                   IdUsuario = q.IdUsuario,
+                   DNI = q.DNI,
+                   Apellido = q.Apellido,
+                   Correo = q.Correo,
+                   Nombre = q.Nombre,
+                   Direccion = q.Direccion,
+                   Telefono = q.Telefono
+               })
+               .FirstOrDefaultAsync();
+                return result;
+            }
+        }
 
         private string HashPassword(string password){
 

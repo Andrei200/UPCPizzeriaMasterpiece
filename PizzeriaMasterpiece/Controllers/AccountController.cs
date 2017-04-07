@@ -66,7 +66,7 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) //kalo
         {
             if (!ModelState.IsValid)
             {
@@ -75,20 +75,20 @@ namespace PizzeriaMasterpiece.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            var serviceReference = new UsuarioServiceReference.UsuarioServiceClient();
+            var user = new UsuarioServiceReference.UsuarioRegistroDTO();
+            var result = serviceReference.LoginUserInformation(model.Email, model.Password);
+
+            if (result != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                Session["User"] = user;                
+                return RedirectToLocal(returnUrl);
             }
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }            
         }
 
         //
@@ -168,17 +168,15 @@ namespace PizzeriaMasterpiece.Controllers
                 //AddErrors(result);
                 var serviceReference = new UsuarioServiceReference.UsuarioServiceClient();
                 var user = new UsuarioServiceReference.UsuarioRegistroDTO();
-                user.Nombre = "Sandro";
-                user.Apellido = "Gamio";
-                user.DNI = "12457800";
+                user.DNI = model.Document;
+                user.Nombre = model.FirstName;
+                user.Apellido = model.LastName;
                 user.Correo = model.Email;
-                user.Telefono = "998712457";
-                user.Direccion = "Miraflores";
+                user.Telefono = model.Telephone;
+                user.Direccion = model.Address;
                 user.Contrasena = model.ConfirmPassword;
                 var result = serviceReference.InsertUserInformation(user);
-                return RedirectToAction("Index", "Home");
-
-
+                return RedirectToAction("Index", "Home");                
             }
 
             // If we got this far, something failed, redisplay form

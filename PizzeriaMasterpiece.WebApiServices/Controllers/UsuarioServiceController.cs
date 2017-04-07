@@ -19,7 +19,7 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
         }
 
         // GET: api/UsuarioService/5
-        public async Task<UsuarioModel> Get(int id)
+        public async Task<UsuarioDTO> Get(int id)
         {
             var usurioRepository = new UsuarioRepository();
             return await usurioRepository.GetUserInformation(id);

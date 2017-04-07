@@ -29,4 +29,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LoginUserInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="contrasena" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginUserInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.Model" minOccurs="0" name="LoginUserInformationResult" nillable="true" type="q4:UsuarioDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

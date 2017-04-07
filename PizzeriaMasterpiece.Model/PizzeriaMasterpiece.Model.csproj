@@ -78,6 +78,7 @@
     <Compile Include="Producto.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TipoProductoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoComprobante.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -88,6 +89,7 @@
     <Compile Include="Usuario.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductoDTO.cs" />
     <Compile Include="UsuarioDTO.cs" />
   </ItemGroup>
   <ItemGroup>

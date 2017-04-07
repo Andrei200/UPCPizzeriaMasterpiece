@@ -10,6 +10,19 @@
             <button class="btn btn-default filter-button" data-filter="vegetariana">Vegetarianas</button>
         </div>
         <br />
+
+        @for (var i = 0; i < ViewBag.ListProduct.Length; i++)
+        {
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter ">
+                <label>@ViewBag.ListProduct[i].NombreProducto</label>
+                <p>@ViewBag.ListProduct[i].Descripcion</p>
+                <span>S/. @ViewBag.ListProduct[i].Precio</span>
+                <input type="number" value="0" />
+                <button class="btn btn-danger">Ordernar</button>
+                <div style="background-image:url(@ViewBag.ListProduct[i].IdProducto)"></div>
+            </div>
+        }
+
         <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter ">
             <label>Pizza Americana</label>
             <p>Pepperoni & Ham.</p>

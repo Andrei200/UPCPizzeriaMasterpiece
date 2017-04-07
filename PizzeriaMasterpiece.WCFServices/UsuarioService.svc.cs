@@ -26,5 +26,11 @@ namespace PizzeriaMasterpiece.Services
             var usurioRepository = new UsuarioRepository();
             return await usurioRepository.InsertUserInformation(usuario);
         }
+
+        public async Task<UsuarioDTO> LoginUserInformation(string correo, string contrasena)
+        {
+            var usurioRepository = new UsuarioRepository();
+            return await usurioRepository.LoginUserInformation(correo, contrasena);
+        }
     }
 }

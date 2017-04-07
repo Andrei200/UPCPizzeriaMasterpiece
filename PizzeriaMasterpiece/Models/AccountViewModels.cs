@@ -6,7 +6,7 @@ namespace PizzeriaMasterpiece.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string Email { get; set; }
     }
 
@@ -42,42 +42,64 @@ namespace PizzeriaMasterpiece.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Recordar usuario")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
+
+        [Required]
+        [StringLength(8, ErrorMessage = "El {0} debe tener {2} caracteres.", MinimumLength = 8)]
+        [Display(Name = "DNI")]
+        public string Document { get; set; }
+
+        [Required]
+        [Display(Name = "Nombre(s)")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Apellido(s)")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Dirección")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Telefono")]
+        public string Telephone { get; set; }
+
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} debe tener almenos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar contraseña")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -85,18 +107,18 @@ namespace PizzeriaMasterpiece.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "La {0} debe tener almenos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Contraseña")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -106,7 +128,7 @@ namespace PizzeriaMasterpiece.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Correo")]
         public string Email { get; set; }
     }
 }

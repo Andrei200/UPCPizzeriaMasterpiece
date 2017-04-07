@@ -193,6 +193,12 @@ namespace PizzeriaMasterpiece.UsuarioServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/InsertUserInformation", ReplyAction="http://tempuri.org/IUsuarioService/InsertUserInformationResponse")]
         System.Threading.Tasks.Task<PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO> InsertUserInformationAsync(PizzeriaMasterpiece.UsuarioServiceReference.UsuarioRegistroDTO usuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/LoginUserInformation", ReplyAction="http://tempuri.org/IUsuarioService/LoginUserInformationResponse")]
+        PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO LoginUserInformation(string correo, string contrasena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/LoginUserInformation", ReplyAction="http://tempuri.org/IUsuarioService/LoginUserInformationResponse")]
+        System.Threading.Tasks.Task<PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO> LoginUserInformationAsync(string correo, string contrasena);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -236,6 +242,14 @@ namespace PizzeriaMasterpiece.UsuarioServiceReference {
         
         public System.Threading.Tasks.Task<PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO> InsertUserInformationAsync(PizzeriaMasterpiece.UsuarioServiceReference.UsuarioRegistroDTO usuario) {
             return base.Channel.InsertUserInformationAsync(usuario);
+        }
+        
+        public PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO LoginUserInformation(string correo, string contrasena) {
+            return base.Channel.LoginUserInformation(correo, contrasena);
+        }
+        
+        public System.Threading.Tasks.Task<PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO> LoginUserInformationAsync(string correo, string contrasena) {
+            return base.Channel.LoginUserInformationAsync(correo, contrasena);
         }
     }
 }
