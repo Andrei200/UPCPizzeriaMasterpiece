@@ -9,13 +9,11 @@
         public string Correo { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-
     }
 
     public class UsuarioRegistroDTO : UsuarioDTO
     {
         public string Contrasena { get; set; }
-
     }
 
 }

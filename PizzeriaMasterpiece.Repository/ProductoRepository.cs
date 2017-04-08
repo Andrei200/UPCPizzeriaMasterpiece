@@ -15,7 +15,7 @@ namespace PizzeriaMasterpiece.Repository
         public async Task<ProductoDTO> GetProductInformation(int productId){
             using (var context = new PizzeriaMasterpieceEntities()){
 
-                var result =  await context.Productos
+                var result =  await context.Productoes
                .Where(p => p.IdProducto == productId)
                .Select(q => new ProductoDTO
                {
@@ -42,7 +42,7 @@ namespace PizzeriaMasterpiece.Repository
                 product.Activo = Producto.Activo;
                 product.Precio = Producto.Precio;
                 product.Descripcion = Producto.Descripcion;
-                context.Productos.Add(product);
+                context.Productoes.Add(product);
                 context.SaveChanges();
                 return await GetProductInformation(product.IdProducto);
             }           
@@ -52,7 +52,7 @@ namespace PizzeriaMasterpiece.Repository
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-               var result = context.Productos               
+               var result = context.Productoes               
                .Select(q => new ProductoDTO
                {
                    IdProducto = q.IdProducto,
