@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzeriaMasterpiece.Model
+﻿namespace PizzeriaMasterpiece.Model
 {
     public class UsuarioDTO
     {
@@ -15,11 +9,13 @@ namespace PizzeriaMasterpiece.Model
         public string Correo { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
+
     }
 
     public class UsuarioRegistroDTO : UsuarioDTO
     {
         public string Contrasena { get; set; }
+
     }
 
 }

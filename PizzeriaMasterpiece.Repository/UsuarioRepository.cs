@@ -76,8 +76,6 @@ namespace PizzeriaMasterpiece.Repository
         }
 
         private string HashPassword(string password){
-
-
             SHA256Managed crypt = new SHA256Managed();
             string result = string.Empty;
             byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password));

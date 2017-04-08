@@ -28,7 +28,7 @@ namespace PizzeriaMasterpiece.Model
         public virtual DbSet<Pedido> Pedidoes { get; set; }
         public virtual DbSet<PedidoDetalle> PedidoDetalles { get; set; }
         public virtual DbSet<PedidoEstado> PedidoEstadoes { get; set; }
-        public virtual DbSet<Producto> Productos { get; set; }
+        public virtual DbSet<Producto> Productoes { get; set; }
         public virtual DbSet<TipoComprobante> TipoComprobantes { get; set; }
         public virtual DbSet<TipoProducto> TipoProductoes { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
