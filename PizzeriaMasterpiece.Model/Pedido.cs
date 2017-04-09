@@ -21,14 +21,17 @@ namespace PizzeriaMasterpiece.Model
         }
     
         public int IdPedido { get; set; }
-        public int Usuario_IdUsuario { get; set; }
+        public int RazonSocial_IdRazonSocial { get; set; }
         public int TipoComprobante_IdTipoComprobante { get; set; }
+        public int Usuario_IdUsuario { get; set; }
         public int PedidoEstado_IdPedidoEstado { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
-        public string NumeroComprobante { get; set; }
         public string Comentario { get; set; }
+        public string Direccion { get; set; }
+        public Nullable<int> IdAdministrador { get; set; }
     
         public virtual PedidoEstado PedidoEstado { get; set; }
+        public virtual RazonSocial RazonSocial { get; set; }
         public virtual TipoComprobante TipoComprobante { get; set; }
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

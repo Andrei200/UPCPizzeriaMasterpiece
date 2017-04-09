@@ -12,23 +12,17 @@ namespace PizzeriaMasterpiece.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class RazonSocial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public RazonSocial()
         {
             this.Pedidoes = new HashSet<Pedido>();
         }
     
-        public int IdUsuario { get; set; }
-        public string DNI { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Correo { get; set; }
-        public string Contrasena { get; set; }
-        public string Direccion { get; set; }
-        public Nullable<byte> EsAdministrador { get; set; }
-        public string Telefono { get; set; }
+        public int IdRazonSocial { get; set; }
+        public string RUC { get; set; }
+        public string RazonSocial1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedidoes { get; set; }

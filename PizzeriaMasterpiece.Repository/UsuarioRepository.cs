@@ -46,6 +46,7 @@ namespace PizzeriaMasterpiece.Repository
                 user.Correo = usuario.Correo;
                 user.Direccion = usuario.Direccion;
                 user.Telefono = usuario.Telefono;
+                user.EsAdministrador = 0;
                 user.Contrasena = HashPassword(usuario.Contrasena);
                 context.Usuarios.Add(user);
                 context.SaveChanges();

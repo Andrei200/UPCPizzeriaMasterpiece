@@ -5,17 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="PizzeriaMasterpieceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Insumo">
+          <Key>
+            <PropertyRef Name="IdInsumo" />
+          </Key>
+          <Property Name="IdInsumo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="IdPedido" />
           </Key>
           <Property Name="IdPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Usuario_IdUsuario" Type="int" Nullable="false" />
+          <Property Name="RazonSocial_IdRazonSocial" Type="int" Nullable="false" />
           <Property Name="TipoComprobante_IdTipoComprobante" Type="int" Nullable="false" />
+          <Property Name="Usuario_IdUsuario" Type="int" Nullable="false" />
           <Property Name="PedidoEstado_IdPedidoEstado" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
-          <Property Name="NumeroComprobante" Type="varchar" MaxLength="20" />
-          <Property Name="Comentario" Type="text" />
+          <Property Name="Comentario" Type="text" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="255" />
+          <Property Name="IdAdministrador" Type="int" />
         </EntityType>
         <EntityType Name="PedidoDetalle">
           <Key>
@@ -46,6 +56,23 @@
           <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Descripcion" Type="text" />
         </EntityType>
+        <EntityType Name="Producto_Insumo">
+          <Key>
+            <PropertyRef Name="IdProductoInsumo" />
+          </Key>
+          <Property Name="IdProductoInsumo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Insumo_IdInsumo" Type="int" Nullable="false" />
+          <Property Name="Producto_IdProducto" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RazonSocial">
+          <Key>
+            <PropertyRef Name="IdRazonSocial" />
+          </Key>
+          <Property Name="IdRazonSocial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RUC" Type="varchar" MaxLength="11" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="TipoComprobante">
           <Key>
             <PropertyRef Name="IdTipoComprobante" />
@@ -71,9 +98,10 @@
           <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Contrasena" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EsAdministrador" Type="tinyint" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Pedido__PedidoEs__2E1BDC42">
+        <Association Name="FK__Pedido__PedidoEs__35BCFE0A">
           <End Role="PedidoEstado" Type="Self.PedidoEstado" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +113,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pedido__TipoComp__2F10007B">
+        <Association Name="FK__Pedido__RazonSoc__38996AB5">
+          <End Role="RazonSocial" Type="Self.RazonSocial" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RazonSocial">
+              <PropertyRef Name="IdRazonSocial" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="RazonSocial_IdRazonSocial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__TipoComp__37A5467C">
           <End Role="TipoComprobante" Type="Self.TipoComprobante" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pedido__Usuario___300424B4">
+        <Association Name="FK__Pedido__Usuario___36B12243">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidoDet__Pedid__33D4B598">
+        <Association Name="FK__PedidoDet__Pedid__3C69FB99">
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
           <End Role="PedidoDetalle" Type="Self.PedidoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +161,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidoDet__Produ__32E0915F">
+        <Association Name="FK__PedidoDet__Produ__3B75D760">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="PedidoDetalle" Type="Self.PedidoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +173,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__TipoPr__2B3F6F97">
+        <Association Name="FK__Producto___Insum__32E0915F">
+          <End Role="Insumo" Type="Self.Insumo" Multiplicity="1" />
+          <End Role="Producto_Insumo" Type="Self.Producto_Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumo">
+              <PropertyRef Name="IdInsumo" />
+            </Principal>
+            <Dependent Role="Producto_Insumo">
+              <PropertyRef Name="Insumo_IdInsumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto___Produ__31EC6D26">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Insumo" Type="Self.Producto_Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="Producto_Insumo">
+              <PropertyRef Name="Producto_IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__TipoPr__2F10007B">
           <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
           <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -146,34 +210,49 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PizzeriaMasterpieceModelStoreContainer">
+          <EntitySet Name="Insumo" EntityType="Self.Insumo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PedidoDetalle" EntityType="Self.PedidoDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PedidoEstado" EntityType="Self.PedidoEstado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Insumo" EntityType="Self.Producto_Insumo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RazonSocial" EntityType="Self.RazonSocial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Pedido__PedidoEs__2E1BDC42" Association="Self.FK__Pedido__PedidoEs__2E1BDC42">
+          <AssociationSet Name="FK__Pedido__PedidoEs__35BCFE0A" Association="Self.FK__Pedido__PedidoEs__35BCFE0A">
             <End Role="PedidoEstado" EntitySet="PedidoEstado" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pedido__TipoComp__2F10007B" Association="Self.FK__Pedido__TipoComp__2F10007B">
+          <AssociationSet Name="FK__Pedido__RazonSoc__38996AB5" Association="Self.FK__Pedido__RazonSoc__38996AB5">
+            <End Role="RazonSocial" EntitySet="RazonSocial" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__TipoComp__37A5467C" Association="Self.FK__Pedido__TipoComp__37A5467C">
             <End Role="TipoComprobante" EntitySet="TipoComprobante" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pedido__Usuario___300424B4" Association="Self.FK__Pedido__Usuario___300424B4">
+          <AssociationSet Name="FK__Pedido__Usuario___36B12243" Association="Self.FK__Pedido__Usuario___36B12243">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidoDet__Pedid__33D4B598" Association="Self.FK__PedidoDet__Pedid__33D4B598">
+          <AssociationSet Name="FK__PedidoDet__Pedid__3C69FB99" Association="Self.FK__PedidoDet__Pedid__3C69FB99">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="PedidoDetalle" EntitySet="PedidoDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidoDet__Produ__32E0915F" Association="Self.FK__PedidoDet__Produ__32E0915F">
+          <AssociationSet Name="FK__PedidoDet__Produ__3B75D760" Association="Self.FK__PedidoDet__Produ__3B75D760">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="PedidoDetalle" EntitySet="PedidoDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__TipoPr__2B3F6F97" Association="Self.FK__Producto__TipoPr__2B3F6F97">
+          <AssociationSet Name="FK__Producto___Insum__32E0915F" Association="Self.FK__Producto___Insum__32E0915F">
+            <End Role="Insumo" EntitySet="Insumo" />
+            <End Role="Producto_Insumo" EntitySet="Producto_Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto___Produ__31EC6D26" Association="Self.FK__Producto___Produ__31EC6D26">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Insumo" EntitySet="Producto_Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__TipoPr__2F10007B" Association="Self.FK__Producto__TipoPr__2F10007B">
             <End Role="TipoProducto" EntitySet="TipoProducto" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
@@ -183,53 +262,80 @@
     <edmx:ConceptualModels>
       <Schema Namespace="PizzeriaMasterpieceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PizzeriaMasterpieceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Insumoes" EntityType="PizzeriaMasterpieceModel.Insumo" />
           <EntitySet Name="Pedidoes" EntityType="PizzeriaMasterpieceModel.Pedido" />
           <EntitySet Name="PedidoDetalles" EntityType="PizzeriaMasterpieceModel.PedidoDetalle" />
           <EntitySet Name="PedidoEstadoes" EntityType="PizzeriaMasterpieceModel.PedidoEstado" />
           <EntitySet Name="Productoes" EntityType="PizzeriaMasterpieceModel.Producto" />
+          <EntitySet Name="Producto_Insumo" EntityType="PizzeriaMasterpieceModel.Producto_Insumo" />
+          <EntitySet Name="RazonSocials" EntityType="PizzeriaMasterpieceModel.RazonSocial" />
           <EntitySet Name="TipoComprobantes" EntityType="PizzeriaMasterpieceModel.TipoComprobante" />
           <EntitySet Name="TipoProductoes" EntityType="PizzeriaMasterpieceModel.TipoProducto" />
           <EntitySet Name="Usuarios" EntityType="PizzeriaMasterpieceModel.Usuario" />
-          <AssociationSet Name="FK__Pedido__PedidoEs__2E1BDC42" Association="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__2E1BDC42">
+          <AssociationSet Name="FK__Producto___Insum__32E0915F" Association="PizzeriaMasterpieceModel.FK__Producto___Insum__32E0915F">
+            <End Role="Insumo" EntitySet="Insumoes" />
+            <End Role="Producto_Insumo" EntitySet="Producto_Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__PedidoEs__35BCFE0A" Association="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__35BCFE0A">
             <End Role="PedidoEstado" EntitySet="PedidoEstadoes" />
             <End Role="Pedido" EntitySet="Pedidoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pedido__TipoComp__2F10007B" Association="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__2F10007B">
+          <AssociationSet Name="FK__Pedido__RazonSoc__38996AB5" Association="PizzeriaMasterpieceModel.FK__Pedido__RazonSoc__38996AB5">
+            <End Role="RazonSocial" EntitySet="RazonSocials" />
+            <End Role="Pedido" EntitySet="Pedidoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__TipoComp__37A5467C" Association="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__37A5467C">
             <End Role="TipoComprobante" EntitySet="TipoComprobantes" />
             <End Role="Pedido" EntitySet="Pedidoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pedido__Usuario___300424B4" Association="PizzeriaMasterpieceModel.FK__Pedido__Usuario___300424B4">
+          <AssociationSet Name="FK__Pedido__Usuario___36B12243" Association="PizzeriaMasterpieceModel.FK__Pedido__Usuario___36B12243">
             <End Role="Usuario" EntitySet="Usuarios" />
             <End Role="Pedido" EntitySet="Pedidoes" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidoDet__Pedid__33D4B598" Association="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__33D4B598">
+          <AssociationSet Name="FK__PedidoDet__Pedid__3C69FB99" Association="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__3C69FB99">
             <End Role="Pedido" EntitySet="Pedidoes" />
             <End Role="PedidoDetalle" EntitySet="PedidoDetalles" />
           </AssociationSet>
-          <AssociationSet Name="FK__PedidoDet__Produ__32E0915F" Association="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__32E0915F">
+          <AssociationSet Name="FK__PedidoDet__Produ__3B75D760" Association="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__3B75D760">
             <End Role="Producto" EntitySet="Productoes" />
             <End Role="PedidoDetalle" EntitySet="PedidoDetalles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Producto__TipoPr__2B3F6F97" Association="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2B3F6F97">
+          <AssociationSet Name="FK__Producto___Produ__31EC6D26" Association="PizzeriaMasterpieceModel.FK__Producto___Produ__31EC6D26">
+            <End Role="Producto" EntitySet="Productoes" />
+            <End Role="Producto_Insumo" EntitySet="Producto_Insumo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Producto__TipoPr__2F10007B" Association="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2F10007B">
             <End Role="TipoProducto" EntitySet="TipoProductoes" />
             <End Role="Producto" EntitySet="Productoes" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Insumo">
+          <Key>
+            <PropertyRef Name="IdInsumo" />
+          </Key>
+          <Property Name="IdInsumo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Producto_Insumo" Relationship="PizzeriaMasterpieceModel.FK__Producto___Insum__32E0915F" FromRole="Insumo" ToRole="Producto_Insumo" />
+        </EntityType>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="IdPedido" />
           </Key>
           <Property Name="IdPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario_IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="RazonSocial_IdRazonSocial" Type="Int32" Nullable="false" />
           <Property Name="TipoComprobante_IdTipoComprobante" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_IdUsuario" Type="Int32" Nullable="false" />
           <Property Name="PedidoEstado_IdPedidoEstado" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Precision="3" />
-          <Property Name="NumeroComprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PedidoEstado" Relationship="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__2E1BDC42" FromRole="Pedido" ToRole="PedidoEstado" />
-          <NavigationProperty Name="TipoComprobante" Relationship="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__2F10007B" FromRole="Pedido" ToRole="TipoComprobante" />
-          <NavigationProperty Name="Usuario" Relationship="PizzeriaMasterpieceModel.FK__Pedido__Usuario___300424B4" FromRole="Pedido" ToRole="Usuario" />
-          <NavigationProperty Name="PedidoDetalles" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__33D4B598" FromRole="Pedido" ToRole="PedidoDetalle" />
+          <Property Name="Comentario" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdAdministrador" Type="Int32" />
+          <NavigationProperty Name="PedidoEstado" Relationship="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__35BCFE0A" FromRole="Pedido" ToRole="PedidoEstado" />
+          <NavigationProperty Name="RazonSocial" Relationship="PizzeriaMasterpieceModel.FK__Pedido__RazonSoc__38996AB5" FromRole="Pedido" ToRole="RazonSocial" />
+          <NavigationProperty Name="TipoComprobante" Relationship="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__37A5467C" FromRole="Pedido" ToRole="TipoComprobante" />
+          <NavigationProperty Name="Usuario" Relationship="PizzeriaMasterpieceModel.FK__Pedido__Usuario___36B12243" FromRole="Pedido" ToRole="Usuario" />
+          <NavigationProperty Name="PedidoDetalles" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__3C69FB99" FromRole="Pedido" ToRole="PedidoDetalle" />
         </EntityType>
         <EntityType Name="PedidoDetalle">
           <Key>
@@ -241,8 +347,8 @@
           <Property Name="PrecioProducto" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="SubTotal" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Pedido" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__33D4B598" FromRole="PedidoDetalle" ToRole="Pedido" />
-          <NavigationProperty Name="Producto" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__32E0915F" FromRole="PedidoDetalle" ToRole="Producto" />
+          <NavigationProperty Name="Pedido" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__3C69FB99" FromRole="PedidoDetalle" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__3B75D760" FromRole="PedidoDetalle" ToRole="Producto" />
         </EntityType>
         <EntityType Name="PedidoEstado">
           <Key>
@@ -250,7 +356,7 @@
           </Key>
           <Property Name="IdPedidoEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PedidoEstadoNombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__2E1BDC42" FromRole="PedidoEstado" ToRole="Pedido" />
+          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__35BCFE0A" FromRole="PedidoEstado" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -262,8 +368,29 @@
           <Property Name="Activo" Type="Byte" />
           <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PedidoDetalles" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__32E0915F" FromRole="Producto" ToRole="PedidoDetalle" />
-          <NavigationProperty Name="TipoProducto" Relationship="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2B3F6F97" FromRole="Producto" ToRole="TipoProducto" />
+          <NavigationProperty Name="PedidoDetalles" Relationship="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__3B75D760" FromRole="Producto" ToRole="PedidoDetalle" />
+          <NavigationProperty Name="Producto_Insumo" Relationship="PizzeriaMasterpieceModel.FK__Producto___Produ__31EC6D26" FromRole="Producto" ToRole="Producto_Insumo" />
+          <NavigationProperty Name="TipoProducto" Relationship="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2F10007B" FromRole="Producto" ToRole="TipoProducto" />
+        </EntityType>
+        <EntityType Name="Producto_Insumo">
+          <Key>
+            <PropertyRef Name="IdProductoInsumo" />
+          </Key>
+          <Property Name="IdProductoInsumo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Insumo_IdInsumo" Type="Int32" Nullable="false" />
+          <Property Name="Producto_IdProducto" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Insumo" Relationship="PizzeriaMasterpieceModel.FK__Producto___Insum__32E0915F" FromRole="Producto_Insumo" ToRole="Insumo" />
+          <NavigationProperty Name="Producto" Relationship="PizzeriaMasterpieceModel.FK__Producto___Produ__31EC6D26" FromRole="Producto_Insumo" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="RazonSocial">
+          <Key>
+            <PropertyRef Name="IdRazonSocial" />
+          </Key>
+          <Property Name="IdRazonSocial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RUC" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__RazonSoc__38996AB5" FromRole="RazonSocial" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="TipoComprobante">
           <Key>
@@ -271,7 +398,7 @@
           </Key>
           <Property Name="IdTipoComprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreTipoComprobante" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__2F10007B" FromRole="TipoComprobante" ToRole="Pedido" />
+          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__37A5467C" FromRole="TipoComprobante" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="TipoProducto">
           <Key>
@@ -279,7 +406,7 @@
           </Key>
           <Property Name="IdTipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreTipoProducto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Productoes" Relationship="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2B3F6F97" FromRole="TipoProducto" ToRole="Producto" />
+          <NavigationProperty Name="Productoes" Relationship="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2F10007B" FromRole="TipoProducto" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -292,10 +419,23 @@
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__Usuario___300424B4" FromRole="Usuario" ToRole="Pedido" />
+          <Property Name="EsAdministrador" Type="Byte" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pedidoes" Relationship="PizzeriaMasterpieceModel.FK__Pedido__Usuario___36B12243" FromRole="Usuario" ToRole="Pedido" />
         </EntityType>
-        <Association Name="FK__Pedido__PedidoEs__2E1BDC42">
+        <Association Name="FK__Producto___Insum__32E0915F">
+          <End Type="PizzeriaMasterpieceModel.Insumo" Role="Insumo" Multiplicity="1" />
+          <End Type="PizzeriaMasterpieceModel.Producto_Insumo" Role="Producto_Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Insumo">
+              <PropertyRef Name="IdInsumo" />
+            </Principal>
+            <Dependent Role="Producto_Insumo">
+              <PropertyRef Name="Insumo_IdInsumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__PedidoEs__35BCFE0A">
           <End Type="PizzeriaMasterpieceModel.PedidoEstado" Role="PedidoEstado" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.Pedido" Role="Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -307,7 +447,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pedido__TipoComp__2F10007B">
+        <Association Name="FK__Pedido__RazonSoc__38996AB5">
+          <End Type="PizzeriaMasterpieceModel.RazonSocial" Role="RazonSocial" Multiplicity="1" />
+          <End Type="PizzeriaMasterpieceModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RazonSocial">
+              <PropertyRef Name="IdRazonSocial" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="RazonSocial_IdRazonSocial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__TipoComp__37A5467C">
           <End Type="PizzeriaMasterpieceModel.TipoComprobante" Role="TipoComprobante" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.Pedido" Role="Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -319,7 +471,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pedido__Usuario___300424B4">
+        <Association Name="FK__Pedido__Usuario___36B12243">
           <End Type="PizzeriaMasterpieceModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.Pedido" Role="Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +483,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidoDet__Pedid__33D4B598">
+        <Association Name="FK__PedidoDet__Pedid__3C69FB99">
           <End Type="PizzeriaMasterpieceModel.Pedido" Role="Pedido" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.PedidoDetalle" Role="PedidoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +495,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PedidoDet__Produ__32E0915F">
+        <Association Name="FK__PedidoDet__Produ__3B75D760">
           <End Type="PizzeriaMasterpieceModel.Producto" Role="Producto" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.PedidoDetalle" Role="PedidoDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -355,7 +507,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Producto__TipoPr__2B3F6F97">
+        <Association Name="FK__Producto___Produ__31EC6D26">
+          <End Type="PizzeriaMasterpieceModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="PizzeriaMasterpieceModel.Producto_Insumo" Role="Producto_Insumo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="Producto_Insumo">
+              <PropertyRef Name="Producto_IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Producto__TipoPr__2F10007B">
           <End Type="PizzeriaMasterpieceModel.TipoProducto" Role="TipoProducto" Multiplicity="1" />
           <End Type="PizzeriaMasterpieceModel.Producto" Role="Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -367,21 +531,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PizzeriaMasterpieceModelStoreContainer" CdmEntityContainer="PizzeriaMasterpieceEntities">
+          <EntitySetMapping Name="Insumoes">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.Insumo">
+              <MappingFragment StoreEntitySet="Insumo">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdInsumo" ColumnName="IdInsumo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Pedidoes">
             <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="IdAdministrador" ColumnName="IdAdministrador" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
-                <ScalarProperty Name="NumeroComprobante" ColumnName="NumeroComprobante" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="PedidoEstado_IdPedidoEstado" ColumnName="PedidoEstado_IdPedidoEstado" />
-                <ScalarProperty Name="TipoComprobante_IdTipoComprobante" ColumnName="TipoComprobante_IdTipoComprobante" />
                 <ScalarProperty Name="Usuario_IdUsuario" ColumnName="Usuario_IdUsuario" />
+                <ScalarProperty Name="TipoComprobante_IdTipoComprobante" ColumnName="TipoComprobante_IdTipoComprobante" />
+                <ScalarProperty Name="RazonSocial_IdRazonSocial" ColumnName="RazonSocial_IdRazonSocial" />
                 <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -418,6 +593,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Insumo">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.Producto_Insumo">
+              <MappingFragment StoreEntitySet="Producto_Insumo">
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Producto_IdProducto" ColumnName="Producto_IdProducto" />
+                <ScalarProperty Name="Insumo_IdInsumo" ColumnName="Insumo_IdInsumo" />
+                <ScalarProperty Name="IdProductoInsumo" ColumnName="IdProductoInsumo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RazonSocials">
+            <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.RazonSocial">
+              <MappingFragment StoreEntitySet="RazonSocial">
+                <ScalarProperty Name="RazonSocial1" ColumnName="RazonSocial" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="IdRazonSocial" ColumnName="IdRazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TipoComprobantes">
             <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.TipoComprobante">
               <MappingFragment StoreEntitySet="TipoComprobante">
@@ -438,6 +632,7 @@
             <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="EsAdministrador" ColumnName="EsAdministrador" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
