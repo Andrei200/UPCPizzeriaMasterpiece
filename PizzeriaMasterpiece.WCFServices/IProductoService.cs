@@ -14,12 +14,15 @@ namespace PizzeriaMasterpiece.WCFServices
     public interface IProductoService
     {
         [OperationContract]
-        Task<ProductoDTO> GetProductInformation(int ProductoId);
+        Task<ProductoDTO> GetProductInformation(int productoId);
 
         [OperationContract]
-        Task<ProductoDTO> InsertProductInformation(ProductoDTO Producto);
+        Task<ProductoDTO> InsertProductInformation(ProductoDTO producto);
 
         [OperationContract]
-        List<ProductoDTO> ListAllProductInformation();
+        Task<ProductoDTO> UpdateProductInformation(ProductoDTO producto);
+
+        [OperationContract]
+        Task<List<ProductoDTO>> ListAllProductInformation();
     }
 }

@@ -18,19 +18,27 @@ namespace PizzeriaMasterpiece.Services
         public async Task<UsuarioDTO> GetUserInformation(int usuarioId)
         {
             var usurioRepository = new UsuarioRepository();
-            return await usurioRepository.GetUserInformation(usuarioId);
+            return await usurioRepository.GetUser(usuarioId);
         }
 
         public async Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario)
         {
             var usurioRepository = new UsuarioRepository();
-            return await usurioRepository.InsertUserInformation(usuario);
+            return await usurioRepository.InsertUser(usuario);
+        }
+
+        public async Task<UsuarioDTO> UpdateUserInformation(UsuarioRegistroDTO usuario)
+        {
+            var usurioRepository = new UsuarioRepository();
+            return await usurioRepository.UpdateUser(usuario);
         }
 
         public async Task<UsuarioDTO> LoginUserInformation(string correo, string contrasena)
         {
             var usurioRepository = new UsuarioRepository();
-            return await usurioRepository.LoginUserInformation(correo, contrasena);
+            return await usurioRepository.LoginUser(correo, contrasena);
         }
+
+
     }
 }

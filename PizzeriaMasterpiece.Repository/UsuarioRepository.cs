@@ -12,7 +12,7 @@ namespace PizzeriaMasterpiece.Repository
     public class UsuarioRepository
     {
 
-        public async Task<UsuarioDTO> GetUserInformation(int userId){
+        public async Task<UsuarioDTO> GetUser(int userId){
             using (var context = new PizzeriaMasterpieceEntities()){
 
                 var result =  await context.Usuarios
@@ -34,7 +34,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public async Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario)
+        public async Task<UsuarioDTO> InsertUser(UsuarioRegistroDTO usuario)
         {           
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -50,11 +50,24 @@ namespace PizzeriaMasterpiece.Repository
                 user.Contrasena = HashPassword(usuario.Contrasena);
                 context.Usuarios.Add(user);
                 context.SaveChanges();
-                return await GetUserInformation(user.IdUsuario);
+                return await GetUser(user.IdUsuario);
             }           
         }
 
-        public async Task<UsuarioDTO> LoginUserInformation(string correo, string contrasena)
+        public async Task<UsuarioDTO> UpdateUser(UsuarioRegistroDTO usuario)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var user = context.Usuarios.Find(usuario.IdUsuario);
+                user.Direccion = usuario.Direccion;
+                user.Telefono = usuario.Telefono;
+                if(!string.IsNullOrWhiteSpace(usuario.Contrasena)) user.Contrasena = HashPassword(usuario.Contrasena);
+                context.SaveChanges();
+                return await GetUser(user.IdUsuario);
+            }
+        }
+
+        public async Task<UsuarioDTO> LoginUser(string correo, string contrasena)
         {
             contrasena = HashPassword(contrasena);
             using (var context = new PizzeriaMasterpieceEntities())

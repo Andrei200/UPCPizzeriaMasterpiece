@@ -96,10 +96,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dominio\Producto.cs" />
     <Compile Include="IProductoService.cs" />
     <Compile Include="IUsuarioService.cs" />
-    <Compile Include="Pesistencia\ProductoDAO.cs" />
     <Compile Include="ProductoService.svc.cs">
       <DependentUpon>ProductoService.svc</DependentUpon>
     </Compile>

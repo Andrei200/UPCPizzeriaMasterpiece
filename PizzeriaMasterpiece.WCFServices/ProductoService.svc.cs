@@ -14,22 +14,28 @@ namespace PizzeriaMasterpiece.WCFServices
     // NOTE: In order to launch WCF Test Client for testing this service, please select ProductoService.svc or ProductoService.svc.cs at the Solution Explorer and start debugging.
     public class ProductoService : IProductoService
     {
-        public async Task<ProductoDTO> GetProductInformation(int ProductoId)
+        public async Task<ProductoDTO> GetProductInformation(int productoId)
         {
             var productoRepository = new ProductoRepository();
-            return await productoRepository.GetProductInformation(ProductoId);
+            return await productoRepository.GetProduct(productoId);
         }
 
-        public async Task<ProductoDTO> InsertProductInformation(ProductoDTO Producto)
+        public async Task<ProductoDTO> InsertProductInformation(ProductoDTO producto)
         {
             var productoRepository = new ProductoRepository();
-            return await productoRepository.InsertProductInformation(Producto);
+            return await productoRepository.InsertProduct(producto);
         }
 
-        public List<ProductoDTO> ListAllProductInformation()
+        public async Task<ProductoDTO> UpdateProductInformation(ProductoDTO producto)
         {
             var productoRepository = new ProductoRepository();
-            return productoRepository.ListAllProductInformation();
+            return await productoRepository.UpdateProduct(producto);
+        }
+
+        public async Task<List<ProductoDTO>> ListAllProductInformation()
+        {
+            var productoRepository = new ProductoRepository();
+            return await productoRepository.GetProductList();
         }
     }
 }

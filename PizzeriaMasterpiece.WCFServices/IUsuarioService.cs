@@ -19,6 +19,10 @@ namespace PizzeriaMasterpiece.Services
         [OperationContract]
         Task<UsuarioDTO> InsertUserInformation(UsuarioRegistroDTO usuario);
 
+
+        [OperationContract]
+        Task<UsuarioDTO> UpdateUserInformation(UsuarioRegistroDTO usuario);
+
         [OperationContract]
         Task<UsuarioDTO> LoginUserInformation(string correo, string contrasena);
 

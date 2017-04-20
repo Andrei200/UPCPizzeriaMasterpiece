@@ -22,12 +22,14 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
         public async Task<UsuarioDTO> Get(int id)
         {
             var usurioRepository = new UsuarioRepository();
-            return await usurioRepository.GetUserInformation(id);
+            return await usurioRepository.GetUser(id);
         }
 
         // POST: api/UsuarioService
-        public void Post([FromBody]string value)
+        public async Task<UsuarioDTO> Post(UsuarioRegistroDTO usuario)
         {
+            var usurioRepository = new UsuarioRepository();
+            return await usurioRepository.InsertUser(usuario);
         }
 
         // PUT: api/UsuarioService/5
