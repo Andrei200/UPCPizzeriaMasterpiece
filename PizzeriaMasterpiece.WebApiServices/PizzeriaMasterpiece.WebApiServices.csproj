@@ -94,8 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ProductoServiceController.cs" />
-    <Compile Include="Controllers\UsuarioServiceController.cs" />
+    <Compile Include="Controllers\ProductServiceController.cs" />
+    <Compile Include="Controllers\UserServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -115,6 +115,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PizzeriaMasterpiece.DTO\PizzeriaMasterpiece.DTO.csproj">
+      <Project>{31DDE81B-B835-4B0F-A23A-6EB0720BE072}</Project>
+      <Name>PizzeriaMasterpiece.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PizzeriaMasterpiece.Model\PizzeriaMasterpiece.Model.csproj">
       <Project>{4410642E-6489-4EBB-B66B-FC2FE9D1BC86}</Project>
       <Name>PizzeriaMasterpiece.Model</Name>

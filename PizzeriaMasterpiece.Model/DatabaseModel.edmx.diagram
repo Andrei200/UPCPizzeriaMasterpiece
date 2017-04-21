@@ -5,25 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a0135fd682374d3cacc85ddcba6daac6" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Insumo" Width="1.5" PointX="8.875" PointY="14.875" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Pedido" Width="1.5" PointX="6.375" PointY="1.875" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.PedidoDetalle" Width="1.5" PointX="10" PointY="2" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.PedidoEstado" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Producto" Width="1.5" PointX="3" PointY="14.5" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Producto_Insumo" Width="1.5" PointX="5.25" PointY="14.75" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.RazonSocial" Width="1.5" PointX="0.75" PointY="7.5" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.TipoComprobante" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.TipoProducto" Width="1.5" PointX="0.75" PointY="15.125" />
-        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Usuario" Width="1.5" PointX="0.75" PointY="10.125" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Producto___Insum__32E0915F" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Pedido__PedidoEs__35BCFE0A" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Pedido__RazonSoc__38996AB5" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Pedido__TipoComp__37A5467C" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Pedido__Usuario___36B12243" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__PedidoDet__Pedid__3C69FB99" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__PedidoDet__Produ__3B75D760" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Producto___Produ__31EC6D26" />
-        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Producto__TipoPr__2F10007B" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Changelog" Width="1.5" PointX="7.25" PointY="6.125" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Company" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.DocumentType" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Order" Width="1.75" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.OrderStatu" Width="3" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Product" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.ProductSupply" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Role" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Size" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.Supply" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="PizzeriaMasterpieceModel.User" Width="1.5" PointX="5" PointY="6" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Changelog__UserI__38996AB5" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Order__CompanyId__3B75D760" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Order__DocumentT__3A81B327" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Order__OrderStat__398D8EEE" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__OrderDeta__Order__3D5E1FD2" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__OrderDeta__Produ__3C69FB99" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Product__SizeId__3E52440B" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__ProductSu__Produ__3F466844" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__ProductSu__Suppl__403A8C7D" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__User__RoleId__412EB0B6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

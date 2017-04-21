@@ -91,19 +91,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ProductoService.svc" />
-    <Content Include="UsuarioService.svc" />
+    <Content Include="ProductService.svc" />
+    <Content Include="UserService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IProductoService.cs" />
-    <Compile Include="IUsuarioService.cs" />
-    <Compile Include="ProductoService.svc.cs">
-      <DependentUpon>ProductoService.svc</DependentUpon>
+    <Compile Include="IProductService.cs" />
+    <Compile Include="IUserService.cs" />
+    <Compile Include="ProductService.svc.cs">
+      <DependentUpon>ProductService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuarioService.svc.cs">
-      <DependentUpon>UsuarioService.svc</DependentUpon>
+    <Compile Include="UserService.svc.cs">
+      <DependentUpon>UserService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +119,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PizzeriaMasterpiece.DTO\PizzeriaMasterpiece.DTO.csproj">
+      <Project>{31DDE81B-B835-4B0F-A23A-6EB0720BE072}</Project>
+      <Name>PizzeriaMasterpiece.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PizzeriaMasterpiece.Model\PizzeriaMasterpiece.Model.csproj">
       <Project>{4410642e-6489-4ebb-b66b-fc2fe9d1bc86}</Project>
       <Name>PizzeriaMasterpiece.Model</Name>

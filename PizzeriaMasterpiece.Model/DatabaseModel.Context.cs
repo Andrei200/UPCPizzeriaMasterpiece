@@ -25,15 +25,17 @@ namespace PizzeriaMasterpiece.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Insumo> Insumoes { get; set; }
-        public virtual DbSet<Pedido> Pedidoes { get; set; }
-        public virtual DbSet<PedidoDetalle> PedidoDetalles { get; set; }
-        public virtual DbSet<PedidoEstado> PedidoEstadoes { get; set; }
-        public virtual DbSet<Producto> Productoes { get; set; }
-        public virtual DbSet<Producto_Insumo> Producto_Insumo { get; set; }
-        public virtual DbSet<RazonSocial> RazonSocials { get; set; }
-        public virtual DbSet<TipoComprobante> TipoComprobantes { get; set; }
-        public virtual DbSet<TipoProducto> TipoProductoes { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Changelog> Changelogs { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductSupply> ProductSupplies { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Supply> Supplies { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

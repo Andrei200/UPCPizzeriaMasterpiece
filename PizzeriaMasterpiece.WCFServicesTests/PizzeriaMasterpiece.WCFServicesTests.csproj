@@ -55,12 +55,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\UsuarioServiceReference\Reference.cs">
+    <Compile Include="Service References\UserServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioServiceTests.cs" />
+    <Compile Include="UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PizzeriaMasterpiece.Model\PizzeriaMasterpiece.Model.csproj">
@@ -77,34 +77,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\UsuarioServiceReference\PizzeriaMasterpiece.WCFServicesTests.UsuarioServiceReference.UsuarioDTO.datasource">
+    <None Include="Service References\UserServiceReference\PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.wsdl" />
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.xsd">
+    <None Include="Service References\UserServiceReference\UserService.wsdl" />
+    <None Include="Service References\UserServiceReference\UserService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService1.xsd">
+    <None Include="Service References\UserServiceReference\UserService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService2.xsd">
+    <None Include="Service References\UserServiceReference\UserService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\UsuarioServiceReference\" />
+    <WCFMetadataStorage Include="Service References\UserServiceReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.disco" />
+    <None Include="Service References\UserServiceReference\UserService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UsuarioServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\UserServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UsuarioServiceReference\configuration.svcinfo" />
+    <None Include="Service References\UserServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UsuarioServiceReference\Reference.svcmap">
+    <None Include="Service References\UserServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

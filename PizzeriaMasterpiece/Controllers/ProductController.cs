@@ -10,7 +10,7 @@ namespace PizzeriaMasterpiece.Controllers
     {
         public ActionResult List()
         {
-            var serviceReference = new ProductoServiceReference.ProductoServiceClient();
+            var serviceReference = new ProductServiceReference.ProductServiceClient();
             var list = serviceReference.ListAllProductInformation();
             ViewBag.ListProduct = list;
             return View();

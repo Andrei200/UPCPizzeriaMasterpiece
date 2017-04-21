@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WebApiS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WCFServicesTests", "PizzeriaMasterpiece.WCFServicesTests\PizzeriaMasterpiece.WCFServicesTests.csproj", "{75E67FAB-DDE1-401A-8B29-19B860633D4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.DTO", "PizzeriaMasterpiece.DTO\PizzeriaMasterpiece.DTO.csproj", "{31DDE81B-B835-4B0F-A23A-6EB0720BE072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31DDE81B-B835-4B0F-A23A-6EB0720BE072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31DDE81B-B835-4B0F-A23A-6EB0720BE072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31DDE81B-B835-4B0F-A23A-6EB0720BE072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31DDE81B-B835-4B0F-A23A-6EB0720BE072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

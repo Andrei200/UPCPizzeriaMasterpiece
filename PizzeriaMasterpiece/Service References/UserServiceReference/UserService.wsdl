@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:4688/UserService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:4688/UserService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:4688/UserService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IUserService_GetUserInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetUserInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_InsertUserInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_InsertUserInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertUserInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUserInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUserInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_LoginUserInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserInformation" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_LoginUserInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginUserInformationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IUserService">
+    <wsdl:operation name="GetUserInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetUserInformation" message="tns:IUserService_GetUserInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetUserInformationResponse" message="tns:IUserService_GetUserInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/InsertUserInformation" message="tns:IUserService_InsertUserInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/InsertUserInformationResponse" message="tns:IUserService_InsertUserInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUserInformation" message="tns:IUserService_UpdateUserInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserInformationResponse" message="tns:IUserService_UpdateUserInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUserInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/LoginUserInformation" message="tns:IUserService_LoginUserInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/LoginUserInformationResponse" message="tns:IUserService_LoginUserInformation_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserInformation">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertUserInformation">
+      <soap:operation soapAction="http://tempuri.org/IUserService/InsertUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserInformation">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUserInformation">
+      <soap:operation soapAction="http://tempuri.org/IUserService/LoginUserInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port name="BasicHttpBinding_IUserService" binding="tns:BasicHttpBinding_IUserService">
+      <soap:address location="http://localhost:4688/UserService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

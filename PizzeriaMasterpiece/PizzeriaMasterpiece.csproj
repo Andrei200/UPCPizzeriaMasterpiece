@@ -209,12 +209,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ProductoServiceReference\Reference.cs">
+    <Compile Include="Service References\ProductServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\UsuarioServiceReference\Reference.cs">
+    <Compile Include="Service References\UserServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -265,33 +265,23 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Service References\ProductoServiceReference\PizzeriaMasterpiece.ProductoServiceReference.ProductoDTO.datasource">
+    <Content Include="Service References\ProductServiceReference\PizzeriaMasterpiece.ProductServiceReference.ProductDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ProductoServiceReference\ProductoService.disco" />
-    <None Include="Service References\ProductoServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\ProductoServiceReference\configuration.svcinfo" />
-    <None Include="Service References\ProductoServiceReference\Reference.svcmap">
+    <None Include="Service References\ProductServiceReference\ProductService.disco" />
+    <None Include="Service References\ProductServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\ProductServiceReference\configuration.svcinfo" />
+    <None Include="Service References\ProductServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\UsuarioServiceReference\PizzeriaMasterpiece.UsuarioServiceReference.UsuarioDTO.datasource">
+    <Content Include="Service References\UserServiceReference\PizzeriaMasterpiece.UserServiceReference.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ProductoServiceReference\ProductoService.wsdl" />
-    <None Include="Service References\ProductoServiceReference\ProductoService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductoServiceReference\ProductoService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ProductoServiceReference\ProductoService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.disco" />
-    <None Include="Service References\UsuarioServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\UsuarioServiceReference\configuration.svcinfo" />
-    <None Include="Service References\UsuarioServiceReference\Reference.svcmap">
+    <None Include="Service References\UserServiceReference\UserService.disco" />
+    <None Include="Service References\UserServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\UserServiceReference\configuration.svcinfo" />
+    <None Include="Service References\UserServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -329,18 +319,28 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.wsdl" />
-    <None Include="Service References\UsuarioServiceReference\UsuarioService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UsuarioServiceReference\UsuarioService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Order\MyOrder.cshtml" />
+    <None Include="Service References\ProductServiceReference\ProductService.wsdl" />
+    <None Include="Service References\ProductServiceReference\ProductService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceReference\ProductService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductServiceReference\ProductService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServiceReference\UserService.wsdl" />
+    <None Include="Service References\UserServiceReference\UserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServiceReference\UserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserServiceReference\UserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,8 +357,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ProductoServiceReference\" />
-    <WCFMetadataStorage Include="Service References\UsuarioServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProductServiceReference\" />
+    <WCFMetadataStorage Include="Service References\UserServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

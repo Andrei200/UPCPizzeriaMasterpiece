@@ -75,9 +75,11 @@ namespace PizzeriaMasterpiece.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var serviceReference = new UsuarioServiceReference.UsuarioServiceClient();
-            var user = new UsuarioServiceReference.UsuarioRegistroDTO();
-            var result = serviceReference.LoginUserInformation(model.Email, model.Password);
+            var serviceReference = new UserServiceReference.UserServiceClient();
+            var user = new UserServiceReference.UserLoginDTO();
+            user.Email = model.Email;
+            user.Password = model.Password;
+            var result = serviceReference.LoginUserInformation(user);
 
             if (result != null)
             {
@@ -151,30 +153,15 @@ namespace PizzeriaMasterpiece.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded)
-                //{
-                //    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                //    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //    // Send an email with this link
-                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //AddErrors(result);
-                var serviceReference = new UsuarioServiceReference.UsuarioServiceClient();
-                var user = new UsuarioServiceReference.UsuarioRegistroDTO();
-                user.DNI = model.Document;
-                user.Nombre = model.FirstName;
-                user.Apellido = model.LastName;
-                user.Correo = model.Email;
-                user.Telefono = model.Telephone;
-                user.Direccion = model.Address;
-                user.Contrasena = model.ConfirmPassword;
+                var serviceReference = new UserServiceReference.UserServiceClient();
+                var user = new UserServiceReference.UserRegistrationDTO();
+                user.DocumentNo = model.Document;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.Email= model.Email;
+                user.PhoneNumber = model.Telephone;
+                user.Address = model.Address;
+                user.Password = model.ConfirmPassword;
                 var result = serviceReference.InsertUserInformation(user);
                 return RedirectToAction("Index", "Home");                
             }
