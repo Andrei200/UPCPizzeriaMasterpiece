@@ -27,6 +27,7 @@
         <AssociationConnector Association="PizzeriaMasterpieceModel.FK__ProductSu__Produ__3F466844" />
         <AssociationConnector Association="PizzeriaMasterpieceModel.FK__ProductSu__Suppl__403A8C7D" />
         <AssociationConnector Association="PizzeriaMasterpieceModel.FK__User__RoleId__412EB0B6" />
+        <AssociationConnector Association="PizzeriaMasterpieceModel.FK__Order__UserId__29572725" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

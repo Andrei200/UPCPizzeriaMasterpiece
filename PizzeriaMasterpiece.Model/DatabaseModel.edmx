@@ -49,6 +49,7 @@
           <Property Name="OrderStatusId" Type="int" />
           <Property Name="DocumentTypeId" Type="int" />
           <Property Name="CompanyId" Type="int" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -133,7 +134,7 @@
           <Property Name="IsActive" Type="tinyint" />
           <Property Name="RoleId" Type="int" />
         </EntityType>
-        <Association Name="FK__Changelog__UserI__38996AB5">
+        <Association Name="FK__Changelog__UserI__25869641">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +146,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__CompanyId__3B75D760">
+        <Association Name="FK__Order__CompanyId__286302EC">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -157,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__DocumentT__3A81B327">
+        <Association Name="FK__Order__DocumentT__276EDEB3">
           <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__OrderStat__398D8EEE">
+        <Association Name="FK__Order__OrderStat__267ABA7A">
           <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,7 +182,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__3D5E1FD2">
+        <Association Name="FK__Order__UserId__29572725">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__2B3F6F97">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Produ__3C69FB99">
+        <Association Name="FK__OrderDeta__Produ__2A4B4B5E">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -205,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__SizeId__3E52440B">
+        <Association Name="FK__Product__SizeId__2C3393D0">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__Produ__3F466844">
+        <Association Name="FK__ProductSu__Produ__2D27B809">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="ProductSupply" Type="Self.ProductSupply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__Suppl__403A8C7D">
+        <Association Name="FK__ProductSu__Suppl__2E1BDC42">
           <End Role="Supply" Type="Self.Supply" Multiplicity="0..1" />
           <End Role="ProductSupply" Type="Self.ProductSupply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -241,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User__RoleId__412EB0B6">
+        <Association Name="FK__User__RoleId__2F10007B">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
@@ -266,43 +279,47 @@
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Changelog__UserI__38996AB5" Association="Self.FK__Changelog__UserI__38996AB5">
+          <AssociationSet Name="FK__Changelog__UserI__25869641" Association="Self.FK__Changelog__UserI__25869641">
             <End Role="User" EntitySet="User" />
             <End Role="Changelog" EntitySet="Changelog" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__CompanyId__3B75D760" Association="Self.FK__Order__CompanyId__3B75D760">
+          <AssociationSet Name="FK__Order__CompanyId__286302EC" Association="Self.FK__Order__CompanyId__286302EC">
             <End Role="Company" EntitySet="Company" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__DocumentT__3A81B327" Association="Self.FK__Order__DocumentT__3A81B327">
+          <AssociationSet Name="FK__Order__DocumentT__276EDEB3" Association="Self.FK__Order__DocumentT__276EDEB3">
             <End Role="DocumentType" EntitySet="DocumentType" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__OrderStat__398D8EEE" Association="Self.FK__Order__OrderStat__398D8EEE">
+          <AssociationSet Name="FK__Order__OrderStat__267ABA7A" Association="Self.FK__Order__OrderStat__267ABA7A">
             <End Role="OrderStatus" EntitySet="OrderStatus" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__3D5E1FD2" Association="Self.FK__OrderDeta__Order__3D5E1FD2">
+          <AssociationSet Name="FK__Order__UserId__29572725" Association="Self.FK__Order__UserId__29572725">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__2B3F6F97" Association="Self.FK__OrderDeta__Order__2B3F6F97">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Produ__3C69FB99" Association="Self.FK__OrderDeta__Produ__3C69FB99">
+          <AssociationSet Name="FK__OrderDeta__Produ__2A4B4B5E" Association="Self.FK__OrderDeta__Produ__2A4B4B5E">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__SizeId__3E52440B" Association="Self.FK__Product__SizeId__3E52440B">
+          <AssociationSet Name="FK__Product__SizeId__2C3393D0" Association="Self.FK__Product__SizeId__2C3393D0">
             <End Role="Size" EntitySet="Size" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__Produ__3F466844" Association="Self.FK__ProductSu__Produ__3F466844">
+          <AssociationSet Name="FK__ProductSu__Produ__2D27B809" Association="Self.FK__ProductSu__Produ__2D27B809">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductSupply" EntitySet="ProductSupply" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__Suppl__403A8C7D" Association="Self.FK__ProductSu__Suppl__403A8C7D">
+          <AssociationSet Name="FK__ProductSu__Suppl__2E1BDC42" Association="Self.FK__ProductSu__Suppl__2E1BDC42">
             <End Role="Supply" EntitySet="Supply" />
             <End Role="ProductSupply" EntitySet="ProductSupply" />
           </AssociationSet>
-          <AssociationSet Name="FK__User__RoleId__412EB0B6" Association="Self.FK__User__RoleId__412EB0B6">
+          <AssociationSet Name="FK__User__RoleId__2F10007B" Association="Self.FK__User__RoleId__2F10007B">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
@@ -364,6 +381,10 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK__Order__UserId__29572725" Association="PizzeriaMasterpieceModel.FK__Order__UserId__29572725">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Changelog">
           <Key>
@@ -416,6 +437,8 @@
           <NavigationProperty Name="DocumentType" Relationship="PizzeriaMasterpieceModel.FK__Order__DocumentT__3A81B327" FromRole="Order" ToRole="DocumentType" />
           <NavigationProperty Name="OrderStatu" Relationship="PizzeriaMasterpieceModel.FK__Order__OrderStat__398D8EEE" FromRole="Order" ToRole="OrderStatu" />
           <NavigationProperty Name="OrderDetails" Relationship="PizzeriaMasterpieceModel.FK__OrderDeta__Order__3D5E1FD2" FromRole="Order" ToRole="OrderDetail" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="PizzeriaMasterpieceModel.FK__Order__UserId__29572725" FromRole="Order" ToRole="User" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -512,6 +535,7 @@
           <Property Name="RoleId" Type="Int32" />
           <NavigationProperty Name="Changelogs" Relationship="PizzeriaMasterpieceModel.FK__Changelog__UserI__38996AB5" FromRole="User" ToRole="Changelog" />
           <NavigationProperty Name="Role" Relationship="PizzeriaMasterpieceModel.FK__User__RoleId__412EB0B6" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Orders" Relationship="PizzeriaMasterpieceModel.FK__Order__UserId__29572725" FromRole="User" ToRole="Order" />
         </EntityType>
         <Association Name="FK__Changelog__UserI__38996AB5">
           <End Type="PizzeriaMasterpieceModel.User" Role="User" Multiplicity="0..1" />
@@ -633,6 +657,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Order__UserId__29572725">
+          <End Type="PizzeriaMasterpieceModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="PizzeriaMasterpieceModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -677,6 +713,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="PizzeriaMasterpieceModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
                 <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />

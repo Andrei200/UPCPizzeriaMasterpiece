@@ -28,11 +28,13 @@ namespace PizzeriaMasterpiece.Model
         public Nullable<int> OrderStatusId { get; set; }
         public Nullable<int> DocumentTypeId { get; set; }
         public Nullable<int> CompanyId { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual DocumentType DocumentType { get; set; }
         public virtual OrderStatu OrderStatu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual User User { get; set; }
     }
 }
