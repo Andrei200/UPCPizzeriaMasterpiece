@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace PizzeriaMasterpiece.DTO
 {
     public class SupplyDTO
+
     {
-        public int SupplyId { get; set; }
+        public int? SupplyId { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

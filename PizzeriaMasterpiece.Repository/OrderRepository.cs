@@ -44,9 +44,51 @@ namespace PizzeriaMasterpiece.Repository
 
         public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
         {
+                
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                return new List<OrderWorkerDTO>();
+                var query = context.Orders.Where(p => p.UserId == criteria.UserId || criteria.UserId == null);
+                query = query.Where(p => p.OrderStatusId == criteria.OrderStatusId || criteria.OrderStatusId == null);
+                query = query.Where(p => p.Date >= criteria.StartDate || criteria.StartDate == null);
+                query = query.Where(p => p.Date <= criteria.EndDate || criteria.EndDate == null);
+
+                var result = await query.Select(q => new OrderWorkerDTO
+                {
+                    OrderId = q.OrderId,
+                    OrderNo = q.OrderNo,
+                    Address = q.Address,
+                    Date = q.Date,
+                    Remark = q.Remark,
+                    DocumentTypeId = q.DocumentTypeId,
+                    DocumentTypeName = q.DocumentType.Name,
+                    OrderStatusId = q.OrderStatusId,
+                    OrderStatusName = q.OrderStatu.Name,
+                    DocumentNo = q.User.DocumentNo,
+                    Email = q.User.Email,
+                    FirstName = q.User.FirstName,
+                    LastName = q.User.LastName,
+                    PhoneNumber = q.User.PhoneNumber,
+                    OrderDetails = q.OrderDetails.Select(r => new OrderDetailDTO
+                    {
+                        OrderDetailId = r.OrderDetailId,
+                        ProductId = r.ProductId,
+                        ProductName = r.Product.Name,
+                        Price = r.Price,
+                        Quantity = r.Quantity,
+                        TotalPrice = r.TotalPrice,
+                        Supplies = r.Product.ProductSupplies.Select(p => new SupplyDTO
+                        {
+                            SupplyId=p.Supply.SupplyId,
+                            Code=p.Supply.Code,
+                            Description=p.Supply.Description,
+                            IsActive=p.Supply.IsActive,
+                            Name=p.Supply.Name,
+                            Quantity=p.Supply.Quantity
+                        }).ToList()
+                      }).ToList()
+                   }).ToListAsync();
+
+                return result;
             }
         }
 
