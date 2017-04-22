@@ -42,6 +42,14 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
+        public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                return new List<OrderWorkerDTO>();
+            }
+        }
+
 
     }
 }

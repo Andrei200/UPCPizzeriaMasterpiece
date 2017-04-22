@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\OrderClientController.cs" />
+    <Compile Include="Controllers\OrderWorkerController.cs" />
     <Compile Include="Controllers\ProductServiceController.cs" />
     <Compile Include="Controllers\UserServiceController.cs" />
     <Compile Include="Global.asax.cs">
@@ -127,6 +129,9 @@
       <Project>{8355D10B-D891-4B1D-852C-70349E086D0D}</Project>
       <Name>PizzeriaMasterpiece.Repository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

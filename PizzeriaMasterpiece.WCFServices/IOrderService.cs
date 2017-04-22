@@ -16,5 +16,8 @@ namespace PizzeriaMasterpiece.WCFServices
         [OperationContract]
         Task<List<OrderDTO>>  GetOrdersByClient(int userId);
 
+        [OperationContract]
+        Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
+
     }
 }

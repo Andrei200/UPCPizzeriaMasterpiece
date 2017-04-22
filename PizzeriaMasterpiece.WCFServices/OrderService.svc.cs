@@ -19,5 +19,11 @@ namespace PizzeriaMasterpiece.WCFServices
             var orderRepository = new OrderRepository();
             return await orderRepository.GetOrdersByClient(userId);
         }
+
+        public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        {
+            var orderRepository = new OrderRepository();
+            return await orderRepository.GetOrdersByCriteria(criteria);
+        }
     }
 }
