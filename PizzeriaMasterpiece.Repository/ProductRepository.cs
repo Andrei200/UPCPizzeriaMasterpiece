@@ -41,7 +41,7 @@ namespace PizzeriaMasterpiece.Repository
                     Code = product.Code,
                     Name = product.Name,
                     Description = product.Description,
-                    Price = product.Price,
+                    Price = product.Price.Value,
                     ImagePath = product.ImagePath,
                     SizeId = product.SizeId,
                     IsActive = 1,
@@ -81,12 +81,11 @@ namespace PizzeriaMasterpiece.Repository
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var currentProduct = await context.Products.FindAsync(product.ProductId);
-                currentProduct.Description = product.Description;
-                currentProduct.Price = product.Price;
-                currentProduct.ImagePath = product.ImagePath;
-                currentProduct.IsActive = product.IsActive;
+                if (!string.IsNullOrWhiteSpace(product.Description)) currentProduct.Description = product.Description;
+                if (product.Price != null) currentProduct.Price = product.Price.Value;
+                if (!string.IsNullOrWhiteSpace(product.ImagePath)) currentProduct.ImagePath = product.ImagePath;
+                if (product.IsActive != null) currentProduct.IsActive = product.IsActive;
                 context.SaveChanges();
-
                 return await GetProduct(currentProduct.ProductId);
             }
         }

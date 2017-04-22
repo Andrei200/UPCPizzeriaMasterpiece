@@ -12,7 +12,7 @@ namespace PizzeriaMasterpiece.DTO
         public string Code { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         public string ImagePath { get; set; }
         public byte? IsActive { get; set; }
         public int? SizeId { get; set; }
