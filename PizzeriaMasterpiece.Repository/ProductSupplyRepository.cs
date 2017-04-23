@@ -33,19 +33,17 @@ namespace PizzeriaMasterpiece.Repository
         }
 
         // traer  todos  los  supply  que  usen  el  producto
-        public async Task<List<ProductoSupplyDatailDTO>> GetAllSupplyByProduct(int productId)
+        public async Task<List<ProductoSupplyDTO>> GetAllSupplyByProduct(int productId)
         {
-            using (var context = new PizzeriaMasterpieceEntities())
-            {
+            using (var context = new PizzeriaMasterpieceEntities()) {
                 var result = await context.Products.Where(p => p.ProductId == productId)
                     .Select(q => new ProductoSupplyDTO
                     {
                         ProductId = q.ProductId,
                         Code = q.Code,
                         Name = q.Name,
-                        Description = q.Description
-                        SupplyDetails = q.ProductSupplies.Select(r => new ProductoSupplyDatailDTO
-                        {
+                        Description = q.Description,
+                        SupplyDetails = q.ProductSupplies.Select(r => new ProductoSupplyDatailDTO {
                             SupplyId = r.SupplyId,
                             Quantity = r.Quantity
                         }).ToList()
