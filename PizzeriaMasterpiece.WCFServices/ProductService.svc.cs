@@ -31,5 +31,11 @@ namespace PizzeriaMasterpiece.WCFServices
             var productRepository = new ProductRepository();
             return await productRepository.GetProductList();
         }
+
+        public async Task<List<SupplyProductDetailDTO>> ListAllProductBySupply(int supplyId)
+        {
+            var productSupplyRepository = new ProductSupplyRepository();
+            return await productSupplyRepository.GetAllProductBySupply(supplyId);
+        }
     }
 }
