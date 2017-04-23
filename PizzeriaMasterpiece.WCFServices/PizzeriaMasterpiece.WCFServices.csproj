@@ -93,12 +93,14 @@
   <ItemGroup>
     <Content Include="OrderService.svc" />
     <Content Include="ProductService.svc" />
+    <Content Include="SupplyService.svc" />
     <Content Include="UserService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IOrderService.cs" />
     <Compile Include="IProductService.cs" />
+    <Compile Include="ISupplyService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="OrderService.svc.cs">
       <DependentUpon>OrderService.svc</DependentUpon>
@@ -107,6 +109,9 @@
       <DependentUpon>ProductService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SupplyService.svc.cs">
+      <DependentUpon>SupplyService.svc</DependentUpon>
+    </Compile>
     <Compile Include="UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>
     </Compile>
