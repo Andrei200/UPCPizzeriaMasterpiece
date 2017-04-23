@@ -25,5 +25,8 @@ namespace PizzeriaMasterpiece.WCFServices
 
         [OperationContract]
         Task<List<ProductDTO>> ListAllProductInformation();
+
+        [OperationContract]
+        Task<List<SupplyProductDTO>> ListAllProductBySupply(int supplyId);
     }
 }
