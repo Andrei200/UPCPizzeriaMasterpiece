@@ -9,12 +9,20 @@ namespace PizzeriaMasterpiece.DTO
     public class SupplyDTO
 
     {
+
+        public SupplyDTO()
+        {
+            Supplyes = new List<SupplyDTO>();
+        }
+
         public int? SupplyId { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int? Quantity { get; set; }
         public byte? IsActive { get; set; }
+
+        public List<SupplyDTO> Supplyes { get; set; }
     }
 
 
