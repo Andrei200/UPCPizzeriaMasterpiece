@@ -14,6 +14,7 @@ namespace PizzeriaMasterpiece.Controllers
             var list = serviceReference.ListAllProductInformation();
             ViewBag.ListProduct = list;
             return View();
+
         }
     }
 }
