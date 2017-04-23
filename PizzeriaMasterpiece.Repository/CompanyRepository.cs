@@ -20,7 +20,7 @@ namespace PizzeriaMasterpiece.Repository
                     {
                         CompanyId = q.CompanyId,
                         Name = q.Name,
-                        RUC = q.RUC,
+                        RUC = q.RUC,                    
                         Address = q.Address,
                         PhoneNumber = q.PhoneNumber,
                     }).FirstOrDefaultAsync();
