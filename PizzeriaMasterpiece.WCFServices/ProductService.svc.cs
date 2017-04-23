@@ -29,6 +29,12 @@ namespace PizzeriaMasterpiece.WCFServices
         public async Task<List<ProductDTO>> ListAllProductInformation()
         {
             var productRepository = new ProductRepository();
+            return await productRepository.GetProductListAll();
+        }
+
+        public async Task<List<ProductDTO>> ListAllProductToSellInformation()
+        {
+            var productRepository = new ProductRepository();
             return await productRepository.GetProductList();
         }
     }
