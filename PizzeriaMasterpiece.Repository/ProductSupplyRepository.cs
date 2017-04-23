@@ -32,23 +32,30 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
- //       public async Task<List<SupplyProductDTO>> GetAllProductBySupply2(int supplyId) {
- //           using (var context = new PizzeriaMasterpieceEntities())
- //           {
- //               var result = (from ps in context.ProductSupplies
- //                             join s in context.Supplies on s.SupplyId equals ps.SupplyId
- //                             join p in context.Products on p.ProductId equals ps.ProductId
- //                             where ps.SupplyId = supplyId
- //                   select (r => new SupplyProductDTO {
- //                       SupplyId = r.SupplyId
- //                   }).ToList()  ).ToListAsync();
+        //public async Task<List<SupplyProduct2DTO>> GetAllProductBySupply2(int supplyId)
+        //{
+        //    using (var context = new PizzeriaMasterpieceEntities())
+        //    {
+        //        var result = await from p in context.ProductSupplies
+        //            join p1 in context.Supplies on p.SupplyId equals p1.SupplyId
+        //            join p2 in context.Products on p.ProductId equals p2.ProductId
+        //            where p.SupplyId == supplyId
+        //            select(r => new SupplyProduct2DTO {
+        //                SupplyId = p.SupplyId,
+        //                SupplyCode = p1.Code,
+        //                SupplyName = p1.Name,
+        //                SupplyDescription = p1.Description,
+        //                SupplyIsActive = p1.IsActive,
+        //                ProductId = p.ProductId,
+        //                ProductCode = p2.Code,
+        //                ProductName = p2.Name,
+        //                ProductDescription = p2.Description,
+        //                Quantity = p.Quantity
+        //            });
 
- //               return result;
- //           }
- //   //ps.ProductId, ps.SupplyId, ps.Quantity,
-	////s.Code, s.Name, s.Description,
-	////p.Code, p.Name, p.Description
- //       }
+        //        return result;
+        //    }
+        //}
 
 
         // traer  todos  los  supply  que  usen  el  producto

@@ -51,6 +51,24 @@ namespace PizzeriaMasterpiece.DTO
         public List<SupplyProductDetailDTO> ProductDetails { get; set; }
     }
 
+    public class SupplyProduct2DTO
+
+    {
+        public int? SupplyId { get; set; }
+        public string SupplyCode { get; set; }
+        public string SupplyName { get; set; }
+        public string SupplyDescription { get; set; }
+        public byte? SupplyIsActive { get; set; }
+
+        public int ProductId { get; set;  }
+        public string ProductCode { get; set; }
+        public string ProductName { get; set; }
+        public string ProductDescription { get; set; }
+
+        public int? Quantity { get; set; }
+    }
+
+
 
     public class ProductoSupplyDatailDTO {
         public int? SupplyId { get; set; }
@@ -72,4 +90,6 @@ namespace PizzeriaMasterpiece.DTO
 
         public List<ProductoSupplyDatailDTO> SupplyDetails { get; set; }
     }
+
+
 }
