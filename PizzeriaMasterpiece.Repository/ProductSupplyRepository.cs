@@ -32,6 +32,25 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
+ //       public async Task<List<SupplyProductDTO>> GetAllProductBySupply2(int supplyId) {
+ //           using (var context = new PizzeriaMasterpieceEntities())
+ //           {
+ //               var result = (from ps in context.ProductSupplies
+ //                             join s in context.Supplies on s.SupplyId equals ps.SupplyId
+ //                             join p in context.Products on p.ProductId equals ps.ProductId
+ //                             where ps.SupplyId = supplyId
+ //                   select (r => new SupplyProductDTO {
+ //                       SupplyId = r.SupplyId
+ //                   }).ToList()  ).ToListAsync();
+
+ //               return result;
+ //           }
+ //   //ps.ProductId, ps.SupplyId, ps.Quantity,
+	////s.Code, s.Name, s.Description,
+	////p.Code, p.Name, p.Description
+ //       }
+
+
         // traer  todos  los  supply  que  usen  el  producto
         public async Task<List<ProductoSupplyDTO>> GetAllSupplyByProduct(int productId)
         {
