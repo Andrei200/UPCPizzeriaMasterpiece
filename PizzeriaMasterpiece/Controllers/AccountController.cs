@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PizzeriaMasterpiece.Models;
+using PizzeriaMasterpiece.Constant;
 
 namespace PizzeriaMasterpiece.Controllers
 {
@@ -154,14 +155,18 @@ namespace PizzeriaMasterpiece.Controllers
             if (ModelState.IsValid)
             {
                 var serviceReference = new UserServiceReference.UserServiceClient();
-                var user = new UserServiceReference.UserRegistrationDTO();
-                user.DocumentNo = model.Document;
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.Email= model.Email;
-                user.PhoneNumber = model.Telephone;
-                user.Address = model.Address;
-                user.Password = model.ConfirmPassword;
+                var user = new UserServiceReference.UserRegistrationDTO()
+                {
+                    DocumentNo = model.Document,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Password = model.Password,
+                    Address = model.Address,
+                    PhoneNumber = model.Telephone,
+                    IsActive = Parameters.USER_ACTIVE,
+                    RoleId = Parameters.ROLE_CLIENT
+                };                
                 var result = serviceReference.InsertUserInformation(user);
                 return RedirectToAction("Index", "Home");                
             }

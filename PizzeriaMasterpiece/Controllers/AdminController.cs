@@ -6,15 +6,24 @@ using System.Web.Mvc;
 
 namespace PizzeriaMasterpiece.Controllers
 {
-    public class ProductController : Controller
+    public class AdminController : Controller
     {
-        public ActionResult List()
+        public ActionResult Panel()
+        {
+            return View();
+        }
+
+        public ActionResult Order()
+        {
+            return View();
+        }
+
+        public ActionResult Product()
         {
             var serviceReference = new ProductServiceReference.ProductServiceClient();
             var list = serviceReference.ListAllProductInformation();
             ViewBag.ListProduct = list;
             return View();
-
         }
     }
 }

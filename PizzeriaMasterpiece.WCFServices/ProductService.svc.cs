@@ -2,6 +2,7 @@
 using PizzeriaMasterpiece.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace PizzeriaMasterpiece.WCFServices
 {
@@ -29,7 +30,19 @@ namespace PizzeriaMasterpiece.WCFServices
         public async Task<List<ProductDTO>> ListAllProductInformation()
         {
             var productRepository = new ProductRepository();
+            return await productRepository.GetProductListAll();
+        }
+
+        public async Task<List<ProductDTO>> ListAllProductToSellInformation()
+        {
+            var productRepository = new ProductRepository();
             return await productRepository.GetProductList();
+        }
+
+        public async Task<List<SupplyProductDTO>> ListAllProductBySupply(int supplyId)
+        {
+            var productSupplyRepository = new ProductSupplyRepository();
+            return await productSupplyRepository.GetAllProductBySupply(supplyId);
         }
     }
 }

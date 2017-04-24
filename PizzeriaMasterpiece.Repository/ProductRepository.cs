@@ -54,6 +54,28 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
+        public async Task<List<ProductDTO>> GetProductListAll()
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var result = await context.Products
+                .Select(q => new ProductDTO
+                {
+                    ProductId = q.ProductId,
+                    Description = q.Description,
+                    Price = q.Price,
+                    Code = q.Code,
+                    Name = q.Name,
+                    ImagePath = q.ImagePath,
+                    SizeId = q.SizeId,
+                    SizeName = q.Size.Name
+                })
+                .ToListAsync();
+
+                return result;
+            }
+        }
+
         public async Task<List<ProductDTO>> GetProductList()
         {
             using (var context = new PizzeriaMasterpieceEntities())

@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <img class="img-responsive mb15" src="~/Images/Other/my_order.png" />
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="order_h1">Productos</h1>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped custom_table">
+            <thead class="success">
+                <tr class="info">
+                    <th>#</th>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Activo?</th>
+                    <th>Tamaño</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.ListProduct != null)
+                {
+                    for (var i = 0; i < ViewBag.ListProduct.Length; i++)
+                    {
+                        <tr>
+                            <td>@ViewBag.ListProduct[i].ProductId</td>
+                            <td>@ViewBag.ListProduct[i].Code</td>
+                            <td>@ViewBag.ListProduct[i].Name</td>
+                            <td>@ViewBag.ListProduct[i].Description</td>
+                            <td>S/. @ViewBag.ListProduct[i].Price</td>
+                            <td>
+                                @if (@ViewBag.ListProduct[i].IsActive == 1)
+                                {
+                                    <span class="glyphicon">Activo</span>
+                                }
+                                else
+                                {
+                                    <span class="glyphicon">Activo</span>
+                                }
+                            </td>
+                            <td>@ViewBag.ListProduct[i].SizeName</td>
+                            <td><button class="btn btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button></td>
+                        </tr>
+                    }
+                }                               
+            </tbody>
+        </table>
+    </div>
+</div>
