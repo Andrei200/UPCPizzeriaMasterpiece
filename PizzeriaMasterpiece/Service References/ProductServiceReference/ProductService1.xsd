@@ -7,7 +7,7 @@
       <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IsActive" nillable="true" type="xs:unsignedByte" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
       <xs:element minOccurs="0" name="ProductId" type="xs:int" />
       <xs:element minOccurs="0" name="SizeId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="SizeName" nillable="true" type="xs:string" />

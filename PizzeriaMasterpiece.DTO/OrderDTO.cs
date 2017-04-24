@@ -22,6 +22,7 @@ namespace PizzeriaMasterpiece.DTO
         public int? DocumentTypeId { get; set; }
         public string DocumentTypeName { get; set; }
         public List<OrderDetailDTO> OrderDetails { get; set; }
+        public int? UserId { get; set; }
     }
 
     public class OrderWorkerDTO : OrderDTO

@@ -10,24 +10,26 @@
             <thead class="success">
                 <tr class="info">
                     <th>#</th>
-                    <th>Cliente</th>
-                    <th>Pedido</th>
                     <th>Fecha</th>
-                    <th>Total</th>
-                    <th>Estado</th>
+                    <th>Dirección</th>
+                    <th>Adicional</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>24841</td>
-                    <td>Juan Perez</td>
-                    <td>3 x Pizzas Americanas</td>
-                    <td>01-Mayo-2017</td>
-                    <td>S/. 150.00</td>
-                    <td>Solicitado</td>
-                    <td><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-name"></span> Ver Detalle</button></td>
-                </tr>
+                @if (ViewBag.ListOrder != null)
+                {
+                    for (var i = 0; i < ViewBag.ListOrder.Length; i++)
+                    {
+                        <tr>
+                            <td>@ViewBag.ListOrder[i].OrderNo</td>
+                            <td>@ViewBag.ListOrder[i].Date</td>
+                            <td>@ViewBag.ListOrder[i].Address</td>
+                            <td>@ViewBag.ListOrder[i].Remak</td>                            
+                            <td><button class="btn btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button></td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>    

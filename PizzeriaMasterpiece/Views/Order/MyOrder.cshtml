@@ -10,22 +10,31 @@
             <thead class="success">
                 <tr class="info">
                     <th>#</th>
-                    <th>Pedido</th>
                     <th>Fecha</th>
-                    <th>Total</th>
+                    <th>Dirección</th>
+                    <th>Addicional</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>3 x Pizzas Americanas</td>
-                    <td>01-Mayo-2017</td>
-                    <td>S/. 150.00</td>
-                    <td>Solicitado</td>
-                    <td><button class="btn btn-warning"><span class="glyphicon glyphicon-name"></span></button></td>
-                </tr>
+                @if (ViewBag.ListOrder != null)
+                {
+                    for (var i = 0; i < ViewBag.ListOrder.Length; i++)
+                    {
+                        if (PizzeriaMasterpiece.Constant.Parameters.ORDER_PENDING == ViewBag.ListOrder[i].OrderStatusId)
+                        {
+                            <tr>
+                                <td>@ViewBag.ListOrder[i].OrderNo</td>
+                                <td>@ViewBag.ListOrder[i].Date</td>
+                                <td>@ViewBag.ListOrder[i].Address</td>
+                                <td>@ViewBag.ListOrder[i].Remark</td>
+                                <td>@ViewBag.ListOrder[i].OrderStatusName</td>
+                                <td><button class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button></td>
+                            </tr>
+                        }
+                    }
+                }
             </tbody>
         </table>
     </div>
@@ -35,22 +44,33 @@
     <div class="table-responsive">
         <table class="table table-striped custom_table2">
             <thead>
-                <tr  class="info">
-                    <th>#</th>
-                    <th>Pedido</th>
+                <tr class="info">
+                    <th>#</th>                    
                     <th>Fecha</th>
-                    <th>Total</th>
+                    <th>Dirección</th>
+                    <th>Adicional</th>
                     <th>Estado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>3 x Pizzas Americanas</td>
-                    <td>01-Mayo-2017</td>
-                    <td>S/. 150.00</td>
-                    <td>Entregado</td>
-                </tr>
+                @if (ViewBag.ListOrder != null)
+                {
+                    for (var i = 0; i < ViewBag.ListOrder.Length; i++)
+                    {
+                        if (PizzeriaMasterpiece.Constant.Parameters.ORDER_PENDING != ViewBag.ListOrder[i].OrderStatusId)
+                        {
+                            <tr>
+                                <td>@ViewBag.ListOrder[i].OrderNo</td>
+                                <td>@ViewBag.ListOrder[i].Date</td>
+                                <td>@ViewBag.ListOrder[i].Address</td>
+                                <td>@ViewBag.ListOrder[i].Remark</td>
+                                <td>@ViewBag.ListOrder[i].OrderStatusName</td>
+                                <td><button class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button></td>
+                            </tr>
+                        }
+                    }
+                }
             </tbody>
         </table>        
     </div>

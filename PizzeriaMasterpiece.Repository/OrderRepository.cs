@@ -12,6 +12,50 @@ namespace PizzeriaMasterpiece.Repository
     public class OrderRepository
     {
 
+        public async Task<OrderDTO> GetOrder(int OrderId)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var result = await context.Orders.Where(p => p.OrderId == OrderId)
+                    .Select(q => new OrderDTO
+                    {
+                        OrderId = q.OrderId,
+                        Address = q.Address,
+                        Date = q.Date,
+                        DocumentTypeId = q.DocumentTypeId,
+                        OrderNo = q.OrderNo,
+                        Remark = q.Remark,
+                        UserId = q.UserId,
+                        OrderStatusId = q.OrderStatusId
+                    }).FirstOrDefaultAsync();
+
+                return result;
+            }
+        }
+
+        public async Task<OrderDTO> InsertOrder(OrderDTO product)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var newOrder = new Order
+                {
+                    OrderId = -1,                    
+                    Date = DateTime.Now,
+                    Address = product.Address,
+                    Remark = product.Remark,
+                    OrderStatusId = product.OrderStatusId,
+                    DocumentTypeId = product.DocumentTypeId,
+                    UserId = product.UserId                    
+                };
+
+                context.Orders.Add(newOrder);
+                context.SaveChanges();
+
+                return await GetOrder(newOrder.OrderId);
+            }
+        }
+
+
         public async Task<List<OrderDTO>> GetOrdersByClient(int userId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
@@ -19,8 +63,8 @@ namespace PizzeriaMasterpiece.Repository
                 var result = await context.Orders.Where(p => p.UserId == userId)
                     .Select(q => new OrderDTO 
                     {
-                       OrderId  = q.OrderId ,
-                       OrderNo = q.OrderNo,
+                       OrderId  = q.OrderId,
+                       OrderNo = 'W' + q.OrderId.ToString().PadLeft(9, '0'),
                        Address = q.Address,
                        Date = q.Date,
                        Remark = q.Remark,
@@ -55,7 +99,7 @@ namespace PizzeriaMasterpiece.Repository
                 var result = await query.Select(q => new OrderWorkerDTO
                 {
                     OrderId = q.OrderId,
-                    OrderNo = q.OrderNo,
+                    OrderNo = 'W' + q.OrderId.ToString().PadLeft(9, '0'),
                     Address = q.Address,
                     Date = q.Date,
                     Remark = q.Remark,

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PizzeriaMasterpiece.Models;
 using PizzeriaMasterpiece.Constant;
+using PizzeriaMasterpiece.DTO;
 
 namespace PizzeriaMasterpiece.Controllers
 {
@@ -77,14 +78,14 @@ namespace PizzeriaMasterpiece.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var serviceReference = new UserServiceReference.UserServiceClient();
-            var user = new UserServiceReference.UserLoginDTO();
+            var user = new UserLoginDTO();
             user.Email = model.Email;
             user.Password = model.Password;
             var result = serviceReference.LoginUserInformation(user);
 
             if (result != null)
             {
-                Session["User"] = user;                
+                Session["User"] = result;                
                 return RedirectToLocal(returnUrl);
             }
             else
@@ -155,7 +156,7 @@ namespace PizzeriaMasterpiece.Controllers
             if (ModelState.IsValid)
             {
                 var serviceReference = new UserServiceReference.UserServiceClient();
-                var user = new UserServiceReference.UserRegistrationDTO()
+                var user = new UserRegistrationDTO()
                 {
                     DocumentNo = model.Document,
                     FirstName = model.FirstName,

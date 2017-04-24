@@ -215,6 +215,11 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\OrderServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProductServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,6 +263,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.OrderDTO.datasource">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.OrderWorkerDTO.datasource" />
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.UserDTO.datasource" />
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.ProductDTO.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -271,9 +282,23 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Service References\ProductServiceReference\PizzeriaMasterpiece.ProductServiceReference.ProductDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
+    <None Include="Service References\OrderServiceReference\OrderService.disco" />
+    <None Include="Service References\OrderServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\OrderServiceReference\configuration.svcinfo" />
+    <None Include="Service References\OrderServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\OrderServiceReference\OrderService.wsdl" />
+    <None Include="Service References\OrderServiceReference\OrderService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderServiceReference\OrderService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderServiceReference\OrderService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ProductServiceReference\ProductService.disco" />
     <None Include="Service References\ProductServiceReference\configuration91.svcinfo" />
     <None Include="Service References\ProductServiceReference\configuration.svcinfo" />
@@ -281,9 +306,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\UserServiceReference\PizzeriaMasterpiece.UserServiceReference.UserDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Service References\UserServiceReference\UserService.disco" />
     <None Include="Service References\UserServiceReference\configuration91.svcinfo" />
     <None Include="Service References\UserServiceReference\configuration.svcinfo" />
@@ -366,6 +388,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\OrderServiceReference\" />
     <WCFMetadataStorage Include="Service References\ProductServiceReference\" />
     <WCFMetadataStorage Include="Service References\UserServiceReference\" />
   </ItemGroup>

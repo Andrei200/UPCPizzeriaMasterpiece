@@ -11,5 +11,8 @@ namespace PizzeriaMasterpiece.Constant
         public const int USER_BLOCK = 2;
 
         public const int ROLE_CLIENT = 3;
+
+        public const int ORDER_PENDING = 1;
+
     }
 }

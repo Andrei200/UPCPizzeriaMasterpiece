@@ -78,7 +78,7 @@ namespace PizzeriaMasterpiece.Repository
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var result = await context.Users
-                .Where(p => p.Email == user.Email && p.Password == user.Password)
+                .Where(p => p.Email == user.Email && p.Password == password)
                 .Select(q => new UserDTO
                 {
                     UserId = q.UserId,

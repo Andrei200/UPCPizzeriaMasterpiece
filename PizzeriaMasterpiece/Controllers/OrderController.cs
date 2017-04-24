@@ -15,14 +15,17 @@ namespace PizzeriaMasterpiece.Controllers
     {
         public async System.Threading.Tasks.Task<ActionResult> MyOrder()
         {
-            ViewBag.Message = "Your pizza page.";
-            //HttpClient client = new HttpClient();
-            //var order = new List<OrderDTO>();
-            //HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/OrderClient/1");
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    order = await response.Content.ReadAsAsync<List<OrderDTO>>();
-            //}
+            if (Session["User"] == null)
+            {
+                ViewBag.Login = "Ingrese su usuario y contraseña";
+                return Redirect("/Account/Login");
+            }                
+            
+            UserDTO u = (UserDTO)Session["User"];
+            var serviceReference = new OrderServiceReference.OrderServiceClient();
+            var list = serviceReference.GetOrdersByClient(u.UserId);
+            ViewBag.ListOrder = list;            
+
             return View();
         }
     }
