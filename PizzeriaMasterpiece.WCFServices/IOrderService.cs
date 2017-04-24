@@ -1,9 +1,11 @@
-﻿using System;
+﻿using PizzeriaMasterpiece.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PizzeriaMasterpiece.WCFServices
 {
@@ -12,6 +14,10 @@ namespace PizzeriaMasterpiece.WCFServices
     public interface IOrderService
     {
         [OperationContract]
-        void DoWork();
+        Task<List<OrderDTO>>  GetOrdersByClient(int userId);
+
+        [OperationContract]
+        Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
+
     }
 }

@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 
 namespace PizzeriaMasterpiece.DTO
 {
-    public class ProductDTO
+    public class SupplyDTO
+
     {
-        public int ProductId { get; set; }
+
+        public SupplyDTO()
+        {
+            Supplyes = new List<SupplyDTO>();
+        }
+
+        public int? SupplyId { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal? Price { get; set; }
-        public string ImagePath { get; set; }
+        public int? Quantity { get; set; }
         public byte? IsActive { get; set; }
-        public int? SizeId { get; set; }
-        public string SizeName { get; set; }
+
+        public List<SupplyDTO> Supplyes { get; set; }
     }
 }

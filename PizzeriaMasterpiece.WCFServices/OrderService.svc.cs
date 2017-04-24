@@ -4,6 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using PizzeriaMasterpiece.DTO;
+using System.Threading.Tasks;
+using PizzeriaMasterpiece.Repository;
 
 namespace PizzeriaMasterpiece.WCFServices
 {
@@ -11,8 +14,16 @@ namespace PizzeriaMasterpiece.WCFServices
     // NOTE: In order to launch WCF Test Client for testing this service, please select OrderService.svc or OrderService.svc.cs at the Solution Explorer and start debugging.
     public class OrderService : IOrderService
     {
-        public void DoWork()
+        public async Task<List<OrderDTO>> GetOrdersByClient(int userId)
         {
+            var orderRepository = new OrderRepository();
+            return await orderRepository.GetOrdersByClient(userId);
+        }
+
+        public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        {
+            var orderRepository = new OrderRepository();
+            return await orderRepository.GetOrdersByCriteria(criteria);
         }
     }
 }
