@@ -27,10 +27,8 @@ namespace PizzeriaMasterpiece.Controllers
             return View();
 
         }
-
-        [System.Web.Mvc.Ajax.AjaxMethod(HttpSessionStateRequirement.ReadWrite)]
-
-        public async Task<JsonResult> AddToCart(int productId, int quantity)
+        
+        public string AddToCart(int productId, int quantity)
         {            
             if (Session["Cart"] == null)
             {
@@ -51,7 +49,7 @@ namespace PizzeriaMasterpiece.Controllers
 
             Session["Cart"] = listOwnOrder;
 
-            return Json(true);
+            return "PRD";
         }        
     }
 }
