@@ -26,12 +26,17 @@ namespace PizzeriaMasterpiece.DTO
     }
 
     public class OrderWorkerDTO : OrderDTO
-    {
-      
+    {      
         public string DocumentNo { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+    }
+
+    public class OrderCartDTO
+    {
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
     }
 }

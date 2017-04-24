@@ -39,11 +39,11 @@ namespace PizzeriaMasterpiece.ProductServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ListAllProductInformation", ReplyAction="http://tempuri.org/IProductService/ListAllProductInformationResponse")]
         System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.ProductDTO[]> ListAllProductInformationAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ListAllProductToSellInformation", ReplyAction="http://tempuri.org/IProductService/ListAllProductToSellInformationResponse")]
-        PizzeriaMasterpiece.DTO.ProductDTO[] ListAllProductToSellInformation();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ListAllProductBySupply", ReplyAction="http://tempuri.org/IProductService/ListAllProductBySupplyResponse")]
+        PizzeriaMasterpiece.DTO.SupplyProductDTO[] ListAllProductBySupply(int supplyId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ListAllProductToSellInformation", ReplyAction="http://tempuri.org/IProductService/ListAllProductToSellInformationResponse")]
-        System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.ProductDTO[]> ListAllProductToSellInformationAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductService/ListAllProductBySupply", ReplyAction="http://tempuri.org/IProductService/ListAllProductBySupplyResponse")]
+        System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.SupplyProductDTO[]> ListAllProductBySupplyAsync(int supplyId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,12 +105,12 @@ namespace PizzeriaMasterpiece.ProductServiceReference {
             return base.Channel.ListAllProductInformationAsync();
         }
         
-        public PizzeriaMasterpiece.DTO.ProductDTO[] ListAllProductToSellInformation() {
-            return base.Channel.ListAllProductToSellInformation();
+        public PizzeriaMasterpiece.DTO.SupplyProductDTO[] ListAllProductBySupply(int supplyId) {
+            return base.Channel.ListAllProductBySupply(supplyId);
         }
         
-        public System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.ProductDTO[]> ListAllProductToSellInformationAsync() {
-            return base.Channel.ListAllProductToSellInformationAsync();
+        public System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.SupplyProductDTO[]> ListAllProductBySupplyAsync(int supplyId) {
+            return base.Channel.ListAllProductBySupplyAsync(supplyId);
         }
     }
 }

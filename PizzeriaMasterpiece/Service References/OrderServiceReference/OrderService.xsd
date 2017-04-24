@@ -18,6 +18,7 @@
       <xs:element minOccurs="0" name="OrderStatusId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="OrderStatusName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="OrderDTO" nillable="true" type="tns:OrderDTO" />

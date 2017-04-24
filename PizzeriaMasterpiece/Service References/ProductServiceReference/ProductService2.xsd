@@ -55,15 +55,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListAllProductToSellInformation">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListAllProductToSellInformationResponse">
+  <xs:element name="ListAllProductBySupply">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO" minOccurs="0" name="ListAllProductToSellInformationResult" nillable="true" type="q7:ArrayOfProductDTO" />
+        <xs:element minOccurs="0" name="supplyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAllProductBySupplyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO" minOccurs="0" name="ListAllProductBySupplyResult" nillable="true" type="q7:ArrayOfSupplyProductDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

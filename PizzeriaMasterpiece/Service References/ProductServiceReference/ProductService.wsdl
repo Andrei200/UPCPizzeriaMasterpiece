@@ -31,11 +31,11 @@
   <wsdl:message name="IProductService_ListAllProductInformation_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListAllProductInformationResponse" />
   </wsdl:message>
-  <wsdl:message name="IProductService_ListAllProductToSellInformation_InputMessage">
-    <wsdl:part name="parameters" element="tns:ListAllProductToSellInformation" />
+  <wsdl:message name="IProductService_ListAllProductBySupply_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAllProductBySupply" />
   </wsdl:message>
-  <wsdl:message name="IProductService_ListAllProductToSellInformation_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ListAllProductToSellInformationResponse" />
+  <wsdl:message name="IProductService_ListAllProductBySupply_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAllProductBySupplyResponse" />
   </wsdl:message>
   <wsdl:portType name="IProductService">
     <wsdl:operation name="GetProductInformation">
@@ -54,9 +54,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IProductService/ListAllProductInformation" message="tns:IProductService_ListAllProductInformation_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductService/ListAllProductInformationResponse" message="tns:IProductService_ListAllProductInformation_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ListAllProductToSellInformation">
-      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/ListAllProductToSellInformation" message="tns:IProductService_ListAllProductToSellInformation_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/ListAllProductToSellInformationResponse" message="tns:IProductService_ListAllProductToSellInformation_OutputMessage" />
+    <wsdl:operation name="ListAllProductBySupply">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductService/ListAllProductBySupply" message="tns:IProductService_ListAllProductBySupply_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductService/ListAllProductBySupplyResponse" message="tns:IProductService_ListAllProductBySupply_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProductService" type="tns:IProductService">
@@ -97,8 +97,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ListAllProductToSellInformation">
-      <soap:operation soapAction="http://tempuri.org/IProductService/ListAllProductToSellInformation" style="document" />
+    <wsdl:operation name="ListAllProductBySupply">
+      <soap:operation soapAction="http://tempuri.org/IProductService/ListAllProductBySupply" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
