@@ -94,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\SizeController.cs" />
+    <Compile Include="Controllers\DocumentTypeController.cs" />
+    <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\OrderClientController.cs" />
     <Compile Include="Controllers\OrderWorkerController.cs" />
     <Compile Include="Controllers\ProductServiceController.cs" />

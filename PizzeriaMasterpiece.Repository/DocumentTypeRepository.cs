@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace PizzeriaMasterpiece.Repository
 {
-    public class SizeRepository
+    public class DocumentTypeRepository
     {
-        public async Task<List<ControlBaseDTO>> GetSizes()
+        public async Task<List<ControlBaseDTO>> GetDocumentTypes()
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Sizes
+                var result = await context.DocumentTypes
                     .Select(q => new ControlBaseDTO
                     {
-                        Id = q.SizeId,
+                        Id = q.DocumentTypeId,
                         Code = q.Code,
-                        Name = q.Name,
+                        Name = q.Name
                     }).ToListAsync();
 
                 return result;

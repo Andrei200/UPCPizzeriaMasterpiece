@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyRepository.cs" />
+    <Compile Include="DocumentTypeRepository.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="OrderStatusRepository.cs" />
     <Compile Include="ProductSupplyRepository.cs" />

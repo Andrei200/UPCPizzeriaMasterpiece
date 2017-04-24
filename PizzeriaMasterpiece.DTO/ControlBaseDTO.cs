@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PizzeriaMasterpiece.DTO
 {
-    public class SizeDTO
+    public class ControlBaseDTO
     {
-        public int SizeId { get; set; }
-        public String Code { get; set; }
-        public String Name { get; set; }
+        public int? Id { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
     }
 }
