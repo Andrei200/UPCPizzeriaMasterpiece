@@ -30,7 +30,8 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
         public UserDTO Post(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
-            return  userRepository.InsertUser(user);
+            var userId = userRepository.InsertUser(user);
+            return userRepository.GetUser(userId);
         }
 
         // PUT: api/UsuarioService/5

@@ -30,8 +30,10 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
                     orderRepository.InsertOrder(order);
                 }
             }
-            var criteria = new OrderSearchCriteriaDTO();
-            criteria.OrderStatusId = 1;
+            var criteria = new OrderSearchCriteriaDTO()
+            {
+                OrderStatusId = 1
+            };
             var result = orderRepository.GetOrdersByCriteria(criteria);
             return result;
         }

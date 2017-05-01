@@ -18,13 +18,15 @@ namespace PizzeriaMasterpiece.WCFServices
         public ProductDTO InsertProductInformation(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return productRepository.InsertProduct(product);
+            var productId = productRepository.InsertProduct(product);
+            return productRepository.GetProduct(productId);
         }
 
         public ProductDTO UpdateProductInformation(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return productRepository.UpdateProduct(product);
+            var productId = productRepository.UpdateProduct(product);
+            return productRepository.GetProduct(productId);
         }
 
         public List<ProductDTO> ListAllProductInformation()

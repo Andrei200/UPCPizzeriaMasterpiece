@@ -17,13 +17,15 @@ namespace PizzeriaMasterpiece.Services
         public UserDTO InsertUserInformation(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
-            return userRepository.InsertUser(user);
+            var userId = userRepository.InsertUser(user);
+            return userRepository.GetUser(userId);
         }
 
         public UserDTO UpdateUserInformation(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
-            return userRepository.UpdateUser(user);
+            var userId = userRepository.UpdateUser(user);
+            return userRepository.GetUser(userId);
         }
 
         public UserDTO LoginUserInformation(UserLoginDTO user)

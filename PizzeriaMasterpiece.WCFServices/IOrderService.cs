@@ -19,5 +19,8 @@ namespace PizzeriaMasterpiece.WCFServices
         [OperationContract]
         List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
 
+        [OperationContract]
+        ResponseDTO UpdateOrderStatus(OrderStatusDTO order);
+
     }
 }

@@ -35,7 +35,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public UserDTO InsertUser(UserRegistrationDTO user)
+        public int InsertUser(UserRegistrationDTO user)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -55,11 +55,11 @@ namespace PizzeriaMasterpiece.Repository
 
                  context.Users.Add(newUser);
                  context.SaveChanges();
-                 return GetUser(newUser.UserId);
+                 return newUser.UserId;
             };
         }
 
-        public UserDTO UpdateUser(UserRegistrationDTO user)
+        public int UpdateUser(UserRegistrationDTO user)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -68,7 +68,7 @@ namespace PizzeriaMasterpiece.Repository
                 currentUser.PhoneNumber = user.PhoneNumber;
                 if (!string.IsNullOrWhiteSpace(user.Password)) currentUser.Password = HashPassword(user.Password);
                 context.SaveChanges();
-                return  GetUser(currentUser.UserId);
+                return currentUser.UserId;
             }
         }
 
