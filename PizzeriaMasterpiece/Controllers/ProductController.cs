@@ -27,31 +27,42 @@ namespace PizzeriaMasterpiece.Controllers
             return View();
 
         }
-
-        [System.Web.Mvc.Ajax.AjaxMethod(HttpSessionStateRequirement.ReadWrite)]
-
+                
         public async Task<JsonResult> AddToCart(int productId, int quantity)
-        {            
-            if (Session["Cart"] == null)
+        {
+            if (System.Web.HttpContext.Current.Session["Cart"] == null)
             {
-                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();                
-                Session.Add("Cart", newOrder);
+                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();
+                System.Web.HttpContext.Current.Session["Cart"] = newOrder;
 
             }
 
-            List<OrderCartDTO> listOwnOrder = (List<OrderCartDTO>)Session["Cart"];
+            List<OrderCartDTO> listOwnOrder = (List<OrderCartDTO>)System.Web.HttpContext.Current.Session["Cart"];
+
+            var product = new ProductServiceReference.ProductServiceClient();
 
             OrderCartDTO order = new OrderCartDTO()
             {
-                ProductId = productId,
+                Product = product.GetProductInformation(productId),
                 Quantity = quantity
             };
 
             listOwnOrder.Add(order);
 
-            Session["Cart"] = listOwnOrder;
+            System.Web.HttpContext.Current.Session["Cart"] = listOwnOrder;
 
-            return Json(true);
-        }        
+            return Json(listOwnOrder);
+        }
+
+        public async Task<JsonResult> CheckCart()
+        {
+            if (System.Web.HttpContext.Current.Session["Cart"] == null)
+            {
+                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();
+                System.Web.HttpContext.Current.Session["Cart"] = newOrder;
+
+            }
+            return Json(System.Web.HttpContext.Current.Session["Cart"]);
+        }
     }
 }

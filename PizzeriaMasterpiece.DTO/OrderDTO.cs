@@ -36,7 +36,7 @@ namespace PizzeriaMasterpiece.DTO
 
     public class OrderCartDTO
     {
-        public int ProductId { get; set; }
+        public ProductDTO Product { get; set; }
         public int Quantity { get; set; }
     }
 }

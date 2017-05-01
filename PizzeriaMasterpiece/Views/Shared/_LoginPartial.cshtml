@@ -7,15 +7,27 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
+            <a id="ShopCart" href="@Url.Action("List", "Cart")" target="_self">
+                <img class="img-responsive h20" src="~/Images/Order/cart.png"/>
+                <label id="CountCart" class="miniball" style="display:none;">0</label>
+            </a>
+        </li>
+        <li>
             @Html.ActionLink("Buenas " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a id="ShopCart" href="@Url.Action("List", "Cart")" target="_self">
+                <img class="img-responsive h20" src="~/Images/Order/cart.png" />
+                <label id="CountCart" class="miniball" style="display:none;">0</label>
+            </a>
+        </li>
         <li>@Html.ActionLink("Registrarme", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Ingresar", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

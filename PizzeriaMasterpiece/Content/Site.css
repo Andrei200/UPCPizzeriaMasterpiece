@@ -218,3 +218,23 @@ footer p{
 }
 
 .control-label{color:white;}
+
+.h20{
+    height:20px;
+}
+
+.miniball{
+    position: absolute;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    background-color: green;
+    font-size: 10px;
+    width: 16px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    margin-top: -28px;
+    margin-left: 11px;
+    color:white;
+}

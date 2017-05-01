@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Images\banner_pizza.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_short.png" />
+    <Content Include="Images\Order\cart.png" />
     <Content Include="Images\Other\banner_register.png" />
     <Content Include="Images\Other\my_order.png" />
     <Content Include="Images\Pizzas\pizza1.jpg" />
@@ -373,6 +375,7 @@
     <Content Include="Views\Admin\Panel.cshtml" />
     <Content Include="Views\Admin\Order.cshtml" />
     <Content Include="Views\Admin\Product.cshtml" />
+    <Content Include="Views\Cart\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

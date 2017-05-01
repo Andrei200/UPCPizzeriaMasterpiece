@@ -1,0 +1,50 @@
+﻿<div class="row">
+    <img class="img-responsive mb15" src="~/Images/Other/my_order.png" />
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="order_h1">Mi pedido</h1>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped custom_table">
+            <thead class="success">
+                <tr class="info">                    
+                    <th>Cantidad</th>
+                    <th>&nbsp;</th>
+                    <th>Producto</th>                        
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.ListCart != null)
+                {
+                    if (ViewBag.ListCart.Count != 0)
+                    {
+                        for (var i = 0; i < ViewBag.ListCart.Count; i++)
+                        {
+                            <tr>
+                                <td>@ViewBag.ListCart[i].Quantity</td>
+                                <td>@ViewBag.ListCart[i].Product.ImagePath</td>
+                                <td>@ViewBag.ListCart[i].Product.Description</td>
+                                <td>@ViewBag.ListCart[i].Product.Price</td>
+                                <td>
+                                    <button class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-name"></span> Remover</button>
+                                </td>
+                            </tr>                                                        
+                        }
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total:</td>
+                    <td>S/. </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>    
+</div>
