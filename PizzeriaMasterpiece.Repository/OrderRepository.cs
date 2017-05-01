@@ -12,11 +12,11 @@ namespace PizzeriaMasterpiece.Repository
     public class OrderRepository
     {
 
-        public async Task<OrderDTO> GetOrder(int OrderId)
+        public OrderDTO GetOrder(int OrderId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Orders.Where(p => p.OrderId == OrderId)
+                var result =  context.Orders.Where(p => p.OrderId == OrderId)
                     .Select(q => new OrderDTO
                     {
                         OrderId = q.OrderId,
@@ -27,44 +27,72 @@ namespace PizzeriaMasterpiece.Repository
                         Remark = q.Remark,
                         UserId = q.UserId,
                         OrderStatusId = q.OrderStatusId
-                    }).FirstOrDefaultAsync();
+                    }).FirstOrDefault();
 
                 return result;
             }
         }
 
-        public async Task<OrderDTO> InsertOrder(OrderDTO product)
+        public int InsertOrder(OrderDTO product)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var newOrder = new Order
                 {
-                    OrderId = -1,                    
+                    OrderId = -1,
                     Date = DateTime.Now,
                     Address = product.Address,
                     Remark = product.Remark,
-                    OrderStatusId = product.OrderStatusId,
+                    OrderStatusId = 1,
                     DocumentTypeId = product.DocumentTypeId,
-                    UserId = product.UserId                    
+                    UserId = product.UserId
                 };
 
+                var autoId = 0;
+                foreach (var item in product.OrderDetails)
+                {
+                    var newOrderDetail = new OrderDetail
+                    {
+                        OrderDetailId = --autoId,
+                        OrderId = newOrder.OrderId,
+                        Price = item.Price,
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        TotalPrice = item.Quantity * item.Price          
+                    };
+                    newOrder.OrderDetails.Add(newOrderDetail);
+                } 
+                
                 context.Orders.Add(newOrder);
                 context.SaveChanges();
 
-                return await GetOrder(newOrder.OrderId);
+                var currentOrder = context.Orders.Find(newOrder.OrderId);
+                currentOrder.OrderNo = "W" + newOrder.OrderId.ToString().PadLeft(9, '0');
+                context.SaveChanges();
+                return newOrder.OrderId;
             }
         }
 
-
-        public async Task<List<OrderDTO>> GetOrdersByClient(int userId)
+        public bool UpdateOrderStatus(OrderStatusDTO order)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Orders.Where(p => p.UserId == userId)
+                var currentOrder= context.Orders.Find(order.OrderId);
+                currentOrder.OrderStatusId = order.OrderStatusId;
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public List<OrderDTO> GetOrdersByClient(int userId)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var result =  context.Orders.Where(p => p.UserId == userId)
                     .Select(q => new OrderDTO 
                     {
                        OrderId  = q.OrderId,
-                       OrderNo = 'W' + q.OrderId.ToString().PadLeft(9, '0'),
+                       OrderNo = q.OrderNo,
                        Address = q.Address,
                        Date = q.Date,
                        Remark = q.Remark,
@@ -80,13 +108,13 @@ namespace PizzeriaMasterpiece.Repository
                            Quantity = r.Quantity,
                            TotalPrice = r.TotalPrice
                        }).ToList()
-                    }).ToListAsync();
+                    }).ToList();
 
                 return result;
             }
         }
 
-        public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        public List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
         {
                 
             using (var context = new PizzeriaMasterpieceEntities())
@@ -96,10 +124,10 @@ namespace PizzeriaMasterpiece.Repository
                 query = query.Where(p => p.Date >= criteria.StartDate || criteria.StartDate == null);
                 query = query.Where(p => p.Date <= criteria.EndDate || criteria.EndDate == null);
 
-                var result = await query.Select(q => new OrderWorkerDTO
+                var result = query.Select(q => new OrderWorkerDTO
                 {
                     OrderId = q.OrderId,
-                    OrderNo = 'W' + q.OrderId.ToString().PadLeft(9, '0'),
+                    OrderNo = q.OrderNo,
                     Address = q.Address,
                     Date = q.Date,
                     Remark = q.Remark,
@@ -130,7 +158,7 @@ namespace PizzeriaMasterpiece.Repository
                             Quantity=p.Supply.Quantity
                         }).ToList()
                       }).ToList()
-                   }).ToListAsync();
+                   }).ToList();
 
                 return result;
             }

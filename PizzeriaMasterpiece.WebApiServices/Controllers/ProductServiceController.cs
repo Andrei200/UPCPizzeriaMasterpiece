@@ -14,24 +14,24 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
     public class ProductServiceController : ApiController
     {
         // GET api/<controller>
-        public async Task<List<ProductDTO>> Get()
+        public List<ProductDTO> Get()
         {
             var productRepository = new ProductRepository();
-            return await productRepository.GetProductList();
+            return  productRepository.GetProductList();
         }
 
         // GET api/<controller>/5
-        public async Task<ProductDTO> Get(int id)
+        public ProductDTO Get(int id)
         {
             var productRepository = new ProductRepository();
-            return await productRepository.GetProduct(id);
+            return productRepository.GetProduct(id);
         }
 
         // POST api/<controller>
-        public async Task<ProductDTO> Post(ProductDTO product)
+        public ProductDTO Post(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return await productRepository.InsertProduct(product);
+            return productRepository.InsertProduct(product);
         }
 
         // PUT api/<controller>/5

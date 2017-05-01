@@ -15,28 +15,28 @@ namespace PizzeriaMasterpiece.WCFServices
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione SupplyService.svc o SupplyService.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class SupplyService : ISupplyServie
     {
-        public async Task<SupplyDTO> GetSupplyById(int SupplyId)
+        public SupplyDTO GetSupplyById(int SupplyId)
         {
             var supplyRepository = new SupplyRepository();
-            return await supplyRepository.GetSupplyById(SupplyId);
+            return supplyRepository.GetSupplyById(SupplyId);
         }
 
-        public async Task<SupplyDTO> InsertSupplyInformation(SupplyDTO supply)
+        public SupplyDTO InsertSupplyInformation(SupplyDTO supply)
         {
             var supplyRepository = new SupplyRepository();
-            return await supplyRepository.InsertSupply(supply);
+            return supplyRepository.InsertSupply(supply);
         }
 
-        public async Task<List<SupplyDTO>> ListAllSupplyInformation()
+        public List<SupplyDTO> ListAllSupplyInformation()
         {
             var supplyRepository = new SupplyRepository();
-            return await supplyRepository.GetSupplies();
+            return supplyRepository.GetSupplies();
         }
 
-        public async Task<SupplyDTO> UpdateSupplyInformation(SupplyDTO supply)
+        public SupplyDTO UpdateSupplyInformation(SupplyDTO supply)
         {
             var supplyRepository = new SupplyRepository();
-            return await supplyRepository.UpdateSupply(supply);
+            return supplyRepository.UpdateSupply(supply);
         }
     }
 }

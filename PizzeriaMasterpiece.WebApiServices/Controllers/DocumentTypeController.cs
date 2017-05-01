@@ -12,10 +12,10 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
 {
     public class DocumentTypeController : ApiController
     {
-        public async Task<List<ControlBaseDTO>> Get()
+        public List<ControlBaseDTO> Get()
         {
             var repository = new DocumentTypeRepository();
-            return await repository.GetDocumentTypes();
+            return repository.GetDocumentTypes();
         }
 
         public string Get(int id)

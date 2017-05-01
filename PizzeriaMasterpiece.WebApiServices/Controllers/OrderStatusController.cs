@@ -12,10 +12,10 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
 {
     public class OrderStatusController : ApiController
     {
-        public async Task<List<ControlBaseDTO>> Get()
+        public List<ControlBaseDTO> Get()
         {
             var repository = new OrderStatusRepository();
-            return await repository.GeOrderStatusList();
+            return repository.GeOrderStatusList();
         }
 
         public string Get(int id)

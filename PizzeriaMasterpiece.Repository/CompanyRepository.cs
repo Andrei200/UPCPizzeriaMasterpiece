@@ -11,11 +11,11 @@ namespace PizzeriaMasterpiece.Repository
 {
   public  class CompanyRepository
     {
-        public async Task<CompanyDTO> GetCompany(int companyId)
+        public CompanyDTO GetCompany(int companyId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Companies.Where(p => p.CompanyId == companyId)
+                var result =  context.Companies.Where(p => p.CompanyId == companyId)
                     .Select(q => new CompanyDTO
                     {
                         CompanyId = q.CompanyId,
@@ -23,13 +23,13 @@ namespace PizzeriaMasterpiece.Repository
                         RUC = q.RUC,                    
                         Address = q.Address,
                         PhoneNumber = q.PhoneNumber,
-                    }).FirstOrDefaultAsync();
+                    }).FirstOrDefault();
 
                 return result;
             }
         }
 
-        public async Task<CompanyDTO> InsertCompany(CompanyDTO company)
+        public CompanyDTO InsertCompany(CompanyDTO company)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -45,15 +45,15 @@ namespace PizzeriaMasterpiece.Repository
                 context.Companies.Add(newCompany);
                 context.SaveChanges();
 
-                return await GetCompany(newCompany.CompanyId);
+                return GetCompany(newCompany.CompanyId);
             }
         }
 
-        public async Task<List<CompanyDTO>> GetCompanyList()
+        public List<CompanyDTO> GetCompanyList()
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Companies
+                var result = context.Companies
                 .Select(q => new CompanyDTO
                 {
                     CompanyId = q.CompanyId,
@@ -62,23 +62,23 @@ namespace PizzeriaMasterpiece.Repository
                     Address = q.Address,
                     PhoneNumber = q.PhoneNumber
                 })
-                .ToListAsync();
+                .ToList();
 
                 return result;
             }
         }
 
-        public async Task<CompanyDTO> UpdateCompany(CompanyDTO company)
+        public CompanyDTO UpdateCompany(CompanyDTO company)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var currentCompany = await context.Companies.FindAsync(company.CompanyId);
+                var currentCompany = context.Companies.Find(company.CompanyId);
                 if (!string.IsNullOrWhiteSpace(company.Name)) currentCompany.Name = company.Name;
                 if (!string.IsNullOrWhiteSpace(company.RUC)) currentCompany.Name = company.RUC;
                 if (!string.IsNullOrWhiteSpace(company.Address)) currentCompany.Name = company.Address;
                 if (!string.IsNullOrWhiteSpace(company.PhoneNumber)) currentCompany.Name = company.PhoneNumber;
                 context.SaveChanges();
-                return await GetCompany(currentCompany.CompanyId);
+                return  GetCompany(currentCompany.CompanyId);
             }
         }
     }

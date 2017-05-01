@@ -12,9 +12,9 @@ namespace PizzeriaMasterpiece.Repository
   public  class ProductSupplyRepository
     {
         //traer  todos  los  productos que  usen  el  supply 
-        public async Task<List<SupplyProductDTO>> GetAllProductBySupply(int supplyId) {
+        public List<SupplyProductDTO> GetAllProductBySupply(int supplyId) {
             using (var context = new PizzeriaMasterpieceEntities()) {
-                var result = await context.Supplies.Where(p => p.SupplyId == supplyId)
+                var result = context.Supplies.Where(p => p.SupplyId == supplyId)
                     .Select(q => new SupplyProductDTO
                     {
                         SupplyId = q.SupplyId,
@@ -27,7 +27,7 @@ namespace PizzeriaMasterpiece.Repository
                             ProductId = r.ProductId,
                             Quantity = r.Quantity
                         }).ToList()
-                    }).ToListAsync();
+                    }).ToList();
                 return result;
             }
         }
@@ -61,10 +61,10 @@ namespace PizzeriaMasterpiece.Repository
 
 
         // traer  todos  los  supply  que  usen  el  producto
-        public async Task<List<ProductoSupplyDTO>> GetAllSupplyByProduct(int productId)
+        public List<ProductoSupplyDTO> GetAllSupplyByProduct(int productId)
         {
             using (var context = new PizzeriaMasterpieceEntities()) {
-                var result = await context.Products.Where(p => p.ProductId == productId)
+                var result = context.Products.Where(p => p.ProductId == productId)
                     .Select(q => new ProductoSupplyDTO
                     {
                         ProductId = q.ProductId,
@@ -75,7 +75,7 @@ namespace PizzeriaMasterpiece.Repository
                             SupplyId = r.SupplyId,
                             Quantity = r.Quantity
                         }).ToList()
-                    }).ToListAsync();
+                    }).ToList();
                 return result;
             }
         }
