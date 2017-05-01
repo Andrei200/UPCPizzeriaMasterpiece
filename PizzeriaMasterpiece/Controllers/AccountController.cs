@@ -14,7 +14,7 @@ using PizzeriaMasterpiece.DTO;
 
 namespace PizzeriaMasterpiece.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

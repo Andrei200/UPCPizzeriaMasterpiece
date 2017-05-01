@@ -64,7 +64,7 @@ namespace PizzeriaMasterpiece.Repository
                     .Select(q => new OrderDTO 
                     {
                        OrderId  = q.OrderId,
-                       OrderNo = 'W' + q.OrderId.ToString().PadLeft(9, '0'),
+                       OrderNo = "W" + q.OrderId.ToString().PadLeft(9, '0'),
                        Address = q.Address,
                        Date = q.Date,
                        Remark = q.Remark,
