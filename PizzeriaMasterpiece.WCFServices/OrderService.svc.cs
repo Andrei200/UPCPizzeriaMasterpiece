@@ -14,16 +14,16 @@ namespace PizzeriaMasterpiece.WCFServices
     // NOTE: In order to launch WCF Test Client for testing this service, please select OrderService.svc or OrderService.svc.cs at the Solution Explorer and start debugging.
     public class OrderService : IOrderService
     {
-        public async Task<List<OrderDTO>> GetOrdersByClient(int userId)
+        public List<OrderDTO> GetOrdersByClient(int userId)
         {
             var orderRepository = new OrderRepository();
-            return await orderRepository.GetOrdersByClient(userId);
+            return  orderRepository.GetOrdersByClient(userId);
         }
 
-        public async Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        public List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
         {
             var orderRepository = new OrderRepository();
-            return await orderRepository.GetOrdersByCriteria(criteria);
+            return  orderRepository.GetOrdersByCriteria(criteria);
         }
     }
 }

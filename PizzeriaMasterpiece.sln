@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece", "PizzeriaMasterpiece\PizzeriaMasterpiece.csproj", "{F6E1AE8B-802F-4A1E-A67B-8A2CE0039BF2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -15,8 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WCFServices", "PizzeriaMasterpiece.WCFServices\PizzeriaMasterpiece.WCFServices.csproj", "{6D4E1D5B-8640-45A7-AA1B-D83A01093424}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WebApiServices", "PizzeriaMasterpiece.WebApiServices\PizzeriaMasterpiece.WebApiServices.csproj", "{28DE7FB0-A3F6-4038-9BF0-01A896138F95}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WebApiServices.Tests", "PizzeriaMasterpiece.WebApiServices.Tests\PizzeriaMasterpiece.WebApiServices.Tests.csproj", "{B40AC92F-82A8-4998-B2E4-383B14DFB312}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaMasterpiece.WCFServicesTests", "PizzeriaMasterpiece.WCFServicesTests\PizzeriaMasterpiece.WCFServicesTests.csproj", "{75E67FAB-DDE1-401A-8B29-19B860633D4C}"
 EndProject
@@ -50,10 +48,6 @@ Global
 		{28DE7FB0-A3F6-4038-9BF0-01A896138F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28DE7FB0-A3F6-4038-9BF0-01A896138F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28DE7FB0-A3F6-4038-9BF0-01A896138F95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B40AC92F-82A8-4998-B2E4-383B14DFB312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B40AC92F-82A8-4998-B2E4-383B14DFB312}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B40AC92F-82A8-4998-B2E4-383B14DFB312}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B40AC92F-82A8-4998-B2E4-383B14DFB312}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75E67FAB-DDE1-401A-8B29-19B860633D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU

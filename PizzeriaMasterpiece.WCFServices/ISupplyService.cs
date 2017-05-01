@@ -14,15 +14,15 @@ namespace PizzeriaMasterpiece.WCFServices
     public interface ISupplyServie
     {
         [OperationContract]
-        Task<SupplyDTO> GetSupplyById(int SupplyId);
+        SupplyDTO GetSupplyById(int SupplyId);
 
         [OperationContract]
-        Task<SupplyDTO> InsertSupplyInformation(SupplyDTO supply);
+        SupplyDTO InsertSupplyInformation(SupplyDTO supply);
 
         [OperationContract]
-        Task<SupplyDTO> UpdateSupplyInformation(SupplyDTO supply);
+        SupplyDTO UpdateSupplyInformation(SupplyDTO supply);
 
         [OperationContract]
-        Task<List<SupplyDTO>> ListAllSupplyInformation();
+        List<SupplyDTO> ListAllSupplyInformation();
     }
 }

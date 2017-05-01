@@ -12,10 +12,10 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
 {
     public class SizeController : ApiController
     {
-        public async Task<List<ControlBaseDTO>> Get()
+        public List<ControlBaseDTO> Get()
         {
             var repository = new SizeRepository();
-            return await repository.GetSizes();
+            return repository.GetSizes();
         }
 
         public string Get(int id)

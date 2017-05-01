@@ -11,12 +11,11 @@ namespace PizzeriaMasterpiece.Repository
 {
    public class SupplyRepository
     {
-        public async Task<List<SupplyDTO>> GetSupplies()
+        public List<SupplyDTO> GetSupplies()
         {
-            //devolver todos  los supply donde  [IsActive] sea  =1
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Supplies.Where(t => t.IsActive == 1)
+                var result =  context.Supplies.Where(t => t.IsActive == 1)
               .Select(s => new SupplyDTO
               {
                   SupplyId = s.SupplyId,
@@ -24,12 +23,12 @@ namespace PizzeriaMasterpiece.Repository
                   Description = s.Description,
                   Name = s.Name,
                   Quantity = s.Quantity
-              }).ToListAsync();
-                return result;
+              }).ToList();
+              return result;
             }
         }
 
-        public async Task<SupplyDTO> UpdateSupply(SupplyDTO supply)
+        public SupplyDTO UpdateSupply(SupplyDTO supply)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -40,38 +39,26 @@ namespace PizzeriaMasterpiece.Repository
                 if (supply.Quantity != null) currentSupply.Quantity = supply.Quantity;
                 if (supply.IsActive != null) currentSupply.IsActive = supply.IsActive;
                 context.SaveChanges();
-                return await GetSupplyById(currentSupply.SupplyId);
-
-                //user id
-                //cantidad
-                //IsActive
-                //nombre
-                //descripcion
+                return GetSupplyById(currentSupply.SupplyId);
 
             }
         }
 
 
-        public async Task<SupplyDTO> GetSupplyById(int supplyId)
+        public SupplyDTO GetSupplyById(int supplyId)
         {
-
-            // recuperar  el  suply deacuerdo al  id  consultado
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Supplies.Where(w => w.SupplyId == supplyId)
+                var result = context.Supplies.Where(w => w.SupplyId == supplyId)
                     .Select(a => new SupplyDTO
                     {
-
                         SupplyId = a.SupplyId,
                         Code = a.Code,
                         Description = a.Description,
                         Name = a.Name,
                         Quantity = a.Quantity,
                         IsActive=a.IsActive
-
-
-
-                    }).FirstOrDefaultAsync();
+                    }).FirstOrDefault();
 
                 return result;
             }
@@ -79,13 +66,10 @@ namespace PizzeriaMasterpiece.Repository
 
 
 
-        public async Task<SupplyDTO> InsertSupply(SupplyDTO supply)
+        public SupplyDTO InsertSupply(SupplyDTO supply)
         {
-
-
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                // el id le  pongo  -1  pasar  todos los  demas  campos  menos  el  id 
                 var newSupply = new Supply
                 {
                     SupplyId = -1,
@@ -97,7 +81,7 @@ namespace PizzeriaMasterpiece.Repository
                 };
                 context.Supplies.Add(newSupply);
                 context.SaveChanges();
-                return await GetSupplyById(newSupply.SupplyId);
+                return GetSupplyById(newSupply.SupplyId);
 
             }
         }

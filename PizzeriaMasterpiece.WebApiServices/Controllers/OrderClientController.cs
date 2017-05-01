@@ -3,6 +3,7 @@ using PizzeriaMasterpiece.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Messaging;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,15 +20,50 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
         }
 
         // GET: api/OrderClient/5
-        public async Task<List<OrderDTO>> Get(int id)
+        public List<OrderDTO> Get(int id)
         {
             var orderRepository = new OrderRepository();
-            return await orderRepository.GetOrdersByClient(id);
+            return orderRepository.GetOrdersByClient(id);
         }
 
         // POST: api/OrderClient
-        public void Post([FromBody]string value)
+        public ResponseDTO Post(OrderDTO order)
         {
+
+            try
+            {
+                MessageQueue messageQueue = null;
+                if (MessageQueue.Exists(@".\Private$\PizzeriaMP"))
+                {
+                    // RECUPERAR LA COLA
+                    messageQueue = new MessageQueue(@".\Private$\PizzeriaMP");
+                    messageQueue.Label = "PizzeriaMP";
+                }
+                else
+                {
+                    // CREAR LA COLA
+                    MessageQueue.Create(@".\Private$\PizzeriaMP");
+                    messageQueue = new MessageQueue(@".\Private$\PizzeriaMP");
+                    messageQueue.Label = "PizzeriaMP";
+                }
+
+                messageQueue.Send(order);
+                var response = new ResponseDTO()
+                {
+                    Status = 1,
+                    Message = "Pedido Registrado"
+                };
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var response = new ResponseDTO()
+                {
+                    Status = 0,
+                    Message = "A ocurrido un error"
+                };
+                return response;
+            }
         }
 
         // PUT: api/OrderClient/5

@@ -14,10 +14,10 @@ namespace PizzeriaMasterpiece.WCFServices
     public interface IOrderService
     {
         [OperationContract]
-        Task<List<OrderDTO>>  GetOrdersByClient(int userId);
+        List<OrderDTO>  GetOrdersByClient(int userId);
 
         [OperationContract]
-        Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
+        List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
 
     }
 }

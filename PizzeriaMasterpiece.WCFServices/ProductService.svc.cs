@@ -9,34 +9,34 @@ namespace PizzeriaMasterpiece.WCFServices
   
     public class ProductService : IProductService
     {
-        public async Task<ProductDTO> GetProductInformation(int productoId)
+        public ProductDTO GetProductInformation(int productoId)
         {
             var productRepository = new ProductRepository();
-            return await productRepository.GetProduct(productoId);
+            return productRepository.GetProduct(productoId);
         }
 
-        public async Task<ProductDTO> InsertProductInformation(ProductDTO product)
+        public ProductDTO InsertProductInformation(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return await productRepository.InsertProduct(product);
+            return productRepository.InsertProduct(product);
         }
 
-        public async Task<ProductDTO> UpdateProductInformation(ProductDTO product)
+        public ProductDTO UpdateProductInformation(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return await productRepository.UpdateProduct(product);
+            return productRepository.UpdateProduct(product);
         }
 
-        public async Task<List<ProductDTO>> ListAllProductInformation()
+        public List<ProductDTO> ListAllProductInformation()
         {
             var productRepository = new ProductRepository();
-            return await productRepository.GetProductList();
+            return productRepository.GetProductList();
         }
 
-        public async Task<List<SupplyProductDTO>> ListAllProductBySupply(int supplyId)
+        public List<SupplyProductDTO> ListAllProductBySupply(int supplyId)
         {
             var productSupplyRepository = new ProductSupplyRepository();
-            return await productSupplyRepository.GetAllProductBySupply(supplyId);
+            return productSupplyRepository.GetAllProductBySupply(supplyId);
         }
     }
 }
