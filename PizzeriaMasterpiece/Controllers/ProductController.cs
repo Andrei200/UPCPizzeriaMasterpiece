@@ -14,15 +14,36 @@ namespace PizzeriaMasterpiece.Controllers
     {
         public async System.Threading.Tasks.Task<ActionResult> List()
         {
-
             HttpClient client = new HttpClient();
             var size = new List<ControlBaseDTO>();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/Size");
-            if (response.IsSuccessStatusCode) size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
-            ViewBag.ListSize = size;            
 
+            if (HttpContext.Cache["SizeList"]==null)
+            {
+                HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/Size");
+                if (response.IsSuccessStatusCode)
+                {
+                    size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
+                    HttpContext.Cache["SizeList"] = size;
+                }
+            }
+            else
+            {
+                size = (List<ControlBaseDTO>) HttpContext.Cache["SizeList"];
+            }
+                            
+            ViewBag.ListSize = size;
+            
             var serviceReference = new ProductServiceReference.ProductServiceClient();
-            var list = serviceReference.ListAllProductInformation();
+            var list = new Object();            
+            if (HttpContext.Cache["PizzaList"] == null)
+            {
+                list = serviceReference.ListAllProductInformation();
+                HttpContext.Cache["PizzaList"] = list;
+            }
+            else
+            {
+                list = (ProductDTO[])HttpContext.Cache["PizzaList"];
+            }            
             ViewBag.ListProduct = list;
             return View();
 
@@ -43,6 +64,7 @@ namespace PizzeriaMasterpiece.Controllers
 
             OrderCartDTO order = new OrderCartDTO()
             {
+                ID = listOwnOrder.Count+1,
                 Product = product.GetProductInformation(productId),
                 Quantity = quantity
             };
