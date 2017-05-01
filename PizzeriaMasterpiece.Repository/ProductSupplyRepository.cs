@@ -32,6 +32,8 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
+
+        //Sandro Gamio pino
         //public async Task<List<SupplyProduct2DTO>> GetAllProductBySupply2(int supplyId)
         //{
         //    using (var context = new PizzeriaMasterpieceEntities())
