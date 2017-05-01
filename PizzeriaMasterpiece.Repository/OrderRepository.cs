@@ -40,7 +40,7 @@ namespace PizzeriaMasterpiece.Repository
                 var newOrder = new Order
                 {
                     OrderId = -1,
-                    Date = DateTime.Now,
+                    Date = product.Date,
                     Address = product.Address,
                     Remark = product.Remark,
                     OrderStatusId = 1,
