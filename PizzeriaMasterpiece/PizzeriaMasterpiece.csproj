@@ -234,6 +234,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-dialog.min.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -260,6 +261,12 @@
     <Content Include="Images\Pizzas\pizza8.jpg" />
     <Content Include="Images\Pizzas\pizza9.jpg" />
     <Content Include="Images\Pizzas\pizza_test.jpg" />
+    <Content Include="Images\Pizza\americana.png" />
+    <Content Include="Images\Pizza\carnivora.png" />
+    <Content Include="Images\Pizza\hawaiana.png" />
+    <Content Include="Images\Pizza\mozarella.png" />
+    <Content Include="Images\Pizza\pepperoni.png" />
+    <Content Include="Scripts\bootstrap-dialog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
