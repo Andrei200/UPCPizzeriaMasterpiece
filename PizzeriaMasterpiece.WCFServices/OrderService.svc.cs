@@ -22,10 +22,10 @@ namespace PizzeriaMasterpiece.WCFServices
         //    return orderRepository.GetOrdersByCriteria(criteria);
         //}
 
-        public List<ControlBaseDTO> GetSizePizza()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<ControlBaseDTO> GetSizePizza()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public ResponseDTO UpdateOrderStatus(OrderStatusDTO order)
         {
