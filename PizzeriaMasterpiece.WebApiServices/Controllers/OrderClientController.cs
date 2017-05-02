@@ -13,20 +13,13 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
 {
     public class OrderClientController : ApiController
     {
-        // GET: api/OrderClient
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET: api/OrderClient/5
         public List<OrderDTO> Get(int id)
         {
             var orderRepository = new OrderRepository();
             return orderRepository.GetOrdersByClient(id);
         }
 
-        // POST: api/OrderClient
         public ResponseDTO Post(OrderDTO order)
         {
 
@@ -66,14 +59,5 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
             }
         }
 
-        // PUT: api/OrderClient/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/OrderClient/5
-        public void Delete(int id)
-        {
-        }
     }
 }

@@ -42,11 +42,9 @@ namespace PizzeriaMasterpiece.Controllers
                 System.Web.HttpContext.Current.Session["Cart"] = orderList;
             }
             orderList = (List<OrderCartDTO>)System.Web.HttpContext.Current.Session["Cart"];
-
             var newOrder = new OrderDTO();
             var newOrderDetail = new List<OrderDetailDTO>();
-
-            newOrder.Date = new DateTime();
+            newOrder.Date = DateTime.Now;
             newOrder.Address = address;            
             newOrder.Remark = remark;
             newOrder.UserId = u.UserId;
@@ -60,7 +58,6 @@ namespace PizzeriaMasterpiece.Controllers
                 newOrderDetail.Add(nod);
             }
             newOrder.OrderDetails = newOrderDetail;
-
             var final = new ResponseDTO();   
             HttpClient client = new HttpClient();
             var jsonRequest = JsonConvert.SerializeObject(newOrder);

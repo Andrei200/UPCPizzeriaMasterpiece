@@ -18,21 +18,5 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
             return repository.GetSizes();
         }
 
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        public void Post([FromBody]string value)
-        {
-        }
-
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        public void Delete(int id)
-        {
-        }
     }
 }

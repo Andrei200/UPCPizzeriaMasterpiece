@@ -6,8 +6,6 @@ using System.Linq;
 
 namespace PizzeriaMasterpiece.WCFServices
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "OrderService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select OrderService.svc or OrderService.svc.cs at the Solution Explorer and start debugging.
     public class OrderService : IOrderService
     {
         public List<OrderDTO> GetOrdersByClient(int userId)
@@ -16,11 +14,11 @@ namespace PizzeriaMasterpiece.WCFServices
             return orderRepository.GetOrdersByClient(userId);
         }
 
-        public List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
-        {
-            var orderRepository = new OrderRepository();
-            return orderRepository.GetOrdersByCriteria(criteria);
-        }
+        //public List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
+        //{
+        //    var orderRepository = new OrderRepository();
+        //    return orderRepository.GetOrdersByCriteria(criteria);
+        //}
 
         public ResponseDTO UpdateOrderStatus(OrderStatusDTO order)
         {

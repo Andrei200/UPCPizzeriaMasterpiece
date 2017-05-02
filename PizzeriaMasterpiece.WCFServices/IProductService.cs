@@ -18,15 +18,15 @@ namespace PizzeriaMasterpiece.WCFServices
         ProductDTO GetProductInformation(int productId);
 
         [OperationContract]
-        ProductDTO InsertProductInformation(ProductDTO product);
-
-        [OperationContract]
-        ProductDTO UpdateProductInformation(ProductDTO product);
-
-        [OperationContract]
         List<ProductDTO> ListAllProductInformation();
 
-        [OperationContract]
-        List<SupplyProductDTO> ListAllProductBySupply(int supplyId);
+        //[OperationContract]
+        //ProductDTO InsertProductInformation(ProductDTO product);
+
+        //[OperationContract]
+        //ProductDTO UpdateProductInformation(ProductDTO product);
+
+        //[OperationContract]
+        //List<SupplyProductDTO> ListAllProductBySupply(int supplyId);
     }
 }

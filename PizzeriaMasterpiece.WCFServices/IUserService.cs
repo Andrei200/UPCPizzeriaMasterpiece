@@ -14,8 +14,8 @@ namespace PizzeriaMasterpiece.Services
     [ServiceContract]
     public interface IUserService
     {
-        [OperationContract]
-        UserDTO GetUserInformation(int userId);
+        //[OperationContract]
+        //UserDTO GetUserInformation(int userId);
 
         [OperationContract]
         UserDTO InsertUserInformation(UserRegistrationDTO user);

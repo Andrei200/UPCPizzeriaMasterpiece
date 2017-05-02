@@ -100,9 +100,6 @@
     <Compile Include="Controllers\DocumentTypeController.cs" />
     <Compile Include="Controllers\OrderStatusController.cs" />
     <Compile Include="Controllers\OrderClientController.cs" />
-    <Compile Include="Controllers\OrderWorkerController.cs" />
-    <Compile Include="Controllers\ProductServiceController.cs" />
-    <Compile Include="Controllers\UserServiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

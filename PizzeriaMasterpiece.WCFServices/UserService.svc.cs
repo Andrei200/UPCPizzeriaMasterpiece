@@ -8,11 +8,11 @@ namespace PizzeriaMasterpiece.Services
     public class UserService : IUserService
     {
 
-        public UserDTO GetUserInformation(int userId)
-        {
-            var userRepository = new UserRepository();
-            return userRepository.GetUser(userId);
-        }
+        //public UserDTO GetUserInformation(int userId)
+        //{
+        //    var userRepository = new UserRepository();
+        //    return userRepository.GetUser(userId);
+        //}
 
         public UserDTO InsertUserInformation(UserRegistrationDTO user)
         {
