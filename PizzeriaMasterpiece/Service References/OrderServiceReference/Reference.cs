@@ -26,6 +26,12 @@ namespace PizzeriaMasterpiece.OrderServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/GetOrdersByCriteria", ReplyAction="http://tempuri.org/IOrderService/GetOrdersByCriteriaResponse")]
         System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.OrderWorkerDTO[]> GetOrdersByCriteriaAsync(PizzeriaMasterpiece.DTO.OrderSearchCriteriaDTO criteria);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/UpdateOrderStatus", ReplyAction="http://tempuri.org/IOrderService/UpdateOrderStatusResponse")]
+        PizzeriaMasterpiece.DTO.ResponseDTO UpdateOrderStatus(PizzeriaMasterpiece.DTO.OrderStatusDTO order);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/UpdateOrderStatus", ReplyAction="http://tempuri.org/IOrderService/UpdateOrderStatusResponse")]
+        System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.ResponseDTO> UpdateOrderStatusAsync(PizzeriaMasterpiece.DTO.OrderStatusDTO order);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +75,14 @@ namespace PizzeriaMasterpiece.OrderServiceReference {
         
         public System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.OrderWorkerDTO[]> GetOrdersByCriteriaAsync(PizzeriaMasterpiece.DTO.OrderSearchCriteriaDTO criteria) {
             return base.Channel.GetOrdersByCriteriaAsync(criteria);
+        }
+        
+        public PizzeriaMasterpiece.DTO.ResponseDTO UpdateOrderStatus(PizzeriaMasterpiece.DTO.OrderStatusDTO order) {
+            return base.Channel.UpdateOrderStatus(order);
+        }
+        
+        public System.Threading.Tasks.Task<PizzeriaMasterpiece.DTO.ResponseDTO> UpdateOrderStatusAsync(PizzeriaMasterpiece.DTO.OrderStatusDTO order) {
+            return base.Channel.UpdateOrderStatusAsync(order);
         }
     }
 }
