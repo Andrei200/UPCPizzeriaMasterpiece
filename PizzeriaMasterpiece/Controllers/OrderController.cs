@@ -21,7 +21,7 @@ namespace PizzeriaMasterpiece.Controllers
         {
             if (Session["User"] == null)
             {
-                ViewBag.Login = "Ingrese su usuario y contraseña";
+                TempData["Login"] = "Ingrese su usuario y contraseña";
                 return Redirect("/Account/Login");
             }
 
@@ -66,7 +66,9 @@ namespace PizzeriaMasterpiece.Controllers
             
             if (response.IsSuccessStatusCode)
             {
-                final = await response.Content.ReadAsAsync<ResponseDTO>();                
+                final = await response.Content.ReadAsAsync<ResponseDTO>();
+                //clean order
+                System.Web.HttpContext.Current.Session["Cart"] = new List<OrderCartDTO>();
             }       
                  
             return Json(final);

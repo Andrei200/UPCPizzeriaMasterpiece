@@ -245,6 +245,7 @@
     <Content Include="Images\background.jpg" />
     <Content Include="Images\background.png" />
     <Content Include="Images\banner_pizza.png" />
+    <Content Include="Images\login_baner.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_short.png" />
     <Content Include="Images\Order\cart.png" />
@@ -255,6 +256,7 @@
     <Content Include="Images\Pizza\hawaiana.png" />
     <Content Include="Images\Pizza\mozzarella.png" />
     <Content Include="Images\Pizza\pepperoni.png" />
+    <Content Include="Images\pizza_test.jpg" />
     <Content Include="Scripts\bootstrap-dialog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -374,6 +376,7 @@
     <Content Include="Views\Admin\Product.cshtml" />
     <Content Include="Views\Cart\List.cshtml" />
     <Content Include="Views\Account\Update.cshtml" />
+    <Content Include="Views\Account\NoAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

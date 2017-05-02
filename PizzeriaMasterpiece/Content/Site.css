@@ -261,3 +261,18 @@ footer p{
     -moz-border-radius-topleft: 5px;
     -moz-border-radius-topright: 5px;
 }
+
+.open-link a{
+    color:darkseagreen;
+    text-decoration:none;
+}
+
+.open-link a:hover{
+    color:palegreen;
+    text-decoration:none;
+}
+
+.yellowp{
+    color: yellow;
+    text-align: center;
+}
