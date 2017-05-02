@@ -86,13 +86,26 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="address">Confirmar direccion:</label>
+                        <label>Confirmar direccion:</label>
                         <input type="text" class="form-control" id="txtAddress">
                     </div>         
                     <div class="form-group">
-                        <label for="email">Indicaciones:</label>
+                        <label>Indicaciones:</label>
                         <input type="email" class="form-control" id="txtRemark">
+                    </div>   
+                    <div class="form-group">
+                        <label>Tipo de comprobante:</label>
+                        <select id="selDocumentType" class="form-control">
+                            @if (ViewBag.ListDT != null)
+                            {
+                                for (var i = 0; i < ViewBag.ListDT.Count; i++)
+                                {
+                                    <option value="@ViewBag.ListDT[i].Id">@ViewBag.ListDT[i].Name</option>
+                                }
+                            }                            
+                        </select>
                     </div>     
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

@@ -100,7 +100,7 @@
             type: "POST",
             contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val(), "documentType": 1 }),
+            data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val(), "documentType": $("#selDocumentType").val() }),
             url: "http://localhost:1901/Order/CreateOrder",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -126,6 +126,32 @@
         for (var oo = 0; oo < order.OrderDetails.length; oo++) {
             $("#ModalDetailTableDetail").append("<tr><td>" + order.OrderDetails[oo].Quantity + "</td>" + "<td>" + order.OrderDetails[oo].ProductName + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].Price.toFixed(2) + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].TotalPrice.toFixed(2) + "</td></tr>");
         }
+    });
+
+    $(".confirmOrder").click(function () {
+        var father = $(this).parent().parent();
+        var id = father.find('.id').val();
+        var statusId = father.find('.statusId').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({ 'orderId': id, 'orderStatusId': statusId }),
+            url: "http://localhost:1901/Admin/AproveOrder",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data.Status == 1) {
+                    $('#ModalConfirm').modal('hide');
+                    BootstrapDialog.alert(data.Message);//cambiar color del modal
+                } else {
+                    BootstrapDialog.alert(data.Message);
+                }
+                father.remove();
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
     });
 
     callSession();

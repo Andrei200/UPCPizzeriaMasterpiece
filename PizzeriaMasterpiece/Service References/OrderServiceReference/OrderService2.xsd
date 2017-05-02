@@ -29,4 +29,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateOrderStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO" minOccurs="0" name="order" nillable="true" type="q4:OrderStatusDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOrderStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO" minOccurs="0" name="UpdateOrderStatusResult" nillable="true" type="q5:ResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

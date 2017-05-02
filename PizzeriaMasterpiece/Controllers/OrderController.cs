@@ -46,7 +46,7 @@ namespace PizzeriaMasterpiece.Controllers
             var newOrder = new OrderDTO();
             var newOrderDetail = new List<OrderDetailDTO>();
 
-            newOrder.Date = new DateTime();
+            newOrder.Date = DateTime.Now;
             newOrder.Address = address;            
             newOrder.Remark = remark;
             newOrder.UserId = u.UserId;

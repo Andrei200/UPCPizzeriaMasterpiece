@@ -19,6 +19,12 @@
   <wsdl:message name="IOrderService_GetOrdersByCriteria_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOrdersByCriteriaResponse" />
   </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateOrderStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderStatus" />
+  </wsdl:message>
+  <wsdl:message name="IOrderService_UpdateOrderStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOrderStatusResponse" />
+  </wsdl:message>
   <wsdl:portType name="IOrderService">
     <wsdl:operation name="GetOrdersByClient">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetOrdersByClient" message="tns:IOrderService_GetOrdersByClient_InputMessage" />
@@ -27,6 +33,10 @@
     <wsdl:operation name="GetOrdersByCriteria">
       <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/GetOrdersByCriteria" message="tns:IOrderService_GetOrdersByCriteria_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/GetOrdersByCriteriaResponse" message="tns:IOrderService_GetOrdersByCriteria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IOrderService/UpdateOrderStatus" message="tns:IOrderService_UpdateOrderStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IOrderService/UpdateOrderStatusResponse" message="tns:IOrderService_UpdateOrderStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IOrderService" type="tns:IOrderService">
@@ -42,6 +52,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetOrdersByCriteria">
       <soap:operation soapAction="http://tempuri.org/IOrderService/GetOrdersByCriteria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderStatus">
+      <soap:operation soapAction="http://tempuri.org/IOrderService/UpdateOrderStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

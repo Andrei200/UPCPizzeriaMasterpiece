@@ -27,13 +27,15 @@
                         <tr>
                             <td>
                                 <input class="id" value="@ViewBag.ListOrder[i].OrderId" type="hidden" />
+                                <input class="statusId" value="@ViewBag.ListOrder[i].OrderStatusId" type="hidden" />
                                 @ViewBag.ListOrder[i].OrderNo
                             </td>
                             <td>@ViewBag.ListOrder[i].Date</td>
                             <td>@ViewBag.ListOrder[i].Address</td>
                             <td>@ViewBag.ListOrder[i].Remark</td>                            
                             <td>
-                                <button class="btn btn-warning viewDetail"><span class="glyphicon glyphicon-name"></span> Detalle</button>
+                                <button class="btn btn-xs btn-warning viewDetail"><span class="glyphicon glyphicon-name"></span> Detalle</button>
+                                <button class="btn btn-xs btn-success confirmOrder"><span class="glyphicon glyphicon-name"></span> Aprobar</button>
                             </td><!-- aprobar y desaprobar-->
                         </tr>
                     }
@@ -47,11 +49,8 @@
     </ul>
 </div>
 
-<script type="text/javascript">
-    
-    var Orders =  @(Html.Raw(JsonConvert.SerializeObject(ViewBag.ListOrder, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));
-
-   
+<script type="text/javascript">   
+    var Orders =  @(Html.Raw(JsonConvert.SerializeObject(ViewBag.ListOrder, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));   
 </script>
 
 <div id="ModalDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">

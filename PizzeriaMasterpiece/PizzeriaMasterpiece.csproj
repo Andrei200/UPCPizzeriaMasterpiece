@@ -268,6 +268,7 @@
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.UserDTO.datasource" />
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.ProductDTO.datasource" />
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.SupplyProductDTO.datasource" />
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.ResponseDTO.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
