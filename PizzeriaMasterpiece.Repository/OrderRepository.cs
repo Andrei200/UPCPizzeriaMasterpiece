@@ -26,7 +26,16 @@ namespace PizzeriaMasterpiece.Repository
                         OrderNo = q.OrderNo,
                         Remark = q.Remark,
                         UserId = q.UserId,
-                        OrderStatusId = q.OrderStatusId
+                        OrderStatusId = q.OrderStatusId,
+                        OrderDetails = q.OrderDetails.Select(r => new OrderDetailDTO
+                        {
+                            OrderDetailId = r.OrderDetailId,
+                            ProductId = r.ProductId.Value,
+                            ProductName = r.Product.Name,
+                            Price = r.Price,
+                            Quantity = r.Quantity,
+                            TotalPrice = r.TotalPrice
+                        }).ToList()
                     }).FirstOrDefault();
 
                 return result;
@@ -40,7 +49,7 @@ namespace PizzeriaMasterpiece.Repository
                 var newOrder = new Order
                 {
                     OrderId = -1,
-                    Date = DateTime.Now,
+                    Date = product.Date,
                     Address = product.Address,
                     Remark = product.Remark,
                     OrderStatusId = 1,
@@ -73,14 +82,14 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public bool UpdateOrderStatus(OrderStatusDTO order)
+        public int UpdateOrderStatus(OrderStatusDTO order)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var currentOrder= context.Orders.Find(order.OrderId);
                 currentOrder.OrderStatusId = order.OrderStatusId;
                 context.SaveChanges();
-                return true;
+                return order.OrderId;
             }
         }
 
@@ -102,7 +111,7 @@ namespace PizzeriaMasterpiece.Repository
                        OrderStatusName = q.OrderStatu.Name,
                        OrderDetails = q.OrderDetails.Select(r => new OrderDetailDTO{
                            OrderDetailId = r.OrderDetailId,
-                           ProductId = r.ProductId,
+                           ProductId = r.ProductId.Value,
                            ProductName = r.Product.Name,
                            Price = r.Price,
                            Quantity = r.Quantity,
@@ -143,7 +152,7 @@ namespace PizzeriaMasterpiece.Repository
                     OrderDetails = q.OrderDetails.Select(r => new OrderDetailDTO
                     {
                         OrderDetailId = r.OrderDetailId,
-                        ProductId = r.ProductId,
+                        ProductId = r.ProductId.Value,
                         ProductName = r.Product.Name,
                         Price = r.Price,
                         Quantity = r.Quantity,

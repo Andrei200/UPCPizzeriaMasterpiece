@@ -11,7 +11,6 @@ namespace PizzeriaMasterpiece.Repository
 {
   public  class ProductSupplyRepository
     {
-        //traer  todos  los  productos que  usen  el  supply 
         public List<SupplyProductDTO> GetAllProductBySupply(int supplyId) {
             using (var context = new PizzeriaMasterpieceEntities()) {
                 var result = context.Supplies.Where(p => p.SupplyId == supplyId)
@@ -33,49 +32,15 @@ namespace PizzeriaMasterpiece.Repository
         }
 
 
-        //Sandro Gamio pino
-        //public async Task<List<SupplyProduct2DTO>> GetAllProductBySupply2(int supplyId)
-        //{
-        //    using (var context = new PizzeriaMasterpieceEntities())
-        //    {
-        //        var result = await from p in context.ProductSupplies
-        //            join p1 in context.Supplies on p.SupplyId equals p1.SupplyId
-        //            join p2 in context.Products on p.ProductId equals p2.ProductId
-        //            where p.SupplyId == supplyId
-        //            select(r => new SupplyProduct2DTO {
-        //                SupplyId = p.SupplyId,
-        //                SupplyCode = p1.Code,
-        //                SupplyName = p1.Name,
-        //                SupplyDescription = p1.Description,
-        //                SupplyIsActive = p1.IsActive,
-        //                ProductId = p.ProductId,
-        //                ProductCode = p2.Code,
-        //                ProductName = p2.Name,
-        //                ProductDescription = p2.Description,
-        //                Quantity = p.Quantity
-        //            });
-
-        //        return result;
-        //    }
-        //}
-
-
-        // traer  todos  los  supply  que  usen  el  producto
-        public List<ProductoSupplyDTO> GetAllSupplyByProduct(int productId)
+        public List<SupplyDTO> GetSuppliesByProduct(int productId)
         {
             using (var context = new PizzeriaMasterpieceEntities()) {
-                var result = context.Products.Where(p => p.ProductId == productId)
-                    .Select(q => new ProductoSupplyDTO
-                    {
-                        ProductId = q.ProductId,
-                        Code = q.Code,
-                        Name = q.Name,
-                        Description = q.Description,
-                        SupplyDetails = q.ProductSupplies.Select(r => new ProductoSupplyDatailDTO {
+                var result = context.ProductSupplies.Where(p => p.ProductId == productId)
+                        .Select(r => new SupplyDTO
+                        {
                             SupplyId = r.SupplyId,
                             Quantity = r.Quantity
-                        }).ToList()
-                    }).ToList();
+                        }).ToList();
                 return result;
             }
         }

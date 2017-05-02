@@ -64,8 +64,6 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-
-
         public SupplyDTO InsertSupply(SupplyDTO supply)
         {
             using (var context = new PizzeriaMasterpieceEntities())

@@ -31,7 +31,8 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
         public ProductDTO Post(ProductDTO product)
         {
             var productRepository = new ProductRepository();
-            return productRepository.InsertProduct(product);
+            productRepository.InsertProduct(product);
+            return productRepository.GetProduct(product.ProductId);
         }
 
         // PUT api/<controller>/5

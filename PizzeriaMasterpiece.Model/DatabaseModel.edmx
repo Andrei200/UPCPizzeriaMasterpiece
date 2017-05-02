@@ -44,8 +44,8 @@
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderNo" Type="nvarchar" MaxLength="20" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="Address" Type="char" MaxLength="18" />
-          <Property Name="Remark" Type="char" MaxLength="18" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="255" />
           <Property Name="OrderStatusId" Type="int" />
           <Property Name="DocumentTypeId" Type="int" />
           <Property Name="CompanyId" Type="int" />
@@ -134,7 +134,7 @@
           <Property Name="IsActive" Type="tinyint" />
           <Property Name="RoleId" Type="int" />
         </EntityType>
-        <Association Name="FK__Changelog__UserI__25869641">
+        <Association Name="FK__Changelog__UserI__38996AB5">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Changelog" Type="Self.Changelog" Multiplicity="*" />
           <ReferentialConstraint>
@@ -146,7 +146,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__CompanyId__286302EC">
+        <Association Name="FK__Order__CompanyId__3B75D760">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -158,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__DocumentT__276EDEB3">
+        <Association Name="FK__Order__DocumentT__3A81B327">
           <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -170,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__OrderStat__267ABA7A">
+        <Association Name="FK__Order__OrderStat__398D8EEE">
           <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Order__UserId__29572725">
+        <Association Name="FK__Order__UserId__3C69FB99">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -194,7 +194,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__2B3F6F97">
+        <Association Name="FK__OrderDeta__Order__3E52440B">
           <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -206,7 +206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Produ__2A4B4B5E">
+        <Association Name="FK__OrderDeta__Produ__3D5E1FD2">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,7 +218,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__SizeId__2C3393D0">
+        <Association Name="FK__Product__SizeId__3F466844">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -230,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__Produ__2D27B809">
+        <Association Name="FK__ProductSu__Produ__403A8C7D">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="ProductSupply" Type="Self.ProductSupply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -242,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__Suppl__2E1BDC42">
+        <Association Name="FK__ProductSu__Suppl__412EB0B6">
           <End Role="Supply" Type="Self.Supply" Multiplicity="0..1" />
           <End Role="ProductSupply" Type="Self.ProductSupply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -254,7 +254,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User__RoleId__2F10007B">
+        <Association Name="FK__User__RoleId__4222D4EF">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,47 +279,47 @@
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Changelog__UserI__25869641" Association="Self.FK__Changelog__UserI__25869641">
+          <AssociationSet Name="FK__Changelog__UserI__38996AB5" Association="Self.FK__Changelog__UserI__38996AB5">
             <End Role="User" EntitySet="User" />
             <End Role="Changelog" EntitySet="Changelog" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__CompanyId__286302EC" Association="Self.FK__Order__CompanyId__286302EC">
+          <AssociationSet Name="FK__Order__CompanyId__3B75D760" Association="Self.FK__Order__CompanyId__3B75D760">
             <End Role="Company" EntitySet="Company" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__DocumentT__276EDEB3" Association="Self.FK__Order__DocumentT__276EDEB3">
+          <AssociationSet Name="FK__Order__DocumentT__3A81B327" Association="Self.FK__Order__DocumentT__3A81B327">
             <End Role="DocumentType" EntitySet="DocumentType" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__OrderStat__267ABA7A" Association="Self.FK__Order__OrderStat__267ABA7A">
+          <AssociationSet Name="FK__Order__OrderStat__398D8EEE" Association="Self.FK__Order__OrderStat__398D8EEE">
             <End Role="OrderStatus" EntitySet="OrderStatus" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__Order__UserId__29572725" Association="Self.FK__Order__UserId__29572725">
+          <AssociationSet Name="FK__Order__UserId__3C69FB99" Association="Self.FK__Order__UserId__3C69FB99">
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__2B3F6F97" Association="Self.FK__OrderDeta__Order__2B3F6F97">
+          <AssociationSet Name="FK__OrderDeta__Order__3E52440B" Association="Self.FK__OrderDeta__Order__3E52440B">
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Produ__2A4B4B5E" Association="Self.FK__OrderDeta__Produ__2A4B4B5E">
+          <AssociationSet Name="FK__OrderDeta__Produ__3D5E1FD2" Association="Self.FK__OrderDeta__Produ__3D5E1FD2">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__SizeId__2C3393D0" Association="Self.FK__Product__SizeId__2C3393D0">
+          <AssociationSet Name="FK__Product__SizeId__3F466844" Association="Self.FK__Product__SizeId__3F466844">
             <End Role="Size" EntitySet="Size" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__Produ__2D27B809" Association="Self.FK__ProductSu__Produ__2D27B809">
+          <AssociationSet Name="FK__ProductSu__Produ__403A8C7D" Association="Self.FK__ProductSu__Produ__403A8C7D">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductSupply" EntitySet="ProductSupply" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__Suppl__2E1BDC42" Association="Self.FK__ProductSu__Suppl__2E1BDC42">
+          <AssociationSet Name="FK__ProductSu__Suppl__412EB0B6" Association="Self.FK__ProductSu__Suppl__412EB0B6">
             <End Role="Supply" EntitySet="Supply" />
             <End Role="ProductSupply" EntitySet="ProductSupply" />
           </AssociationSet>
-          <AssociationSet Name="FK__User__RoleId__2F10007B" Association="Self.FK__User__RoleId__2F10007B">
+          <AssociationSet Name="FK__User__RoleId__4222D4EF" Association="Self.FK__User__RoleId__4222D4EF">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
@@ -428,8 +428,8 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Address" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
-          <Property Name="Remark" Type="String" MaxLength="18" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="OrderStatusId" Type="Int32" />
           <Property Name="DocumentTypeId" Type="Int32" />
           <Property Name="CompanyId" Type="Int32" />

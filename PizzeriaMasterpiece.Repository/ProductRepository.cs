@@ -31,7 +31,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public ProductDTO InsertProduct(ProductDTO product)
+        public int InsertProduct(ProductDTO product)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -49,11 +49,24 @@ namespace PizzeriaMasterpiece.Repository
 
                 context.Products.Add(newProduct);
                 context.SaveChanges();
-
-                return GetProduct(newProduct.ProductId);
+                return newProduct.ProductId;
             }
         }
-        
+
+        public int UpdateProduct(ProductDTO product)
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var currentProduct = context.Products.Find(product.ProductId);
+                if (!string.IsNullOrWhiteSpace(product.Description)) currentProduct.Description = product.Description;
+                if (product.Price != null) currentProduct.Price = product.Price.Value;
+                if (!string.IsNullOrWhiteSpace(product.ImagePath)) currentProduct.ImagePath = product.ImagePath;
+                if (product.IsActive != null) currentProduct.IsActive = product.IsActive;
+                context.SaveChanges();
+                return currentProduct.ProductId;
+            }
+        }
+
         public List<ProductDTO> GetProductList()
         {
             using (var context = new PizzeriaMasterpieceEntities())
@@ -75,19 +88,6 @@ namespace PizzeriaMasterpiece.Repository
                 return result;
             }
         }
-
-        public ProductDTO UpdateProduct(ProductDTO product)
-        {
-            using (var context = new PizzeriaMasterpieceEntities())
-            {
-                var currentProduct = context.Products.Find(product.ProductId);
-                if (!string.IsNullOrWhiteSpace(product.Description)) currentProduct.Description = product.Description;
-                if (product.Price != null) currentProduct.Price = product.Price.Value;
-                if (!string.IsNullOrWhiteSpace(product.ImagePath)) currentProduct.ImagePath = product.ImagePath;
-                if (product.IsActive != null) currentProduct.IsActive = product.IsActive;
-                context.SaveChanges();
-                return GetProduct(currentProduct.ProductId);
-            }
-        }
+       
     }
 }
