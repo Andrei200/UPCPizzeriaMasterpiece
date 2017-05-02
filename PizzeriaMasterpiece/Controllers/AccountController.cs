@@ -14,7 +14,7 @@ using PizzeriaMasterpiece.DTO;
 
 namespace PizzeriaMasterpiece.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -170,6 +170,44 @@ namespace PizzeriaMasterpiece.Controllers
                 };                
                 var result = serviceReference.InsertUserInformation(user);
                 return RedirectToAction("Index", "Home");                
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Update()
+        {
+            UpdateViewModel model = new UpdateViewModel();
+            UserDTO u = (UserDTO)Session["User"];                        
+            model.FirstName= u.FirstName;
+            model.LastName = u.LastName;
+            model.Address= u.Address;
+            model.Telephone = u.PhoneNumber;
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Update(UpdateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var serviceReference = new UserServiceReference.UserServiceClient();
+                var user = new UserRegistrationDTO()
+                {
+                    UserId = ((UserDTO)Session["User"]).UserId,                    
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,              
+                    Address = model.Address,
+                    PhoneNumber = model.Telephone
+                };
+                var result = serviceReference.UpdateUserInformation(user);
+                return RedirectToAction("Update", "Account");
             }
 
             // If we got this far, something failed, redisplay form

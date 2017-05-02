@@ -17,7 +17,7 @@
         @for (var i = 0; i < ViewBag.ListProduct.Length; i++)
         {
             <div class="gallery_product col-lg-4 col-md-4 col-sm-6 col-xs-12 filter @ViewBag.ListProduct[i].Code.Substring(3,2)">
-                <label>@ViewBag.ListProduct[i].Name</label>
+                <label>@ViewBag.ListProduct[i].Name @ViewBag.ListProduct[i].SizeName</label>
                 <p>@ViewBag.ListProduct[i].Description</p>
                 <span>S/. @ViewBag.ListProduct[i].Price</span>
                 <input type="hidden" value="@ViewBag.ListProduct[i].ProductId"/>

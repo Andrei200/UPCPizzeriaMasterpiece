@@ -26,7 +26,7 @@ namespace PizzeriaMasterpiece
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(                    
-                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/bootstrap-dialog.min.css",                      
                       "~/Content/site.css"));

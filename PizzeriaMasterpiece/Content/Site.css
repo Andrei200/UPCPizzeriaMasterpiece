@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: url(../Images/background.png);
+    background: url(../Images/background.jpg);
     background-repeat: repeat;
 }
 
@@ -9,7 +9,9 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: rgba(0,0,0,0.75);
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -177,7 +179,7 @@ footer p{
 .mb15{margin-bottom: 15px;}
 
 .custom_table th {
-    background-color: #4CAF50;
+    background-color: #5A2D00;
     color: white;
 }
 
@@ -187,8 +189,7 @@ footer p{
     color: white;
 }
 
-.order_h1{
-        background: red;
+.order_h1{        
     margin-bottom: 0px;
     text-align: center;
     -webkit-border-top-left-radius: 10px;
@@ -197,7 +198,7 @@ footer p{
     -moz-border-radius-topright: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    background-color: #4CAF50;
+    background-color: #5A2D00;
     color: white;
     border-bottom: 2px outset white;
 }
@@ -237,4 +238,26 @@ footer p{
     margin-top: -28px;
     margin-left: 11px;
     color:white;
+}
+
+.table-striped tbody tr td{
+    background-color:rgba(255,240,201,1);
+}
+
+
+.table-striped tfoot tr td{
+    background-color:#341A00;
+    color:white;
+    font-weight:bold;
+}
+
+.modal-header{
+    background-color: #5A2D00;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
 }

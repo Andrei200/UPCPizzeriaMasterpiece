@@ -42,7 +42,7 @@
     function sum(data) {
         var sum = 0;
         for (var i = 0; i < data.length; i++) {
-            sum += data[i].Product.Price;
+            sum += (data[i].Product.Price * data[i].Quantity);
         }
         return sum.toFixed(2);
     }
@@ -74,26 +74,58 @@
         });
     });
 
-    $("#ContinueOrder").click(function () {
-
-        $('#ModalConfirm').modal('toggle');
-        /*$.ajax({
+    $("#ContinueOrder").click(function () {       
+        $.ajax({
             type: "POST",
-            contentType: "application/json",            
+            contentType: "application/json",
+            dataType: "json",            
             url: "http://localhost:1901/Account/CallUser",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (data == null) {
-                    console.log('lol');
+                    BootstrapDialog.alert('Ingrese su sessión!');
                 } else {
-                    BootstrapDialog.alert('I want banana!');
-
+                    $("#txtAddress").val(data.Address);
+                    $('#ModalConfirm').modal('toggle');
                 }                
             },
             error: function (response) {
                 console.log(response);
             }
-        });*/
+        });
+    });
+
+    $("#ConfirmOrder").click(function () {        
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val(), "documentType": 1 }),
+            url: "http://localhost:1901/Order/CreateOrder",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                if (data.Status == 1) {
+                    $('#ModalConfirm').modal('hide');
+                    BootstrapDialog.alert(data.Message);//cambiar color del modal
+                } else {
+                    BootstrapDialog.alert(data.Message);
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+    });
+
+    $(".viewDetail").click(function () {
+        var id = $(this).parent().parent().find('.id').val();
+        var order = $(Orders).filter(function (index, item) { return item.OrderId == id })[0];
+        $('#ModalDetail').modal('toggle');
+        $("#ModalDetailOrderNo").text(order.OrderNo);
+        $("#ModalDetailTableDetail").empty();
+        for (var oo = 0; oo < order.OrderDetails.length; oo++) {
+            $("#ModalDetailTableDetail").append("<tr><td>" + order.OrderDetails[oo].Quantity + "</td>" + "<td>" + order.OrderDetails[oo].ProductName + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].Price.toFixed(2) + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].TotalPrice.toFixed(2) + "</td></tr>");
+        }
     });
 
     callSession();
