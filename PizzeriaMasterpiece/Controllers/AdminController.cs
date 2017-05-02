@@ -7,12 +7,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace PizzeriaMasterpiece.Controllers
 {
     public class AdminController : Controller
     {
+        private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
         public ActionResult Panel()
         {
             return View();
@@ -21,7 +23,7 @@ namespace PizzeriaMasterpiece.Controllers
         public async System.Threading.Tasks.Task<ActionResult> Order()
         {
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/OrderAdministrator");
+            HttpResponseMessage response = await client.GetAsync(restServiceURL+"OrderAdministrator");
             var listOrder = new List<OrderDTO>();            
             if (response.IsSuccessStatusCode)
             {

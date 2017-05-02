@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -15,18 +16,19 @@ namespace PizzeriaMasterpiece.Controllers
 {
     public class OrderController : Controller
     {
-        public async Task<ActionResult> MyOrder()
+        private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
+        public ActionResult MyOrder()
         {
             if (Session["User"] == null)
             {
                 ViewBag.Login = "Ingrese su usuario y contraseña";
                 return Redirect("/Account/Login");
-            }                
-            
+            }
+
             UserDTO u = (UserDTO)Session["User"];
             var serviceReference = new OrderServiceReference.OrderServiceClient();
             var list = serviceReference.GetOrdersByClient(u.UserId);
-            ViewBag.ListOrder = list;            
+            ViewBag.ListOrder = list;
 
             return View();
         }
@@ -63,7 +65,7 @@ namespace PizzeriaMasterpiece.Controllers
             HttpClient client = new HttpClient();
             var jsonRequest = JsonConvert.SerializeObject(newOrder);
             var content = new StringContent(jsonRequest, Encoding.UTF8, "text/json");
-            HttpResponseMessage response = await client.PostAsync("http://localhost:6146/api/OrderClient", content);
+            HttpResponseMessage response = await client.PostAsync(restServiceURL+"OrderClient", content);
             
             if (response.IsSuccessStatusCode)
             {

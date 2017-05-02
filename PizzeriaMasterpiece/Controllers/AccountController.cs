@@ -68,7 +68,7 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) //kalo
+        public ActionResult Login(LoginViewModel model, string returnUrl) //kalo
         {
             if (!ModelState.IsValid)
             {
@@ -85,14 +85,14 @@ namespace PizzeriaMasterpiece.Controllers
 
             if (result != null)
             {
-                Session["User"] = result;                
+                Session["User"] = result;
                 return RedirectToLocal(returnUrl);
             }
             else
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);
-            }            
+            }
         }
 
         //
@@ -151,7 +151,7 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -167,9 +167,9 @@ namespace PizzeriaMasterpiece.Controllers
                     PhoneNumber = model.Telephone,
                     IsActive = Parameters.USER_ACTIVE,
                     RoleId = Parameters.ROLE_CLIENT
-                };                
+                };
                 var result = serviceReference.InsertUserInformation(user);
-                return RedirectToAction("Index", "Home");                
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
@@ -193,16 +193,16 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update(UpdateViewModel model)
+        public ActionResult Update(UpdateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var serviceReference = new UserServiceReference.UserServiceClient();
                 var user = new UserRegistrationDTO()
                 {
-                    UserId = ((UserDTO)Session["User"]).UserId,                    
+                    UserId = ((UserDTO)Session["User"]).UserId,
                     FirstName = model.FirstName,
-                    LastName = model.LastName,              
+                    LastName = model.LastName,
                     Address = model.Address,
                     PhoneNumber = model.Telephone
                 };
@@ -465,7 +465,7 @@ namespace PizzeriaMasterpiece.Controllers
             base.Dispose(disposing);
         }
 
-        public async Task<JsonResult> CallUser()
+        public JsonResult CallUser()
         {
             return Json((UserDTO)Session["User"]);
         }
