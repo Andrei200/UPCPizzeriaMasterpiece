@@ -8,6 +8,8 @@ namespace PizzeriaMasterpiece.WCFServices
 {
     public class OrderService : IOrderService
     {
+        
+
         public List<OrderDTO> GetOrdersByClient(int userId)
         {
             var orderRepository = new OrderRepository();
@@ -19,6 +21,11 @@ namespace PizzeriaMasterpiece.WCFServices
         //    var orderRepository = new OrderRepository();
         //    return orderRepository.GetOrdersByCriteria(criteria);
         //}
+
+        public List<ControlBaseDTO> GetSizePizza()
+        {
+            throw new NotImplementedException();
+        }
 
         public ResponseDTO UpdateOrderStatus(OrderStatusDTO order)
         {
