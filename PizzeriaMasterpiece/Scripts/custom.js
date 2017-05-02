@@ -78,8 +78,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val() }),
+            dataType: "json",            
             url: "http://localhost:1901/Account/CallUser",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -101,20 +100,32 @@
             type: "POST",
             contentType: "application/json",
             dataType: "json",
+            data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val(), "documentType": 1 }),
             url: "http://localhost:1901/Order/CreateOrder",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                if (data != null) {
+                if (data.Status == 1) {
                     $('#ModalConfirm').modal('hide');
-                    BootstrapDialog.alert('PEDIDO OK!');
+                    BootstrapDialog.alert(data.Message);//cambiar color del modal
                 } else {
-                    BootstrapDialog.alert('ALGO SALIO MAL');
+                    BootstrapDialog.alert(data.Message);
                 }
             },
             error: function (response) {
                 console.log(response);
             }
         });
+    });
+
+    $(".viewDetail").click(function () {
+        var id = $(this).parent().parent().find('.id').val();
+        var order = $(Orders).filter(function (index, item) { return item.OrderId == id })[0];
+        $('#ModalDetail').modal('toggle');
+        $("#ModalDetailOrderNo").text(order.OrderNo);
+        $("#ModalDetailTableDetail").empty();
+        for (var oo = 0; oo < order.OrderDetails.length; oo++) {
+            $("#ModalDetailTableDetail").append("<tr><td>" + order.OrderDetails[oo].Quantity + "</td>" + "<td>" + order.OrderDetails[oo].ProductName + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].Price.toFixed(2) + "</td>" + "<td class='text-right'>S/. " + order.OrderDetails[oo].TotalPrice.toFixed(2) + "</td></tr>");
+        }
     });
 
     callSession();

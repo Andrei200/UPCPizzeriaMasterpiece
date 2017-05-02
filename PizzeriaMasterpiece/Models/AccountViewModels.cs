@@ -103,6 +103,25 @@ namespace PizzeriaMasterpiece.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class UpdateViewModel
+    {
+        [Required]
+        [Display(Name = "Nombre(s)")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Apellido(s)")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Dirección")]
+        public string Address { get; set; }
+
+        [Required]
+        [Display(Name = "Telefono")]
+        public string Telephone { get; set; }        
+    }
+
     public class ResetPasswordViewModel
     {
         [Required]

@@ -64,6 +64,8 @@ namespace PizzeriaMasterpiece.Repository
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var currentUser = context.Users.Find(user.UserId);
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
                 currentUser.Address = user.Address;
                 currentUser.PhoneNumber = user.PhoneNumber;
                 if (!string.IsNullOrWhiteSpace(user.Password)) currentUser.Password = HashPassword(user.Password);

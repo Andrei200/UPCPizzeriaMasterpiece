@@ -17,33 +17,33 @@ namespace PizzeriaMasterpiece.Controllers
             HttpClient client = new HttpClient();
             var size = new List<ControlBaseDTO>();
 
-            if (HttpContext.Cache["SizeList"]==null)
-            {
+            /*if (HttpContext.Cache["SizeList"]==null)
+            {*/
                 HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/Size");
                 if (response.IsSuccessStatusCode)
                 {
                     size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
                     HttpContext.Cache["SizeList"] = size;
                 }
-            }
+            /*}
             else
             {
                 size = (List<ControlBaseDTO>) HttpContext.Cache["SizeList"];
-            }
+            }*/
                             
             ViewBag.ListSize = size;
             
             var serviceReference = new ProductServiceReference.ProductServiceClient();
             var list = new Object();            
-            if (HttpContext.Cache["PizzaList"] == null)
-            {
+            /*if (HttpContext.Cache["PizzaList"] == null)
+            {*/
                 list = serviceReference.ListAllProductInformation();
                 HttpContext.Cache["PizzaList"] = list;
-            }
+            /*}
             else
             {
                 list = (ProductDTO[])HttpContext.Cache["PizzaList"];
-            }            
+            }            */
             ViewBag.ListProduct = list;
             return View();
 
