@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Services;
 
@@ -12,8 +13,18 @@ namespace PizzeriaMasterpiece.Controllers
 {
     public class CartController : Controller
     {
-        public ActionResult List()
+        private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
+
+        public async Task<ActionResult> List()
         {
+            HttpClient client = new HttpClient();
+            var dt = new List<ControlBaseDTO>();
+
+            HttpResponseMessage response = await client.GetAsync(restServiceURL + "DocumentType");
+            if (response.IsSuccessStatusCode) dt = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
+
+            ViewBag.ListDT = dt;
+
             List<OrderCartDTO> orderList = new List<OrderCartDTO>();
             if (System.Web.HttpContext.Current.Session["Cart"] == null)
             {

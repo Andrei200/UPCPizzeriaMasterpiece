@@ -29,8 +29,23 @@ namespace PizzeriaMasterpiece.Controllers
             {
                 listOrder = await response.Content.ReadAsAsync<List<OrderDTO>>();
             }
+            /*var serviceReference = new OrderServiceReference.OrderServiceClient();
+            OrderSearchCriteriaDTO osc = new OrderSearchCriteriaDTO();
+            var listOrder = serviceReference.GetOrdersByCriteria(osc);*/
             ViewBag.ListOrder = listOrder;
             return View();
+        }
+
+        public async Task<ActionResult> AproveOrder(int orderId, int orderStatusId)
+        {
+            var serviceReference = new OrderServiceReference.OrderServiceClient();
+            OrderStatusDTO os = new OrderStatusDTO()
+            {
+                OrderId = orderId,
+                OrderStatusId = orderStatusId
+            };
+            var response = serviceReference.UpdateOrderStatus(os);
+            return Json(response);
         }
 
         public ActionResult Product()
