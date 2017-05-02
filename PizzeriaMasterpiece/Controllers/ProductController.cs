@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Services;
 
@@ -12,6 +13,7 @@ namespace PizzeriaMasterpiece.Controllers
 {
     public class ProductController : Controller
     {
+        string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
         public async System.Threading.Tasks.Task<ActionResult> List()
         {
             HttpClient client = new HttpClient();
@@ -19,7 +21,7 @@ namespace PizzeriaMasterpiece.Controllers
 
             if (HttpContext.Cache["SizeList"]==null)
             {
-                HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/Size");
+                HttpResponseMessage response = await client.GetAsync(restServiceURL+"Size");
                 if (response.IsSuccessStatusCode)
                 {
                     size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
