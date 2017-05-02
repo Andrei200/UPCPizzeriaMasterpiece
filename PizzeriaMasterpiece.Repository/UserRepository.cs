@@ -10,11 +10,11 @@ namespace PizzeriaMasterpiece.Repository
 {
     public class UserRepository
     {
-        public async Task<UserDTO> GetUser(int userId)
+        public UserDTO GetUser(int userId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Users
+                var result = context.Users
                .Where(p => p.UserId == userId)
                .Select(q => new UserDTO
                {
@@ -29,13 +29,13 @@ namespace PizzeriaMasterpiece.Repository
                    RoleName = q.Role.Name,
                    IsActive = q.IsActive
                })
-               .FirstOrDefaultAsync();
+               .FirstOrDefault();
 
                 return result;
             }
         }
 
-        public async Task<UserDTO> InsertUser(UserRegistrationDTO user)
+        public int InsertUser(UserRegistrationDTO user)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -55,29 +55,31 @@ namespace PizzeriaMasterpiece.Repository
 
                  context.Users.Add(newUser);
                  context.SaveChanges();
-                 return await GetUser(newUser.UserId);
+                 return newUser.UserId;
             };
         }
 
-        public async Task<UserDTO> UpdateUser(UserRegistrationDTO user)
+        public int UpdateUser(UserRegistrationDTO user)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var currentUser = context.Users.Find(user.UserId);
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
                 currentUser.Address = user.Address;
                 currentUser.PhoneNumber = user.PhoneNumber;
                 if (!string.IsNullOrWhiteSpace(user.Password)) currentUser.Password = HashPassword(user.Password);
                 context.SaveChanges();
-                return await GetUser(currentUser.UserId);
+                return currentUser.UserId;
             }
         }
 
-        public async Task<UserDTO> LoginUser(UserLoginDTO user)
+        public UserDTO LoginUser(UserLoginDTO user)
         {
             var password = HashPassword(user.Password);
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Users
+                var result = context.Users
                 .Where(p => p.Email == user.Email && p.Password == password)
                 .Select(q => new UserDTO
                 {
@@ -92,7 +94,7 @@ namespace PizzeriaMasterpiece.Repository
                     RoleName = q.Role.Name,
                     IsActive = q.IsActive
                 })
-                .FirstOrDefaultAsync();
+                .FirstOrDefault();
                 return result;
             }
         }

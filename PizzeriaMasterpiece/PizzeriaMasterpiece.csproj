@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-dialog.min.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -240,24 +242,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\background.png" />
     <Content Include="Images\banner_pizza.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_short.png" />
+    <Content Include="Images\Order\cart.png" />
     <Content Include="Images\Other\banner_register.png" />
     <Content Include="Images\Other\my_order.png" />
-    <Content Include="Images\Pizzas\pizza1.jpg" />
-    <Content Include="Images\Pizzas\pizza10.jpg" />
-    <Content Include="Images\Pizzas\pizza11.jpg" />
-    <Content Include="Images\Pizzas\pizza2.jpg" />
-    <Content Include="Images\Pizzas\pizza3.jpg" />
-    <Content Include="Images\Pizzas\pizza4.jpg" />
-    <Content Include="Images\Pizzas\pizza5.jpg" />
-    <Content Include="Images\Pizzas\pizza6.jpg" />
-    <Content Include="Images\Pizzas\pizza7.jpg" />
-    <Content Include="Images\Pizzas\pizza8.jpg" />
-    <Content Include="Images\Pizzas\pizza9.jpg" />
-    <Content Include="Images\Pizzas\pizza_test.jpg" />
+    <Content Include="Images\Pizza\americana.png" />
+    <Content Include="Images\Pizza\carnivora.png" />
+    <Content Include="Images\Pizza\hawaiana.png" />
+    <Content Include="Images\Pizza\mozzarella.png" />
+    <Content Include="Images\Pizza\pepperoni.png" />
+    <Content Include="Scripts\bootstrap-dialog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -270,6 +268,7 @@
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.UserDTO.datasource" />
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.ProductDTO.datasource" />
     <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.SupplyProductDTO.datasource" />
+    <Content Include="Properties\DataSources\PizzeriaMasterpiece.DTO.ResponseDTO.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -373,6 +372,8 @@
     <Content Include="Views\Admin\Panel.cshtml" />
     <Content Include="Views\Admin\Order.cshtml" />
     <Content Include="Views\Admin\Product.cshtml" />
+    <Content Include="Views\Cart\List.cshtml" />
+    <Content Include="Views\Account\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

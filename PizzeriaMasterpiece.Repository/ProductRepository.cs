@@ -9,11 +9,11 @@ namespace PizzeriaMasterpiece.Repository
 {
     public class ProductRepository
     {
-        public async Task<ProductDTO> GetProduct(int productId)
+        public ProductDTO GetProduct(int productId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Products.Where(p => p.ProductId == productId)
+                var result = context.Products.Where(p => p.ProductId == productId)
                     .Select(q => new ProductDTO
                     {
                         ProductId = q.ProductId,
@@ -25,13 +25,13 @@ namespace PizzeriaMasterpiece.Repository
                         SizeId = q.SizeId,
                         SizeName = q.Size.Name,
                         IsActive = q.IsActive,
-                    }).FirstOrDefaultAsync();
+                    }).FirstOrDefault();
 
                 return result;
             }
         }
 
-        public async Task<ProductDTO> InsertProduct(ProductDTO product)
+        public int InsertProduct(ProductDTO product)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -49,16 +49,29 @@ namespace PizzeriaMasterpiece.Repository
 
                 context.Products.Add(newProduct);
                 context.SaveChanges();
-
-                return await GetProduct(newProduct.ProductId);
+                return newProduct.ProductId;
             }
         }
-        
-        public async Task<List<ProductDTO>> GetProductList()
+
+        public int UpdateProduct(ProductDTO product)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Products.Where(p => p.IsActive == 1)
+                var currentProduct = context.Products.Find(product.ProductId);
+                if (!string.IsNullOrWhiteSpace(product.Description)) currentProduct.Description = product.Description;
+                if (product.Price != null) currentProduct.Price = product.Price.Value;
+                if (!string.IsNullOrWhiteSpace(product.ImagePath)) currentProduct.ImagePath = product.ImagePath;
+                if (product.IsActive != null) currentProduct.IsActive = product.IsActive;
+                context.SaveChanges();
+                return currentProduct.ProductId;
+            }
+        }
+
+        public List<ProductDTO> GetProductList()
+        {
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var result = context.Products.Where(p => p.IsActive == 1)
                 .Select(q => new ProductDTO
                 {
                     ProductId = q.ProductId,
@@ -70,24 +83,11 @@ namespace PizzeriaMasterpiece.Repository
                     SizeId = q.SizeId,
                     SizeName = q.Size.Name
                 })
-                .ToListAsync();
+                .ToList();
 
                 return result;
             }
         }
-
-        public async Task<ProductDTO> UpdateProduct(ProductDTO product)
-        {
-            using (var context = new PizzeriaMasterpieceEntities())
-            {
-                var currentProduct = await context.Products.FindAsync(product.ProductId);
-                if (!string.IsNullOrWhiteSpace(product.Description)) currentProduct.Description = product.Description;
-                if (product.Price != null) currentProduct.Price = product.Price.Value;
-                if (!string.IsNullOrWhiteSpace(product.ImagePath)) currentProduct.ImagePath = product.ImagePath;
-                if (product.IsActive != null) currentProduct.IsActive = product.IsActive;
-                context.SaveChanges();
-                return await GetProduct(currentProduct.ProductId);
-            }
-        }
+       
     }
 }

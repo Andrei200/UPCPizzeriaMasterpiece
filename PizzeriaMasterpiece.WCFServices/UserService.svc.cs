@@ -8,28 +8,30 @@ namespace PizzeriaMasterpiece.Services
     public class UserService : IUserService
     {
 
-        public async Task<UserDTO> GetUserInformation(int userId)
+        //public UserDTO GetUserInformation(int userId)
+        //{
+        //    var userRepository = new UserRepository();
+        //    return userRepository.GetUser(userId);
+        //}
+
+        public UserDTO InsertUserInformation(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
-            return await userRepository.GetUser(userId);
+            var userId = userRepository.InsertUser(user);
+            return userRepository.GetUser(userId);
         }
 
-        public async Task<UserDTO> InsertUserInformation(UserRegistrationDTO user)
+        public UserDTO UpdateUserInformation(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
-            return await userRepository.InsertUser(user);
+            var userId = userRepository.UpdateUser(user);
+            return userRepository.GetUser(userId);
         }
 
-        public async Task<UserDTO> UpdateUserInformation(UserRegistrationDTO user)
+        public UserDTO LoginUserInformation(UserLoginDTO user)
         {
             var userRepository = new UserRepository();
-            return await userRepository.UpdateUser(user);
-        }
-
-        public async Task<UserDTO> LoginUserInformation(UserLoginDTO user)
-        {
-            var userRepository = new UserRepository();
-            return await userRepository.LoginUser(user);
+            return userRepository.LoginUser(user);
         }
 
 

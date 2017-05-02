@@ -14,7 +14,7 @@ using PizzeriaMasterpiece.DTO;
 
 namespace PizzeriaMasterpiece.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -68,7 +68,7 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl) //kalo
+        public ActionResult Login(LoginViewModel model, string returnUrl) //kalo
         {
             if (!ModelState.IsValid)
             {
@@ -85,14 +85,14 @@ namespace PizzeriaMasterpiece.Controllers
 
             if (result != null)
             {
-                Session["User"] = result;                
+                Session["User"] = result;
                 return RedirectToLocal(returnUrl);
             }
             else
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
                 return View(model);
-            }            
+            }
         }
 
         //
@@ -151,7 +151,7 @@ namespace PizzeriaMasterpiece.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -167,9 +167,47 @@ namespace PizzeriaMasterpiece.Controllers
                     PhoneNumber = model.Telephone,
                     IsActive = Parameters.USER_ACTIVE,
                     RoleId = Parameters.ROLE_CLIENT
-                };                
+                };
                 var result = serviceReference.InsertUserInformation(user);
-                return RedirectToAction("Index", "Home");                
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Update()
+        {
+            UpdateViewModel model = new UpdateViewModel();
+            UserDTO u = (UserDTO)Session["User"];                        
+            model.FirstName= u.FirstName;
+            model.LastName = u.LastName;
+            model.Address= u.Address;
+            model.Telephone = u.PhoneNumber;
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(UpdateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var serviceReference = new UserServiceReference.UserServiceClient();
+                var user = new UserRegistrationDTO()
+                {
+                    UserId = ((UserDTO)Session["User"]).UserId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    PhoneNumber = model.Telephone
+                };
+                var result = serviceReference.UpdateUserInformation(user);
+                return RedirectToAction("Update", "Account");
             }
 
             // If we got this far, something failed, redisplay form
@@ -427,6 +465,11 @@ namespace PizzeriaMasterpiece.Controllers
             base.Dispose(disposing);
         }
 
+        public JsonResult CallUser()
+        {
+            return Json((UserDTO)Session["User"]);
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -486,4 +529,7 @@ namespace PizzeriaMasterpiece.Controllers
         }
         #endregion
     }
+
+
+   
 }

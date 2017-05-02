@@ -26,5 +26,12 @@ namespace PizzeriaMasterpiece.Services.Tests
             var result = serviceReference.InsertUserInformation(user);
             Assert.AreEqual(result.DocumentNo, "12457800");
         }
+
+        [TestMethod()]
+        public void GetSize() {
+            var serviceRerence = new WCFServicesTests.UserServiceReference.UserServiceClient();
+            var size = new WCFServicesTests.UserServiceReference.UserRegistrationDTO();
+        }
+
     }
 }

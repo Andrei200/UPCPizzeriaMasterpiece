@@ -13,11 +13,17 @@ namespace PizzeriaMasterpiece.WCFServices
     [ServiceContract]
     public interface IOrderService
     {
-        [OperationContract]
-        Task<List<OrderDTO>>  GetOrdersByClient(int userId);
+        //[OperationContract]
+        //List<ControlBaseDTO> GetSizePizza();
 
         [OperationContract]
-        Task<List<OrderWorkerDTO>> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
+        List<OrderDTO>  GetOrdersByClient(int userId);
+
+        //[OperationContract]
+        //List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria);
+
+        [OperationContract]
+        ResponseDTO UpdateOrderStatus(OrderStatusDTO order);
 
     }
 }

@@ -8,20 +8,22 @@ namespace PizzeriaMasterpiece.Repository
 {
     public class OrderStatusRepository
     {
-        public async Task<List<ControlBaseDTO>> GeOrderStatusList()
+        public List<ControlBaseDTO> GeOrderStatusList()
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.OrderStatus
+                var result = context.OrderStatus
                     .Select(q => new ControlBaseDTO
                     {
                         Id = q.OrderStatusId,
                         Code = q.Code,
                         Name = q.Name,
-                    }).ToListAsync();
+                    }).ToList();
 
                 return result;
             }
         }
+
+
     }
 }

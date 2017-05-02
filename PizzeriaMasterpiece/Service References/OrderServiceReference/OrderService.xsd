@@ -32,7 +32,7 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="OrderDetailId" type="xs:int" />
       <xs:element minOccurs="0" name="Price" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
       <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Quantity" type="xs:int" />
       <xs:element minOccurs="0" name="Supplies" nillable="true" type="tns:ArrayOfSupplyDTO" />
@@ -54,7 +54,6 @@
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="SupplyId" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Supplyes" nillable="true" type="tns:ArrayOfSupplyDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SupplyDTO" nillable="true" type="tns:SupplyDTO" />
@@ -87,4 +86,18 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="OrderWorkerDTO" nillable="true" type="tns:OrderWorkerDTO" />
+  <xs:complexType name="OrderStatusDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="OrderId" type="xs:int" />
+      <xs:element minOccurs="0" name="OrderStatusId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OrderStatusDTO" nillable="true" type="tns:OrderStatusDTO" />
+  <xs:complexType name="ResponseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseDTO" nillable="true" type="tns:ResponseDTO" />
 </xs:schema>

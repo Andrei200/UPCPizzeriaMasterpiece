@@ -9,17 +9,17 @@ namespace PizzeriaMasterpiece.Repository
 {
     public class SizeRepository
     {
-        public async Task<List<ControlBaseDTO>> GetSizes()
+        public List<ControlBaseDTO> GetSizes()
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result = await context.Sizes
+                var result = context.Sizes
                     .Select(q => new ControlBaseDTO
                     {
                         Id = q.SizeId,
                         Code = q.Code,
                         Name = q.Name,
-                    }).ToListAsync();
+                    }).ToList();
 
                 return result;
             }

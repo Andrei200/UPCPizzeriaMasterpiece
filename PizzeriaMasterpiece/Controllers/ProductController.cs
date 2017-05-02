@@ -1,55 +1,73 @@
 ﻿using PizzeriaMasterpiece.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
-using System.Web.Services;
 
 namespace PizzeriaMasterpiece.Controllers
 {
     public class ProductController : Controller
     {
-        public async System.Threading.Tasks.Task<ActionResult> List()
-        {
+        private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
 
+        public async Task<ActionResult> List()
+        {
             HttpClient client = new HttpClient();
             var size = new List<ControlBaseDTO>();
-            HttpResponseMessage response = await client.GetAsync("http://localhost:6146/api/Size");
-            if (response.IsSuccessStatusCode) size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
-            ViewBag.ListSize = size;            
 
-            var serviceReference = new ProductServiceReference.ProductServiceClient();
-            var list = serviceReference.ListAllProductInformation();
-            ViewBag.ListProduct = list;
-            return View();
-
-        }
-        
-        public string AddToCart(int productId, int quantity)
-        {            
-            if (Session["Cart"] == null)
+            HttpResponseMessage response = await client.GetAsync(restServiceURL + "Size");
+            if (response.IsSuccessStatusCode)
             {
-                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();                
-                Session.Add("Cart", newOrder);
-
+                size = await response.Content.ReadAsAsync<List<ControlBaseDTO>>();
+                HttpContext.Cache["SizeList"] = size;
             }
 
-            List<OrderCartDTO> listOwnOrder = (List<OrderCartDTO>)Session["Cart"];
+            ViewBag.ListSize = size;
+
+            var serviceReference = new ProductServiceReference.ProductServiceClient();
+
+            var list = serviceReference.ListAllProductInformation();
+            HttpContext.Cache["PizzaList"] = list;
+
+            ViewBag.ListProduct = list;
+            return View();
+        }
+
+        public JsonResult AddToCart(int productId, int quantity)
+        {
+            if (System.Web.HttpContext.Current.Session["Cart"] == null)
+            {
+                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();
+                System.Web.HttpContext.Current.Session["Cart"] = newOrder;
+            }
+
+            List<OrderCartDTO> listOwnOrder = (List<OrderCartDTO>)System.Web.HttpContext.Current.Session["Cart"];
+
+            var product = new ProductServiceReference.ProductServiceClient();
 
             OrderCartDTO order = new OrderCartDTO()
             {
-                ProductId = productId,
+                ID = listOwnOrder.Count + 1,
+                Product = product.GetProductInformation(productId),
                 Quantity = quantity
             };
 
             listOwnOrder.Add(order);
 
-            Session["Cart"] = listOwnOrder;
+            System.Web.HttpContext.Current.Session["Cart"] = listOwnOrder;
 
-            return "PRD";
-        }        
+            return Json(listOwnOrder);
+        }
+
+        public JsonResult CheckCart()
+        {
+            if (System.Web.HttpContext.Current.Session["Cart"] == null)
+            {
+                List<OrderCartDTO> newOrder = new List<OrderCartDTO>();
+                System.Web.HttpContext.Current.Session["Cart"] = newOrder;
+            }
+            return Json(System.Web.HttpContext.Current.Session["Cart"]);
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background: url(../Images/background.png);
+    background: url(../Images/background.jpg);
     background-repeat: repeat;
 }
 
@@ -9,7 +9,9 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: rgba(0,0,0,0.75);
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -114,12 +116,12 @@ footer p{
 
 .gallery_product p{
     position: absolute;
-    margin-top: 227px;
+    margin-top: 153px;
     width: 100%;
     background-color: rgba(20,20,20,0.5);
     color: white;
     padding-top: 5px;
-    height: 123px;
+        height: 87px;
     text-align: center;
     padding-bottom: 42px;
     margin-bottom: 0;
@@ -131,7 +133,7 @@ footer p{
 
 .gallery_product input{
     position: absolute;
-    margin-top: 313px;
+    margin-top: 204px;
     padding: 4px;
     width: 48px;
     text-align: center;
@@ -158,26 +160,26 @@ footer p{
 
 .gallery_product button{
     position: absolute;
-    margin-top: 312px;
+    margin-top: 204px;
     margin-left: 56px;
 }
 
 .gallery_product div{
     width: 100%;
-    height: 350px;
+    height: 240px;
     background:url(/Images/Pizzas/pizza1.jpg);    
     background-position: 50% 50%;
-    background-size: 650px;
+    background-size: 100%;
 }
 
 .gallery_product:hover div{
-    background-size: 700px;
+    background-size: 105%;
 }
 
 .mb15{margin-bottom: 15px;}
 
 .custom_table th {
-    background-color: #4CAF50;
+    background-color: #5A2D00;
     color: white;
 }
 
@@ -187,8 +189,7 @@ footer p{
     color: white;
 }
 
-.order_h1{
-        background: red;
+.order_h1{        
     margin-bottom: 0px;
     text-align: center;
     -webkit-border-top-left-radius: 10px;
@@ -197,7 +198,7 @@ footer p{
     -moz-border-radius-topright: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    background-color: #4CAF50;
+    background-color: #5A2D00;
     color: white;
     border-bottom: 2px outset white;
 }
@@ -218,3 +219,45 @@ footer p{
 }
 
 .control-label{color:white;}
+
+.h20{
+    height:20px;
+}
+
+.miniball{
+    position: absolute;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    background-color: green;
+    font-size: 10px;
+    width: 16px;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+    margin-top: -28px;
+    margin-left: 11px;
+    color:white;
+}
+
+.table-striped tbody tr td{
+    background-color:rgba(255,240,201,1);
+}
+
+
+.table-striped tfoot tr td{
+    background-color:#341A00;
+    color:white;
+    font-weight:bold;
+}
+
+.modal-header{
+    background-color: #5A2D00;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+}

@@ -1,10 +1,13 @@
-﻿<div class="row">
+﻿@using Newtonsoft.Json;
+<div class="row">
     <img class="img-responsive mb15" src="~/Images/Other/my_order.png" />
 </div>
 <div class="row">
     <div class="col-xs-12">
         <h1 class="order_h1">Lista de nuevos pedidos</h1>
     </div>
+
+
     <div class="table-responsive">
         <table class="table table-striped custom_table">
             <thead class="success">
@@ -19,17 +22,24 @@
             <tbody>
                 @if (ViewBag.ListOrder != null)
                 {
-                    for (var i = 0; i < ViewBag.ListOrder.Length; i++)
+                    for (var i = 0; i < ViewBag.ListOrder.Count; i++)
                     {
                         <tr>
-                            <td>@ViewBag.ListOrder[i].OrderNo</td>
+                            <td>
+                                <input class="id" value="@ViewBag.ListOrder[i].OrderId" type="hidden" />
+                                <input class="statusId" value="@ViewBag.ListOrder[i].OrderStatusId" type="hidden" />
+                                @ViewBag.ListOrder[i].OrderNo
+                            </td>
                             <td>@ViewBag.ListOrder[i].Date</td>
                             <td>@ViewBag.ListOrder[i].Address</td>
-                            <td>@ViewBag.ListOrder[i].Remak</td>                            
-                            <td><button class="btn btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button></td>
+                            <td>@ViewBag.ListOrder[i].Remark</td>                            
+                            <td>
+                                <button class="btn btn-xs btn-warning viewDetail"><span class="glyphicon glyphicon-name"></span> Detalle</button>
+                                <button class="btn btn-xs btn-success confirmOrder"><span class="glyphicon glyphicon-name"></span> Aprobar</button>
+                            </td><!-- aprobar y desaprobar-->
                         </tr>
                     }
-                }
+                }<!-- mostrar popup con detalle -->
             </tbody>
         </table>
     </div>    
@@ -38,3 +48,42 @@
         <li><a href="#">Siguiente</a></li>
     </ul>
 </div>
+
+<script type="text/javascript">   
+    var Orders =  @(Html.Raw(JsonConvert.SerializeObject(ViewBag.ListOrder, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore })));   
+</script>
+
+<div id="ModalDetail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">        
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Detalle del pedido</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <td>Pedido:</td>
+                            <td><label id="ModalDetailOrderNo"></label></td>
+                        </tr>
+                    </table>
+                    <table class="table table-striped custom_table">
+                        <thead class="success">
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ModalDetailTableDetail"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
