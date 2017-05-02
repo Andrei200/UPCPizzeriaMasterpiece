@@ -14,6 +14,9 @@ namespace PizzeriaMasterpiece.WCFServices
     public interface IOrderService
     {
         [OperationContract]
+        List<ControlBaseDTO> GetSizePizza();
+
+        [OperationContract]
         List<OrderDTO>  GetOrdersByClient(int userId);
 
         [OperationContract]
