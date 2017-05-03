@@ -1,9 +1,8 @@
 ﻿using PizzeriaMasterpiece.DTO;
 using PizzeriaMasterpiece.Model;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
+
 namespace PizzeriaMasterpiece.Repository
 {
     public class OrderStatusRepository
@@ -23,7 +22,5 @@ namespace PizzeriaMasterpiece.Repository
                 return result;
             }
         }
-
-
     }
 }

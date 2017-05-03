@@ -16,16 +16,6 @@ namespace PizzeriaMasterpiece.WCFServices
             return orderRepository.GetOrdersByClient(userId);
         }
 
-        //public List<OrderWorkerDTO> GetOrdersByCriteria(OrderSearchCriteriaDTO criteria)
-        //{
-        //    var orderRepository = new OrderRepository();
-        //    return orderRepository.GetOrdersByCriteria(criteria);
-        //}
-
-        //public List<ControlBaseDTO> GetSizePizza()
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public ResponseDTO UpdateOrderStatus(OrderStatusDTO order)
         {
@@ -40,7 +30,7 @@ namespace PizzeriaMasterpiece.WCFServices
                     return new ResponseDTO()
                     {
                         Status = 1,
-                        Message = "Pedido Cancelado"
+                        Message = "Pedido Rechazado"
                     };
                 }
                 else
@@ -54,7 +44,11 @@ namespace PizzeriaMasterpiece.WCFServices
                             Message = "El Pedido ya fue atendido"
                         };
                     }
-                    var currentSupplies = supplyRepository.GetSupplies();
+                   // var currentSupplies = supplyRepository.GetSupplies();
+                   
+                    var serviceReference = new SupplyServiceReference.SupplyServieClient();
+                    var currentSupplies = serviceReference.ListAllSupplyInformation();
+
                     var usedSupplies = new List<SupplyDTO>();
                     foreach (var odetail in currentoOrder.OrderDetails)
                     {
@@ -86,7 +80,7 @@ namespace PizzeriaMasterpiece.WCFServices
                             return new ResponseDTO()
                             {
                                 Status = 1,
-                                Message = "Pedido Cancelado Automaticamente por falta de Stock"
+                                Message = "Pedido Rechazado Automaticamente por falta de Stock"
                             };
                         }
                     }
@@ -95,7 +89,8 @@ namespace PizzeriaMasterpiece.WCFServices
                     {
                         var csupply = currentSupplies.FirstOrDefault(p => p.SupplyId == item.SupplyId);
                         csupply.Quantity = csupply.Quantity - item.Quantity;
-                        supplyRepository.UpdateSupply(csupply);
+                        //supplyRepository.UpdateSupply(csupply);
+                        serviceReference.UpdateSupplyInformation(csupply);
                     }
                     orderRepository.UpdateOrderStatus(order);
                     return new ResponseDTO()

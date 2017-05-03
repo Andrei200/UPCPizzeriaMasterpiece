@@ -287,15 +287,70 @@ namespace PizzeriaMasterpiece.WCFServicesTests.UserServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/PizzeriaMasterpiece.DTO")]
+    [System.SerializableAttribute()]
+    public partial class ResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserServiceReference.IUserService")]
     public interface IUserService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserInformation", ReplyAction="http://tempuri.org/IUserService/GetUserInformationResponse")]
-        PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO GetUserInformation(int userId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetUserInformation", ReplyAction="http://tempuri.org/IUserService/GetUserInformationResponse")]
-        System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO> GetUserInformationAsync(int userId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/InsertUserInformation", ReplyAction="http://tempuri.org/IUserService/InsertUserInformationResponse")]
         PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO InsertUserInformation(PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserRegistrationDTO user);
@@ -314,6 +369,12 @@ namespace PizzeriaMasterpiece.WCFServicesTests.UserServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/LoginUserInformation", ReplyAction="http://tempuri.org/IUserService/LoginUserInformationResponse")]
         System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO> LoginUserInformationAsync(PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserLoginDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserEmail", ReplyAction="http://tempuri.org/IUserService/ValidateUserEmailResponse")]
+        PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.ResponseDTO ValidateUserEmail(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ValidateUserEmail", ReplyAction="http://tempuri.org/IUserService/ValidateUserEmailResponse")]
+        System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.ResponseDTO> ValidateUserEmailAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -343,14 +404,6 @@ namespace PizzeriaMasterpiece.WCFServicesTests.UserServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO GetUserInformation(int userId) {
-            return base.Channel.GetUserInformation(userId);
-        }
-        
-        public System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO> GetUserInformationAsync(int userId) {
-            return base.Channel.GetUserInformationAsync(userId);
-        }
-        
         public PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO InsertUserInformation(PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserRegistrationDTO user) {
             return base.Channel.InsertUserInformation(user);
         }
@@ -373,6 +426,14 @@ namespace PizzeriaMasterpiece.WCFServicesTests.UserServiceReference {
         
         public System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserDTO> LoginUserInformationAsync(PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.UserLoginDTO user) {
             return base.Channel.LoginUserInformationAsync(user);
+        }
+        
+        public PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.ResponseDTO ValidateUserEmail(string email) {
+            return base.Channel.ValidateUserEmail(email);
+        }
+        
+        public System.Threading.Tasks.Task<PizzeriaMasterpiece.WCFServicesTests.UserServiceReference.ResponseDTO> ValidateUserEmailAsync(string email) {
+            return base.Channel.ValidateUserEmailAsync(email);
         }
     }
 }

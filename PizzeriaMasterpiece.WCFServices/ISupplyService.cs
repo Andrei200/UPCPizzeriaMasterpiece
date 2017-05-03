@@ -19,10 +19,10 @@ namespace PizzeriaMasterpiece.WCFServices
         //[OperationContract]
         //SupplyDTO InsertSupplyInformation(SupplyDTO supply);
 
-        //[OperationContract]
-        //SupplyDTO UpdateSupplyInformation(SupplyDTO supply);
+        [OperationContract]
+        List<SupplyDTO> ListAllSupplyInformation();
 
-        //[OperationContract]
-        //List<SupplyDTO> ListAllSupplyInformation();
+        [OperationContract]
+        SupplyDTO UpdateSupplyInformation(SupplyDTO supply);
     }
 }

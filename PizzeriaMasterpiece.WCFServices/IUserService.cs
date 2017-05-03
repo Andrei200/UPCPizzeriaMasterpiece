@@ -26,6 +26,9 @@ namespace PizzeriaMasterpiece.Services
         [OperationContract]
         UserDTO LoginUserInformation(UserLoginDTO user);
 
+        [OperationContract]
+        ResponseDTO ValidateUserEmail(string email);
+
     }
 
 }

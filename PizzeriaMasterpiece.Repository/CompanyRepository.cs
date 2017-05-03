@@ -1,26 +1,22 @@
 ﻿using PizzeriaMasterpiece.DTO;
 using PizzeriaMasterpiece.Model;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzeriaMasterpiece.Repository
 {
-  public  class CompanyRepository
+    public class CompanyRepository
     {
         public CompanyDTO GetCompany(int companyId)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
-                var result =  context.Companies.Where(p => p.CompanyId == companyId)
+                var result = context.Companies.Where(p => p.CompanyId == companyId)
                     .Select(q => new CompanyDTO
                     {
                         CompanyId = q.CompanyId,
                         Name = q.Name,
-                        RUC = q.RUC,                    
+                        RUC = q.RUC,
                         Address = q.Address,
                         PhoneNumber = q.PhoneNumber,
                     }).FirstOrDefault();
@@ -29,7 +25,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public CompanyDTO InsertCompany(CompanyDTO company)
+        public int InsertCompany(CompanyDTO company)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -45,7 +41,7 @@ namespace PizzeriaMasterpiece.Repository
                 context.Companies.Add(newCompany);
                 context.SaveChanges();
 
-                return GetCompany(newCompany.CompanyId);
+                return newCompany.CompanyId;
             }
         }
 
@@ -68,7 +64,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public CompanyDTO UpdateCompany(CompanyDTO company)
+        public int UpdateCompany(CompanyDTO company)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -78,7 +74,7 @@ namespace PizzeriaMasterpiece.Repository
                 if (!string.IsNullOrWhiteSpace(company.Address)) currentCompany.Name = company.Address;
                 if (!string.IsNullOrWhiteSpace(company.PhoneNumber)) currentCompany.Name = company.PhoneNumber;
                 context.SaveChanges();
-                return  GetCompany(currentCompany.CompanyId);
+                return currentCompany.CompanyId;
             }
         }
     }

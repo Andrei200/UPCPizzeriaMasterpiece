@@ -2,21 +2,18 @@
 using PizzeriaMasterpiece.DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace PizzeriaMasterpiece.Controllers
 {
     public class OrderController : Controller
     {
         private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
+
         public ActionResult MyOrder()
         {
             if (Session["User"] == null)
@@ -45,34 +42,32 @@ namespace PizzeriaMasterpiece.Controllers
             var newOrder = new OrderDTO();
             var newOrderDetail = new List<OrderDetailDTO>();
             newOrder.Date = DateTime.Now;
-            newOrder.Address = address;            
+            newOrder.Address = address;
             newOrder.Remark = remark;
             newOrder.UserId = u.UserId;
             newOrder.DocumentTypeId = documentType;
             var nod = new OrderDetailDTO();
-            for(var i = 0; i < orderList.Count; i++)
+            for (var i = 0; i < orderList.Count; i++)
             {
                 nod.ProductId = orderList[i].Product.ProductId;
-                nod.Price = orderList[i].Product.Price.Value;                
+                nod.Price = orderList[i].Product.Price.Value;
                 nod.Quantity = orderList[i].Quantity;
                 newOrderDetail.Add(nod);
             }
             newOrder.OrderDetails = newOrderDetail;
-            var final = new ResponseDTO();   
+            var final = new ResponseDTO();
             HttpClient client = new HttpClient();
             var jsonRequest = JsonConvert.SerializeObject(newOrder);
             var content = new StringContent(jsonRequest, Encoding.UTF8, "text/json");
-            HttpResponseMessage response = await client.PostAsync(restServiceURL+"OrderClient", content);
-            
+            HttpResponseMessage response = await client.PostAsync(restServiceURL + "OrderClient", content);
+
             if (response.IsSuccessStatusCode)
             {
                 final = await response.Content.ReadAsAsync<ResponseDTO>();
-                //clean order
                 System.Web.HttpContext.Current.Session["Cart"] = new List<OrderCartDTO>();
-            }       
-                 
-            return Json(final);
+            }
 
+            return Json(final);
         }
     }
 }

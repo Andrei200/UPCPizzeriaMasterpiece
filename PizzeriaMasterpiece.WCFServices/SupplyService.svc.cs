@@ -14,11 +14,7 @@ namespace PizzeriaMasterpiece.WCFServices
 
     public class SupplyService : ISupplyServie
     {
-        //public SupplyDTO GetSupplyById(int SupplyId)
-        //{
-        //    var supplyRepository = new SupplyRepository();
-        //    return supplyRepository.GetSupplyById(SupplyId);
-        //}
+
 
         //public SupplyDTO InsertSupplyInformation(SupplyDTO supply)
         //{
@@ -26,16 +22,17 @@ namespace PizzeriaMasterpiece.WCFServices
         //    return supplyRepository.InsertSupply(supply);
         //}
 
-        //public List<SupplyDTO> ListAllSupplyInformation()
-        //{
-        //    var supplyRepository = new SupplyRepository();
-        //    return supplyRepository.GetSupplies();
-        //}
+        public List<SupplyDTO> ListAllSupplyInformation()
+        {
+            var supplyRepository = new SupplyRepository();
+            return supplyRepository.GetSupplies();
+        }
 
-        //public SupplyDTO UpdateSupplyInformation(SupplyDTO supply)
-        //{
-        //    var supplyRepository = new SupplyRepository();
-        //    return supplyRepository.UpdateSupply(supply);
-        //}
+        public SupplyDTO UpdateSupplyInformation(SupplyDTO supply)
+        {
+            var supplyRepository = new SupplyRepository();
+            var supplyId =  supplyRepository.UpdateSupply(supply);
+            return supplyRepository.GetSupplyById(supplyId);
+        }
     }
 }

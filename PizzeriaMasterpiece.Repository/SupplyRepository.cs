@@ -28,7 +28,7 @@ namespace PizzeriaMasterpiece.Repository
             }
         }
 
-        public SupplyDTO UpdateSupply(SupplyDTO supply)
+        public int UpdateSupply(SupplyDTO supply)
         {
             using (var context = new PizzeriaMasterpieceEntities())
             {
@@ -39,8 +39,7 @@ namespace PizzeriaMasterpiece.Repository
                 if (supply.Quantity != null) currentSupply.Quantity = supply.Quantity;
                 if (supply.IsActive != null) currentSupply.IsActive = supply.IsActive;
                 context.SaveChanges();
-                return GetSupplyById(currentSupply.SupplyId);
-
+                return currentSupply.SupplyId;
             }
         }
 
