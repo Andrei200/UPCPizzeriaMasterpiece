@@ -22,7 +22,6 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
 
         public ResponseDTO Post(OrderDTO order)
         {
-
             try
             {
                 MessageQueue messageQueue = null;

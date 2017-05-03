@@ -25,15 +25,15 @@
                     for (var i = 0; i < ViewBag.ListOrder.Count; i++)
                     {
                         <tr>
-                            <td>
+                            <td width="10%">
                                 <input class="id" value="@ViewBag.ListOrder[i].OrderId" type="hidden" />
                                 <input class="statusId" value="@ViewBag.ListOrder[i].OrderStatusId" type="hidden" />
                                 @ViewBag.ListOrder[i].OrderNo
                             </td>
-                            <td>@ViewBag.ListOrder[i].Date</td>
-                            <td>@ViewBag.ListOrder[i].Address</td>
-                            <td>@ViewBag.ListOrder[i].Remark</td>                            
-                            <td>
+                            <td width="15%">@ViewBag.ListOrder[i].Date</td>
+                            <td width="30%">@ViewBag.ListOrder[i].Address</td>
+                            <td width="25%">@ViewBag.ListOrder[i].Remark</td>                            
+                            <td width="20%">
                                 <button class="btn btn-xs btn-warning viewDetail"><span class="glyphicon glyphicon-name"></span> Detalle</button>
                                 <button class="btn btn-xs btn-success confirmOrder"><span class="glyphicon glyphicon-name"></span> Aprobar</button>
                                 <button class="btn btn-xs btn-danger cancelOrder"><span class="glyphicon glyphicon-name"></span> Cancelar</button>
