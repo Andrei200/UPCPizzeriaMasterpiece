@@ -13,20 +13,20 @@ using System.Threading.Tasks;
 namespace PizzeriaMasterpiece.WebApiServices.Controllers.Tests
 {
     [TestClass()]
-    public class SizeControllerTests
+    public class OrderAdministratorControllerTests
     {
         [TestMethod()]
         public void GetTest()
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:6146/api/Size");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:6146/api/OrderAdministrator");
             request.Method = "GET";
             request.ContentType = "application/json";
             var httpResponse = (HttpWebResponse)request.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-                var resultObj= JsonConvert.DeserializeObject<List<ControlBaseDTO>>(result);
-                Assert.AreEqual(resultObj.Count, 4);
+                var resultObj = JsonConvert.DeserializeObject<List<OrderWorkerDTO>>(result);
+                Assert.AreNotEqual(resultObj.Count, 0);
             }
         }
     }

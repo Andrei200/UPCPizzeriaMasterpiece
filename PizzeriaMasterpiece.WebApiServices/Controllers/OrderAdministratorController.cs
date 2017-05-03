@@ -40,6 +40,5 @@ namespace PizzeriaMasterpiece.WebApiServices.Controllers
                 throw;
             }
         }
-
     }
 }
