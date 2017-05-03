@@ -17,29 +17,31 @@
         var c = $(this).parent().find('input:eq(1)');
         var prd = $(this).parent().find('input:eq(0)').val();
         var qnt = $(this).parent().find('input:eq(1)').val();
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            dataType: 'jSon',
-            data: JSON.stringify({ 'productId': prd, 'quantity': qnt }),
-            url: "http://localhost:1901/Product/AddToCart",
-            contentType: 'application/json; charset=utf-8',
-            success: function (data) {
-                BootstrapDialog.show({
-                    title: 'Mensaje de confirmación',
-                    message: 'Producto agregado!',
-                    type: BootstrapDialog.TYPE_SUCCESS
-                });
-                c.val(0);
-                if (data.length != 0) {
-                    $("#CountCart").show();
-                    $("#CountCart").text(data.length);
-                } 
-            },
-            error: function (response) {
-                console.log(response);
-            }
-        });
+        if (qnt > 0){
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                dataType: 'jSon',
+                data: JSON.stringify({ 'productId': prd, 'quantity': qnt }),
+                url: "http://localhost:1901/Product/AddToCart",
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    BootstrapDialog.show({
+                        title: 'Mensaje de confirmación',
+                        message: 'Producto agregado!',
+                        type: BootstrapDialog.TYPE_SUCCESS
+                    });
+                    c.val(0);
+                    if (data.length != 0) {
+                        $("#CountCart").show();
+                        $("#CountCart").text(data.length);
+                    } 
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
     });
 
     function sum(data) {

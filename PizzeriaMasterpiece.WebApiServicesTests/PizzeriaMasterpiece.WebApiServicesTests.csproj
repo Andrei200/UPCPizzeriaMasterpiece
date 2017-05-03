@@ -62,6 +62,7 @@
     <Compile Include="Controllers\DocumentTypeControllerTests.cs" />
     <Compile Include="Controllers\OrderAdministratorControllerTests.cs" />
     <Compile Include="Controllers\OrderClientControllerTests.cs" />
+    <Compile Include="Controllers\OrderStatusControllerTests.cs" />
     <Compile Include="Controllers\SizeControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

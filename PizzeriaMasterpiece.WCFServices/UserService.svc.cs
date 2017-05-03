@@ -8,12 +8,6 @@ namespace PizzeriaMasterpiece.Services
     public class UserService : IUserService
     {
 
-        //public UserDTO GetUserInformation(int userId)
-        //{
-        //    var userRepository = new UserRepository();
-        //    return userRepository.GetUser(userId);
-        //}
-
         public UserDTO InsertUserInformation(UserRegistrationDTO user)
         {
             var userRepository = new UserRepository();
@@ -34,6 +28,24 @@ namespace PizzeriaMasterpiece.Services
             return userRepository.LoginUser(user);
         }
 
+        public ResponseDTO ValidateUserEmail(string email)
+        {
+            var userRepository = new UserRepository();
+            var userInDB= userRepository.GetUserByEmail(email);
+            if (userInDB != null) {
+                return new ResponseDTO()
+                {
+                    Status = 0,
+                    Message = "El email ya esta siendo utilizado"
+                };
+            }
+
+            return new ResponseDTO()
+            {
+                Status = 1,
+                Message = "Email disponible"
+            };
+        }
 
     }
 }

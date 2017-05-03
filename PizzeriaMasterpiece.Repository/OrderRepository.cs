@@ -89,7 +89,7 @@ namespace PizzeriaMasterpiece.Repository
                 var currentOrder= context.Orders.Find(order.OrderId);
                 currentOrder.OrderStatusId = order.OrderStatusId;
                 context.SaveChanges();
-                return order.OrderId;
+                return currentOrder.OrderId;
             }
         }
 

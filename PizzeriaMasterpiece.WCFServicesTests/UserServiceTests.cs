@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using PizzeriaMasterpiece.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PizzeriaMasterpiece.Services.Tests
 {
@@ -42,7 +43,7 @@ namespace PizzeriaMasterpiece.Services.Tests
 
         }
 
-      
+
         [TestMethod()]
         public void UpdateUserInformation()
         {
@@ -51,13 +52,21 @@ namespace PizzeriaMasterpiece.Services.Tests
             user.UserId = 2;
             user.FirstName = "Frank";
             user.LastName = "Mamani";
-            user.Address= "Av El sol 1232";
+            user.Address = "Av El sol 1232";
             user.PhoneNumber = "23323323";
 
-        
+
             var result = serviceReference.UpdateUserInformation(user);
             Assert.AreEqual(result.PhoneNumber, "23323323");
 
+        }
+
+        [TestMethod()]
+        public void ValidateUserEmailTest()
+        {
+            var serviceReference = new WCFServicesTests.UserServiceReference.UserServiceClient();
+            var result = serviceReference.ValidateUserEmail("j@gmail.com");
+            Assert.AreEqual(result.Message, "El email ya esta siendo utilizado");
         }
     }
 

@@ -80,7 +80,7 @@ namespace PizzeriaMasterpiece.Repository
             using (var context = new PizzeriaMasterpieceEntities())
             {
                 var result = context.Users
-                .Where(p => p.Email == user.Email && p.Password == password)
+                .Where(p => p.Email == user.Email && p.Password == password && p.IsActive == 1)
                 .Select(q => new UserDTO
                 {
                     UserId = q.UserId,
@@ -93,6 +93,30 @@ namespace PizzeriaMasterpiece.Repository
                     RoleId = q.RoleId,
                     RoleName = q.Role.Name,
                     IsActive = q.IsActive
+                })
+                .FirstOrDefault();
+                return result;
+            }
+        }
+
+        public UserDTO GetUserByEmail(string email)
+        {
+  
+            using (var context = new PizzeriaMasterpieceEntities())
+            {
+                var result = context.Users
+                .Where(p => p.Email == email && p.IsActive == 1)
+                .Select(q => new UserDTO
+                {
+                    UserId = q.UserId,
+                    DocumentNo = q.DocumentNo,
+                    FirstName = q.FirstName,
+                    LastName = q.LastName,
+                    Email = q.Email,
+                    Address = q.Address,
+                    PhoneNumber = q.PhoneNumber,
+                    RoleId = q.RoleId,
+                    RoleName = q.Role.Name
                 })
                 .FirstOrDefault();
                 return result;

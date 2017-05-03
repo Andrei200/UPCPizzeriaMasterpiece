@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="50df0747-031b-4c84-96e2-156f6e964452" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4688/SupplyService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SupplyService.xsd" MetadataType="Schema" ID="5bebac9c-9d7d-4d65-b1cb-7cfe0021fc66" SourceId="1" SourceUrl="http://localhost:4688/SupplyService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SupplyService.wsdl" MetadataType="Wsdl" ID="7238d775-6f78-4bd0-adc1-d11b283bcbc5" SourceId="1" SourceUrl="http://localhost:4688/SupplyService.svc?wsdl" />
+    <MetadataFile FileName="SupplyService.disco" MetadataType="Disco" ID="691d5782-e6e1-41dc-95a3-96964747795a" SourceId="1" SourceUrl="http://localhost:4688/SupplyService.svc?disco" />
+    <MetadataFile FileName="SupplyService1.xsd" MetadataType="Schema" ID="45372c88-a2df-4948-8b24-60f995648462" SourceId="1" SourceUrl="http://localhost:4688/SupplyService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SupplyService2.xsd" MetadataType="Schema" ID="67b9a065-a619-4440-86c8-2604fd40884f" SourceId="1" SourceUrl="http://localhost:4688/SupplyService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

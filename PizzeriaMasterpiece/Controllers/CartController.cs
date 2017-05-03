@@ -1,13 +1,9 @@
 ﻿using PizzeriaMasterpiece.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
-using System.Web.Services;
 
 namespace PizzeriaMasterpiece.Controllers
 {
@@ -32,7 +28,6 @@ namespace PizzeriaMasterpiece.Controllers
             }
             ViewBag.ListCart = System.Web.HttpContext.Current.Session["Cart"];
             return View();
-
         }
 
         public JsonResult DeleteItem(int rowID)
@@ -55,7 +50,6 @@ namespace PizzeriaMasterpiece.Controllers
 
             ViewBag.ListCart = orderList;
             return Json(orderList);
-
         }
     }
 }
