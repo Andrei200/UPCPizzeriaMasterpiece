@@ -192,6 +192,58 @@
         });
     });
 
+    $(".cancelOrder").click(function () {
+        var father = $(this).parent().parent();
+        var id = father.find('.id').val();
+        var statusId = 3;
+
+        BootstrapDialog.confirm({
+            title: 'Exito al procesar',
+            message: 'Desea cancelar el pedido?',
+            type: BootstrapDialog.TYPE_DANGER, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+            closable: true, // <-- Default value is false
+            draggable: true, // <-- Default value is false
+            btnCancelLabel: 'Cerrar', // <-- Default value is 'Cancel',
+            btnOKLabel: 'Cancelar', // <-- Default value is 'OK',
+            btnOKClass: 'btn-danger', // <-- If you didn't specify it, dialog type will be used,
+            callback: function (result) {
+                // result will be true if button was click, while it will be false if users close the dialog directly.
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify({ 'orderId': id, 'orderStatusId': statusId }),
+                        url: "http://localhost:1901/Admin/CancelOrder",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data.Status == 1) {
+                                $('#ModalConfirm').modal('hide');
+                                BootstrapDialog.alert({
+                                    title: 'Exito al cancelar',
+                                    message: data.Message,
+                                    type: BootstrapDialog.TYPE_PRIMARY
+                                });
+                            } else {
+                                BootstrapDialog.alert({
+                                    title: 'Advertencia',
+                                    message: data.Message,
+                                    type: BootstrapDialog.TYPE_WARNING
+                                });
+                            }
+                            father.remove();
+                        },
+                        error: function (response) {
+                            console.log(response);
+                        }
+                    });
+                }
+            }
+        });
+
+        
+    });
+
     callSession();
     function callSession() {
         $.ajax({

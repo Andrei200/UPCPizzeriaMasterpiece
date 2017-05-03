@@ -80,6 +80,11 @@ namespace PizzeriaMasterpiece.Controllers
                 return View(model);
             }
 
+            if (Session["User"] != null)
+            {
+                return Redirect("/");
+            }
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var serviceReference = new UserServiceReference.UserServiceClient();
@@ -92,6 +97,9 @@ namespace PizzeriaMasterpiece.Controllers
             {
                 Session["User"] = result;
                 Session["UserName"] = result.FirstName;
+                if (result.RoleId == 1) Session["IsAdmin"] = "OK";
+                else Session["IsAdmin"] = null;
+            
                 return RedirectToLocal(returnUrl);
             }
             else
@@ -401,35 +409,7 @@ namespace PizzeriaMasterpiece.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Manage");
-            }
-
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return View("ExternalLoginFailure");
-                }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
-                    }
-                }
-                AddErrors(result);
-            }
-
-            ViewBag.ReturnUrl = returnUrl;
+        {          
             return View(model);
         }
 
@@ -439,8 +419,10 @@ namespace PizzeriaMasterpiece.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            Session["User"] = null;
+            Session["IsAdmin"] = null;
+            Session["UserName"] = null;
+            return RedirectToAction("Login", "Account");
         }
 
         //

@@ -68,6 +68,18 @@ namespace PizzeriaMasterpiece.Controllers
             return Json(response);
         }
 
+        public async Task<ActionResult> CancelOrder(int orderId, int orderStatusId)
+        {
+            var serviceReference = new OrderServiceReference.OrderServiceClient();
+            OrderStatusDTO os = new OrderStatusDTO()
+            {
+                OrderId = orderId,
+                OrderStatusId = orderStatusId
+            };
+            var response = serviceReference.UpdateOrderStatus(os);
+            return Json(response);
+        }
+
         public ActionResult Product()
         {
             var serviceReference = new ProductServiceReference.ProductServiceClient();
