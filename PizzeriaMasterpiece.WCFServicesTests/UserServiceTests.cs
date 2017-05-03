@@ -27,11 +27,38 @@ namespace PizzeriaMasterpiece.Services.Tests
             Assert.AreEqual(result.DocumentNo, "12457800");
         }
 
+
         [TestMethod()]
-        public void GetSize() {
-            var serviceRerence = new WCFServicesTests.UserServiceReference.UserServiceClient();
-            var size = new WCFServicesTests.UserServiceReference.UserRegistrationDTO();
+        public void LoginUserInformation()
+        {
+
+            var serviceReference = new WCFServicesTests.UserServiceReference.UserServiceClient();
+            var user = new WCFServicesTests.UserServiceReference.UserLoginDTO();
+            user.Email = "j@gmail.com";
+            user.Password = "123456";
+
+            var result = serviceReference.LoginUserInformation(user);
+            Assert.AreEqual(result.DocumentNo, "45127845");
+
         }
 
+      
+        [TestMethod()]
+        public void UpdateUserInformation()
+        {
+            var serviceReference = new WCFServicesTests.UserServiceReference.UserServiceClient();
+            var user = new WCFServicesTests.UserServiceReference.UserRegistrationDTO();
+            user.UserId = 2;
+            user.FirstName = "Frank";
+            user.LastName = "Mamani";
+            user.Address= "Av El sol 1232";
+            user.PhoneNumber = "23323323";
+
+        
+            var result = serviceReference.UpdateUserInformation(user);
+            Assert.AreEqual(result.PhoneNumber, "23323323");
+
+        }
     }
+
 }
