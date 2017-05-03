@@ -62,7 +62,7 @@ namespace PizzeriaMasterpiece.Controllers
             OrderStatusDTO os = new OrderStatusDTO()
             {
                 OrderId = orderId,
-                OrderStatusId = orderStatusId
+                OrderStatusId = 2
             };
             var response = serviceReference.UpdateOrderStatus(os);
             return Json(response);
@@ -74,7 +74,7 @@ namespace PizzeriaMasterpiece.Controllers
             OrderStatusDTO os = new OrderStatusDTO()
             {
                 OrderId = orderId,
-                OrderStatusId = orderStatusId
+                OrderStatusId = 3
             };
             var response = serviceReference.UpdateOrderStatus(os);
             return Json(response);
