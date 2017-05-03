@@ -14,6 +14,7 @@
     });
 
     $(".btn-order-pizza").click(function () {
+        var c = $(this).parent().find('input:eq(1)');
         var prd = $(this).parent().find('input:eq(0)').val();
         var qnt = $(this).parent().find('input:eq(1)').val();
         $.ajax({
@@ -25,9 +26,11 @@
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 BootstrapDialog.show({
+                    title: 'Mensaje de confirmación',
                     message: 'Producto agregado!',
                     type: BootstrapDialog.TYPE_SUCCESS
                 });
+                c.val(0);
                 if (data.length != 0) {
                     $("#CountCart").show();
                     $("#CountCart").text(data.length);
@@ -64,6 +67,7 @@
                     $("#CountCart").text(data.length);
                 } else {
                     $("#CountCart").hide();
+                    $("#ContinueOrder").hide();
                 }               
                 $("#CartTotal").text(sum(data));
                 register.remove();
@@ -82,8 +86,23 @@
             url: "http://localhost:1901/Account/CallUser",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                if (data == null) {
-                    BootstrapDialog.alert('Ingrese su sessión!');
+                if (data.UserId == 0) {
+                    BootstrapDialog.confirm({
+                        title: 'Advertencia',
+                        message: 'Ingrese con su cuenta para confirmar el pedido',
+                        type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+                        closable: true, // <-- Default value is false
+                        draggable: true, // <-- Default value is false
+                        btnCancelLabel: 'Aún no', // <-- Default value is 'Cancel',
+                        btnOKLabel: 'Ingresar', // <-- Default value is 'OK',
+                        btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+                        callback: function (result) {
+                            // result will be true if button was click, while it will be false if users close the dialog directly.
+                            if (result) {
+                                window.location.href = "http://localhost:1901/Account/Login";
+                            } 
+                        }
+                    });
                 } else {
                     $("#txtAddress").val(data.Address);
                     $('#ModalConfirm').modal('toggle');
@@ -104,11 +123,22 @@
             url: "http://localhost:1901/Order/CreateOrder",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                if (data.Status == 1) {
-                    $('#ModalConfirm').modal('hide');
-                    BootstrapDialog.alert(data.Message);//cambiar color del modal
+                $('#ModalConfirm').modal('hide');
+                if (data.Status == 1) {                    
+                    BootstrapDialog.alert({
+                        title: 'Exito al procesar',
+                        message: data.Message,
+                        type: BootstrapDialog.TYPE_PRIMARY
+                    });
+
+                    $("#ContinueOrder").hide();
+
                 } else {
-                    BootstrapDialog.alert(data.Message);
+                    BootstrapDialog.alert({
+                        title: 'Error al procesar',
+                        message: data.Message,
+                        type: BootstrapDialog.TYPE_DANGER
+                    });
                 }
             },
             error: function (response) {
@@ -142,9 +172,17 @@
             success: function (data) {
                 if (data.Status == 1) {
                     $('#ModalConfirm').modal('hide');
-                    BootstrapDialog.alert(data.Message);//cambiar color del modal
+                    BootstrapDialog.alert({
+                        title: 'Exito al procesar',
+                        message: data.Message,
+                        type: BootstrapDialog.TYPE_PRIMARY
+                    });                    
                 } else {
-                    BootstrapDialog.alert(data.Message);
+                    BootstrapDialog.alert({
+                        title: 'Advertencia',
+                        message: data.Message,
+                        type: BootstrapDialog.TYPE_WARNING
+                    });                    
                 }
                 father.remove();
             },

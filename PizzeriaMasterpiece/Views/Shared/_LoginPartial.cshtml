@@ -13,7 +13,7 @@
             </a>
         </li>
         <li>
-            @Html.ActionLink("Buenas " + User.Identity.GetUserName() + "!", "Update", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            @Html.ActionLink("Buenas " + Session["UserName"] + "!", "Update", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Salir</a></li>
     </ul>

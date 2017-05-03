@@ -54,6 +54,11 @@ namespace PizzeriaMasterpiece.Controllers
             }
         }
 
+        public ActionResult NoAccess()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -86,11 +91,12 @@ namespace PizzeriaMasterpiece.Controllers
             if (result != null)
             {
                 Session["User"] = result;
+                Session["UserName"] = result.FirstName;
                 return RedirectToLocal(returnUrl);
             }
             else
             {
-                ModelState.AddModelError("", "Invalid login attempt.");
+                ModelState.AddModelError("", "Ingrese correctamente su usuario.");
                 return View(model);
             }
         }
@@ -467,7 +473,15 @@ namespace PizzeriaMasterpiece.Controllers
 
         public JsonResult CallUser()
         {
-            return Json((UserDTO)Session["User"]);
+            if (Session["User"] != null)
+            {
+                return Json((UserDTO)Session["User"]);
+            }
+            else
+            {
+                return Json(new UserDTO());
+            }
+            
         }
 
         #region Helpers

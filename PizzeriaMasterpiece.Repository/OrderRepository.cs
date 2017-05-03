@@ -167,7 +167,7 @@ namespace PizzeriaMasterpiece.Repository
                             Quantity=p.Supply.Quantity
                         }).ToList()
                       }).ToList()
-                   }).ToList();
+                   }).OrderByDescending(q=> q.Date).ToList();
 
                 return result;
             }

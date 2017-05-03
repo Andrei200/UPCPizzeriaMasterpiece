@@ -17,11 +17,31 @@ namespace PizzeriaMasterpiece.Controllers
         private string restServiceURL = WebConfigurationManager.AppSettings["RestServiceURL"];
         public ActionResult Panel()
         {
+            if (Session["User"] == null)
+            {
+                ViewBag.Login = "Ingrese su usuario y contraseña";
+                return Redirect("/Account/Login");
+            }
+            else if (((UserDTO)Session["User"]).RoleId != 1) //only admin
+            {
+                return Redirect("/Account/NoAccess");
+            }
+
             return View();
         }
 
         public async System.Threading.Tasks.Task<ActionResult> Order()
         {
+            if (Session["User"] == null)
+            {
+                ViewBag.Login = "Ingrese su usuario y contraseña";
+                return Redirect("/Account/Login");
+            }
+            else if(((UserDTO)Session["User"]).RoleId != 1) //only admin
+            {   
+                return Redirect("/Account/NoAccess");
+            }
+
             HttpClient client = new HttpClient();
             HttpResponseMessage response = await client.GetAsync(restServiceURL+"OrderAdministrator");
             var listOrder = new List<OrderDTO>();            

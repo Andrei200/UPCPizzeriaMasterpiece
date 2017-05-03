@@ -70,28 +70,28 @@ namespace PizzeriaMasterpiece.Models
         [Display(Name = "DNI")]
         public string Document { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Debe ingresar su(s) nombre(s)")]
         [Display(Name = "Nombre(s)")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar sus apellidos")]
         [Display(Name = "Apellido(s)")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar su dirección")]
         [Display(Name = "Dirección")]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar su teléfono")]
         [Display(Name = "Telefono")]
         public string Telephone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar su correo")]
         [EmailAddress]
         [Display(Name = "Correo")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ingrese su contraseña")]
         [StringLength(100, ErrorMessage = "La {0} debe tener almenos {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
