@@ -23,7 +23,7 @@
                 contentType: "application/json",
                 dataType: 'jSon',
                 data: JSON.stringify({ 'productId': prd, 'quantity': qnt }),
-                url: "http://localhost:1901/Product/AddToCart",
+                url: "/Product/AddToCart",
                 contentType: 'application/json; charset=utf-8',
                 success: function (data) {
                     BootstrapDialog.show({
@@ -61,7 +61,7 @@
             contentType: "application/json",
             dataType: 'jSon',
             data: JSON.stringify({ 'rowID': row }),
-            url: "http://localhost:1901/Cart/DeleteItem",
+            url: "/Cart/DeleteItem",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (data.length != 0) {
@@ -85,7 +85,7 @@
             type: "POST",
             contentType: "application/json",
             dataType: "json",            
-            url: "http://localhost:1901/Account/CallUser",
+            url: "/Account/CallUser",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (data.UserId == 0) {
@@ -101,7 +101,7 @@
                         callback: function (result) {
                             // result will be true if button was click, while it will be false if users close the dialog directly.
                             if (result) {
-                                window.location.href = "http://localhost:1901/Account/Login";
+                                window.location.href = "/Account/Login";
                             } 
                         }
                     });
@@ -122,7 +122,7 @@
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({ 'address': $("#txtAddress").val(), "remark": $("#txtRemark").val(), "documentType": $("#selDocumentType").val() }),
-            url: "http://localhost:1901/Order/CreateOrder",
+            url: "/Order/CreateOrder",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 $('#ModalConfirm').modal('hide');
@@ -169,7 +169,7 @@
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({ 'orderId': id, 'orderStatusId': statusId }),
-            url: "http://localhost:1901/Admin/AproveOrder",
+            url: "/Admin/AproveOrder",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (data.Status == 1) {
@@ -216,7 +216,7 @@
                         contentType: "application/json",
                         dataType: "json",
                         data: JSON.stringify({ 'orderId': id, 'orderStatusId': statusId }),
-                        url: "http://localhost:1901/Admin/CancelOrder",
+                        url: "/Admin/CancelOrder",
                         contentType: 'application/json; charset=utf-8',
                         success: function (data) {
                             if (data.Status == 1) {
@@ -252,7 +252,7 @@
             type: "POST",
             contentType: "application/json",
             dataType: 'jSon',            
-            url: "http://localhost:1901/Product/CheckCart",
+            url: "/Product/CheckCart",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
                 if (data.length != 0) {

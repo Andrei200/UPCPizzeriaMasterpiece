@@ -50,7 +50,7 @@
                     <th>Dirección</th>
                     <th>Adicional</th>
                     <th>Estado</th>
-                    <th></th>
+                    @*<th></th>*@
                 </tr>
             </thead>
             <tbody>
@@ -66,9 +66,9 @@
                                 <td>@ViewBag.ListOrder[i].Address</td>
                                 <td>@ViewBag.ListOrder[i].Remark</td>
                                 <td>@ViewBag.ListOrder[i].OrderStatusName</td>
-                                <td>
+                                @*<td>
                                     <button class="btn btn-xs btn-warning"><span class="glyphicon glyphicon-name"></span> Detalle</button>                                    
-                                </td>
+                                </td>*@
                             </tr>
                         }
                     }
